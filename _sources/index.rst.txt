@@ -12,6 +12,8 @@ I'm a Python fanboy, and a fervent defender of Free Software.
 
 I also like to play guitar.
 
+I've heard, once "The linux way of solving problems" that's exactly what I like.
+
 .. toctree::
    :maxdepth: 1
 
