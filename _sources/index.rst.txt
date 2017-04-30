@@ -8,7 +8,7 @@ $ whoami
 
 Hi, my name is `Matthieu <https://github.com/mmequignon>`_. I'm following sandwich courses at `ULCO <http://www.univ-littoral.fr/>`_ (Université du Littoral, Côte d'Opale) in Calais and working at `Osiell <https://github.com/osiell>`_ in Rennes.
 
-I'm a Python fanboy, and a fervent defender of the Free Software.
+I'm a Python fanboy, and a fervent defender of Free Software.
 
 I also like to play guitar.
 
