@@ -1,0 +1,17 @@
+@import url(http://fonts.googleapis.com/css?family=Bitter:400,700);
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
+
+a,h1,h {
+	margin: 50px auto;
+	text-shadow: -1px -1px 0px rgba(255,255,255,0.3), 1px 1px 0px rgba(0,0,0,0.8);
+	color: white;
+	opacity: 0.8;
+	font: 700 25px 'Open Sans';
+}
+
+html {
+	background:url("../_static/404.jpg") no-repeat center fixed;
+	background-size: cover;
+}
+
+

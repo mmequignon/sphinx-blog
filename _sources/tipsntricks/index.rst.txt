@@ -1,0 +1,10 @@
+Tips 'n Tricks
+==============
+
+.. toctree::
+   :maxdepth: 1 
+   :caption: Tips 'n Tricks
+
+   x2x
+   vim
+   deb_packages

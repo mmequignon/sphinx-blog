@@ -1,0 +1,38 @@
+.deb packages modification
+==========================
+
+I wanted to install a python package, few days ago. An old package which is not maintained anymore. A .deb file was available on the website, so I tried to install it and then… ::
+
+    <package> depends on python-wxgtk2.6 ; but :
+    Package python-wxgtk2.6 is not installed.
+
+Let's see available packages ::
+
+    apt-cache search python-wxgtk
+    […]
+    python-wxgtk-media3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit (wx.media)
+    python-wxgtk-webview3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit (wx.html2)
+    python-wxgtk3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit
+    python-wxgtk3.0-dev - Development files for wxPython
+
+I install then the available version from the debian repositories, but the program still fails to launch. But, the installed version maybe uses the same attributes and methods, so both versions maybe are not that different ? So, I tried to remove the dependancy from the .deb package.
+
+First, I had to extract content from the package in a temporary directory ::
+
+    dpkg-deb -x package-version.deb package-tmp
+
+Then, I needed to extract control files in a DEBIAN/ directory ::
+
+    dpkg-deb --control package-version.deb package-tmp/DEBIAN/
+
+Now, I can edit the package-tmp/DEBIAN/control file in order to modify the following line ::
+
+    Depends: python, python-serial, python-wxgtk2.6
+
+I remove, then, the python-wxgtk2.6 dependancy and rebuild the package ::
+
+    dpkg -b package-tmp package-custom.deb
+
+Now, I try to install it again, and it works now.
+
+In my case, this modification was enough because, as I expected, both versions are similar. But it may not be for other dependencies.

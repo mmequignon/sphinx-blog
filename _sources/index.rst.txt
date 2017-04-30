@@ -1,0 +1,22 @@
+.. Fwzte documentation master file, created by
+   sphinx-quickstart on Sat Mar  4 20:03:41 2017.
+   You can adapt this file completely to your liking, but it should at least
+   contain the root `toctree` directive.
+   
+$ whoami
+========
+
+Hi, my name is `Matthieu <https://github.com/mmequignon>`_. I'm following sandwich courses at `ULCO <http://www.univ-littoral.fr/>`_ (Université du Littoral, Côte d'Opale) in Calais and working at `Osiell <https://github.com/osiell>`_ in Rennes.
+
+I'm a Python fanboy, and a fervent defender of the free software.
+
+I also like to play guitar.
+
+I've heard, once "The linux way of solving problems"
+
+.. toctree::
+   :maxdepth: 1
+
+   Tutos <tutos/index>
+   Tips 'n Tricks <tipsntricks/index>
+   Scripts <scripts/index>

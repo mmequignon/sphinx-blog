@@ -1,0 +1,353 @@
+Just a vim reminder
+===================
+
+I just wanted to share, here, my knowledge about this amazing editor.
+
+
+Basics
+++++++
+
+Use the force, use hjkl !
+-------------------------
+
+The way of moving your cursor, in vim, is not based on your arrow keys.
+You should use <h>, <j>, <k>, <l> instead.
+
++-----+--------+
+| Key | Action |
++=====+========+
+| <h> | Left   |
++-----+--------+
+| <j> | Up     |
++-----+--------+
+| <l> | Down   |
++-----+--------+
+| <m> | Right  |
++-----+--------+
+
+Modes
+-----
+
+In order to edit some text with Vim, you should know about some rudiments before anything else.
+When vim starts, it's in the "Normal" mode, that allows you to enter commands.
+That's actually why most users can't figure out how to edit text, or simply exit Vim at the first use.
+
+Vim is mode-based, that means that if you want to type or edit some text, you need to enter in a specific mode.
+
+It's a bit weird at first, but it's actually very, very, VERY, powerful.
+
+Let's talk about this.
+
+.. note::
+    If you want to exit a mode and return in Normal mode, just press on the <Esc> key.
+
++----------+------------------------------------------------------+
+| Key      | Action                                               |
++==========+======================================================+
+| <Esc>    | Exits actual mode to return in Normal mode.          |
++----------+------------------------------------------------------+
+| <i>      | Enter in Insert mode, to write some text.            |
++----------+------------------------------------------------------+
+| <v>      | Enter in Visual mode, to select some text.           |
++----------+------------------------------------------------------+
+| <V>      | Enter in Visual-line mode, to select entiere lines   |
++----------+------------------------------------------------------+
+| <C-v>    | Enter in Visual-block mode, to select blocks of text |
++----------+------------------------------------------------------+
+
+Commands
+--------
+
+Well, you know how to edit text, but you still can't exit vim.
+
+.. figure:: ../_static/vim-joke.png
+   :align: center
+
+   Just a joke about Vim
+
+In order to enter a command, you must prefix it with ``:``.
+
++---------+-------------------------------------------+
+| Command | Action                                    |
++=========+===========================================+
+| ``:w``  | Saves modifications (write)               |
++---------+-------------------------------------------+
+| ``:q``  | Quits current buffer (if saved)           |
++---------+-------------------------------------------+
+| ``:q!`` | Quits current buffer and discards changes |
++---------+-------------------------------------------+
+| ``:w``  | Writes and quits current buffer           |
++---------+-------------------------------------------+
+
+
+But not always…
+
++---------+-------------------------------------------+
+| Command | Action                                    |
++=========+===========================================+
+| <u>     | To cancel last modification               |
++---------+-------------------------------------------+
+| <C-r>   | To restore last canceled modification     |
++---------+-------------------------------------------+
+| <.>     | To repeat last modification               |
++---------+-------------------------------------------+
+
+
+Cut / Copy / Paste
+------------------
+
++-----+-------------------------------------------+
+| Key | Action                                    |
++=====+===========================================+
+| <d> | Cut selection                             |
++-----+-------------------------------------------+
+| <D> | Cut everything on the line, after cursor. |
++-----+-------------------------------------------+
+| <y> | Copy (yank) selection                     |
++-----+-------------------------------------------+
+| <Y> | Copy the current line                     |
++-----+-------------------------------------------+
+| <p> | Paste after cursor                        | 
++-----+-------------------------------------------+
+| <P> | Paste before cursor                       |
++-----+-------------------------------------------+
+
+A little subtlety, here.
+If you have copied a full line with <Y>, you will paste the line on a dedicated new line.
+Basically, if you paste with <p> it will be pasted on a new line below the cursor.
+If you paste with <P>, it will be pasted on a new line above the cursor.
+So, the best way to double a line is <Y><P>.
+
+----------------------------
+
+
+Advanced
+++++++++
+
+
+Now, you should be able to edit some text, let's talk about more advanced things.
+
+Cut / Copy (again)
+------------------
+
+If you have practiced a bit by yourself, you probably noticed that if you cut or copy some text, this one is not accessible from the system clipboard.
+Actually, these clipboards are accessible using registers.
+
+By default, if you copy something, the text will be stored in the unnamed register.
+
+If you enter the command ``:reg``, you will see all registers and their content.
+
+All letters and all numbers can be used as registers, that means that you can copy and paste 36 different things at the same time.
+
+Registers are accessible inside Vim with the <"> prefix.
+Here is the basic syntax
+
+
++--------------+----------------------------------------+
+| Command      | Action                                 |
++==============+========================================+
+| "<register>y | Copy into the register <register>      |
++--------------+----------------------------------------+
+| "<register>p | Cut into the register <register>       |
++--------------+----------------------------------------+
+| "<register>p | Paste from the register <register>     |
++--------------+----------------------------------------+
+| "\*y         | Copy into the clipboard                |
++--------------+----------------------------------------+
+| "\*p         | Paste from the clipboard               |
++--------------+----------------------------------------+
+| "+y          | Copy into the X's clipboard            |
++--------------+----------------------------------------+
+| "+p          | Paste from the X's clipboard           |
++--------------+----------------------------------------+
+
+
+That being said, tose registers are still unusable outside Vim.  
+
+There is two more special registers named ``*`` and ``+``.
+
+ - When you copy some text with <C-x> or <C-c> outside vim. It'll be accessible in the buffer named ``+``.
+ - When you select some text without copying it, this one will be accessible in the buffer named ``*``.
+
+You can, then access it with ``"+p``.
+
+And if you copy text in vim with ``"+y``, you are able to paste it with <C-v> outside Vim.
+
+
+Cursor manipulation
+-------------------
+
++---------+-----------------------------------------------------------------------+
+| Command | Action                                                                |
++=========+=======================================================================+
+|  <H>    | Move cursor on the first line displayed on the screen                 |
++---------+-----------------------------------------------------------------------+
+|  <M>    | Move the cursor at the center of the screen                           |
++---------+-----------------------------------------------------------------------+
+|  <L>    | Move cursor at the last line displayed on the screen                  |
++---------+-----------------------------------------------------------------------+
+|  <'><'> | Move the cursor at the last position.                                 |
++---------+-----------------------------------------------------------------------+
+|  <'><.> | Move cursor at the last modified line.                                |
++---------+-----------------------------------------------------------------------+
+|  <^>    | Move cursor at the first character of the current line.               |
++---------+-----------------------------------------------------------------------+
+|  <I>    | Move cursor at the first character of the current line in Insert mode |
++---------+-----------------------------------------------------------------------+
+|  <(>    | Move cursor at the beginning of the current paragraph                 |
+|         | (works with ``{`` as well).                                           |
++---------+-----------------------------------------------------------------------+
+|  <)>    | Move cursor at the end of the current paragraph                       |
+|         | (works with ``{`` as well).                                           |
++---------+-----------------------------------------------------------------------+
+|  87<G>  | Move cursor at line 87 (works with <g><g> as well)                    |
++---------+-----------------------------------------------------------------------+
+|  <z><z> | Center the current line on the screen.                                |
++---------+-----------------------------------------------------------------------+
+|  <z><t> | Move current line at the top of the screen.                           |
++---------+-----------------------------------------------------------------------+
+|  <z><b> | Move current line at the bottom of the screen.                        |
++---------+-----------------------------------------------------------------------+
+
+
+Manipulation
+------------
+
+
+In order to modify case, you can select text and use these commands
+
++----------+-----------------------------------+
+| Command  | Action                            |
++==========+===================================+
+| <g><U>   | Uppercase     ``Text`` ⇒ ``TEXT`` |
++----------+-----------------------------------+
+| <g><u>   | Lowercase     ``Text`` ⇒ ``text`` |
++----------+-----------------------------------+
+| <g><~>   | Toggle Case   ``Text`` ⇒ ``tEXT`` |
++----------+-----------------------------------+
+
+You also could use mix of all we saw.
+
+For example ``<V><U>`` Uppercase the current line, etc…
+
+In vim, you can use diffent contextual elements.
+
+You can apply a command on the current word with the ``iw`` suffix.
+
+You can apply a command on everythin between ``"`` with the ``i"`` suffix as well.
+(Only if the cursor is placed between two ``"``, obviously)
+
+Those commands works with ``"``, ``(``, ``{``, ``'``, and ``[``.
+For the examples, I will use ``"``.
+
++--------------+---------------------------------------------------+
+| Key          | Action                                            |
++==============+===================================================+
+| <v><i><">    | Selects text placed between the ``"``.            |
++--------------+---------------------------------------------------+
+| <c><i><">    | Replaces text placed between the ``"``.           |
++--------------+---------------------------------------------------+
+| <y><i><">    | Copies text placed between the ``"``.             |  
++--------------+---------------------------------------------------+
+| <d><i><">    | Cut text placed between the ``"``.                |
++--------------+---------------------------------------------------+
+| <g><u><i><w> | Lowercase the text placed between the ``"``.      |
++--------------+---------------------------------------------------+
+| <g><U><i><w> | Uppercase the text placed between the ``"``.      |
++--------------+---------------------------------------------------+
+| <g><~><i><w> | Toggle case of the text placed between the ``"``. |
++--------------+---------------------------------------------------+
+
+Similirly, you can apply this to the current word
+
++--------------+-----------------------------------------+
+| Key          | Action                                  |
++==============+=========================================+
+| <v><i><w>    | Selects the current word                |
++--------------+-----------------------------------------+
+| <c><i><w>    | Replaces the current word               |
++--------------+-----------------------------------------+
+| <y><i><w>    | Copies the current word                 |
++--------------+-----------------------------------------+
+| <d><i><w>    | Cuts the current word                   |
++--------------+-----------------------------------------+
+| <g><u><i><w> | Lowercase the current word              |
++--------------+-----------------------------------------+
+| <g><U><i><w> | Uppercase the current word              |
++--------------+-----------------------------------------+
+| <g><~><i><w> | Toggle case of the current word         |
++--------------+-----------------------------------------+
+
+
+Windows
+-------
+
+**Split the screen**
+
++----------+----------------------------------------+
+| Command  | Action                                 |
++==========+========================================+
+| <C-w><s> | Splits the current buffer horizontally |
++----------+----------------------------------------+
+| <C-w><v> | Splits the current buffer vertically   |
++----------+----------------------------------------+
+
+**Manipulate splits**
+
++-----------+----------------------------------------+
+| Command   | Action                                 |
++===========+========================================+
+| <C-w><j>  | Selects the split placed on the Top    |
++-----------+----------------------------------------+
+| <C-w><k>  | Selects the split placed on the Bottom |
++-----------+----------------------------------------+
+| <C-w><l>  | Selects the split placed on the Right  |
++-----------+----------------------------------------+
+| <C-w><h>  | Selects the split placed on the Left   |
++-----------+----------------------------------------+
+| <C-w><\+> | Increase the horizontal split size     |
++-----------+----------------------------------------+
+| <C-w><->  | Decrease the horizontal split size     |
++-----------+----------------------------------------+
+| <C-w><\<> | Increase the vertical split size       |
++-----------+----------------------------------------+
+| <C-w><\>> | Decrease the vertical split size       |
++-----------+----------------------------------------+
+| <C-w><=>  | Resize all splits                      |
++-----------+----------------------------------------+
+
+**Move splits**
+
++-----------+----------------------------------+
+| Command   | Action                           |
++===========+==================================+
+| <C-w> <H> | Move current split to the Left   |
++-----------+----------------------------------+
+| <C-w> <L> | Move current split to the Right  |
++-----------+----------------------------------+
+| <C-w> <K> | Move current split to the Top    |
++-----------+----------------------------------+
+| <C-w> <J> | Move current split to the Bottom |
++-----------+----------------------------------+
+
+**Commands**
+
+ - To search for a word in the current buffer, you should use ``/pattern``.
+ - To search other iterations of the word on which is placed the cursor, type ``*``.
+ - To move to the next iteration of the searched word, type ``n``.
+ - To move to the previous iteration of the searched word, type ``N``.
+
+There are plenty of useful commands in vim.
+I will not put every of them here, first because I dont know them all, but mostly because there is too much.
+Here is the one I use the most:
+
+ - ``:s/foo/bar/g`` ⇒ searches and replaces every **foo** by **bar** in the current line
+ - ``:%s/foo/bar/g`` ⇒ searches and replaces every **foo** by **bar** in the current buffer
+
+
+Conclusion
+++++++++++
+
+All of these is already usable without __ANY__ configuration, and _ANY_ plugin.
+You can now imagine how powerful it is, well configured…
+Vim is a great editor, and the best, to me.

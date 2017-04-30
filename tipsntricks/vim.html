@@ -1,0 +1,802 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Just a vim reminder &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tips ‘n Tricks" href="index.html"/>
+        <link rel="next" title=".deb packages modification" href="deb_packages.html"/>
+        <link rel="prev" title="How to drive a remote computer with X2GO" href="x2x.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutos/index.html">Tutos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/acpi-systemd.html">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tips &#8216;n Tricks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tips &#8216;n Tricks</a> &raquo;</li>
+        
+      <li>Just a vim reminder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tipsntricks/vim.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="just-a-vim-reminder">
+<h1>Just a vim reminder<a class="headerlink" href="#just-a-vim-reminder" title="Permalink to this headline">¶</a></h1>
+<p>I just wanted to share, here, my knowledge about this amazing editor.</p>
+<div class="section" id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="use-the-force-use-hjkl">
+<h3>Use the force, use hjkl !<a class="headerlink" href="#use-the-force-use-hjkl" title="Permalink to this headline">¶</a></h3>
+<p>The way of moving your cursor, in vim, is not based on your arrow keys.
+You should use &lt;h&gt;, &lt;j&gt;, &lt;k&gt;, &lt;l&gt; instead.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="38%" />
+<col width="62%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;h&gt;</td>
+<td>Left</td>
+</tr>
+<tr class="row-odd"><td>&lt;j&gt;</td>
+<td>Up</td>
+</tr>
+<tr class="row-even"><td>&lt;l&gt;</td>
+<td>Down</td>
+</tr>
+<tr class="row-odd"><td>&lt;m&gt;</td>
+<td>Right</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="modes">
+<h3>Modes<a class="headerlink" href="#modes" title="Permalink to this headline">¶</a></h3>
+<p>In order to edit some text with Vim, you should know about some rudiments before anything else.
+When vim starts, it&#8217;s in the &#8220;Normal&#8221; mode, that allows you to enter commands.
+That&#8217;s actually why most users can&#8217;t figure out how to edit text, or simply exit Vim at the first use.</p>
+<p>Vim is mode-based, that means that if you want to type or edit some text, you need to enter in a specific mode.</p>
+<p>It&#8217;s a bit weird at first, but it&#8217;s actually very, very, VERY, powerful.</p>
+<p>Let&#8217;s talk about this.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">If you want to exit a mode and return in Normal mode, just press on the &lt;Esc&gt; key.</p>
+</div>
+<table border="1" class="docutils">
+<colgroup>
+<col width="16%" />
+<col width="84%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;Esc&gt;</td>
+<td>Exits actual mode to return in Normal mode.</td>
+</tr>
+<tr class="row-odd"><td>&lt;i&gt;</td>
+<td>Enter in Insert mode, to write some text.</td>
+</tr>
+<tr class="row-even"><td>&lt;v&gt;</td>
+<td>Enter in Visual mode, to select some text.</td>
+</tr>
+<tr class="row-odd"><td>&lt;V&gt;</td>
+<td>Enter in Visual-line mode, to select entiere lines</td>
+</tr>
+<tr class="row-even"><td>&lt;C-v&gt;</td>
+<td>Enter in Visual-block mode, to select blocks of text</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="commands">
+<h3>Commands<a class="headerlink" href="#commands" title="Permalink to this headline">¶</a></h3>
+<p>Well, you know how to edit text, but you still can&#8217;t exit vim.</p>
+<div class="figure align-center" id="id1">
+<img alt="../_images/vim-joke.png" src="../_images/vim-joke.png" />
+<p class="caption"><span class="caption-text">Just a joke about Vim</span></p>
+</div>
+<p>In order to enter a command, you must prefix it with <code class="docutils literal"><span class="pre">:</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">:w</span></code></td>
+<td>Saves modifications (write)</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">:q</span></code></td>
+<td>Quits current buffer (if saved)</td>
+</tr>
+<tr class="row-even"><td><code class="docutils literal"><span class="pre">:q!</span></code></td>
+<td>Quits current buffer and discards changes</td>
+</tr>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">:w</span></code></td>
+<td>Writes and quits current buffer</td>
+</tr>
+</tbody>
+</table>
+<p>But not always…</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="17%" />
+<col width="83%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;u&gt;</td>
+<td>To cancel last modification</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-r&gt;</td>
+<td>To restore last canceled modification</td>
+</tr>
+<tr class="row-even"><td>&lt;.&gt;</td>
+<td>To repeat last modification</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="cut-copy-paste">
+<h3>Cut / Copy / Paste<a class="headerlink" href="#cut-copy-paste" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="10%" />
+<col width="90%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;d&gt;</td>
+<td>Cut selection</td>
+</tr>
+<tr class="row-odd"><td>&lt;D&gt;</td>
+<td>Cut everything on the line, after cursor.</td>
+</tr>
+<tr class="row-even"><td>&lt;y&gt;</td>
+<td>Copy (yank) selection</td>
+</tr>
+<tr class="row-odd"><td>&lt;Y&gt;</td>
+<td>Copy the current line</td>
+</tr>
+<tr class="row-even"><td>&lt;p&gt;</td>
+<td>Paste after cursor</td>
+</tr>
+<tr class="row-odd"><td>&lt;P&gt;</td>
+<td>Paste before cursor</td>
+</tr>
+</tbody>
+</table>
+<p>A little subtlety, here.
+If you have copied a full line with &lt;Y&gt;, you will paste the line on a dedicated new line.
+Basically, if you paste with &lt;p&gt; it will be pasted on a new line below the cursor.
+If you paste with &lt;P&gt;, it will be pasted on a new line above the cursor.
+So, the best way to double a line is &lt;Y&gt;&lt;P&gt;.</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="advanced">
+<h2>Advanced<a class="headerlink" href="#advanced" title="Permalink to this headline">¶</a></h2>
+<p>Now, you should be able to edit some text, let&#8217;s talk about more advanced things.</p>
+<div class="section" id="cut-copy-again">
+<h3>Cut / Copy (again)<a class="headerlink" href="#cut-copy-again" title="Permalink to this headline">¶</a></h3>
+<p>If you have practiced a bit by yourself, you probably noticed that if you cut or copy some text, this one is not accessible from the system clipboard.
+Actually, these clipboards are accessible using registers.</p>
+<p>By default, if you copy something, the text will be stored in the unnamed register.</p>
+<p>If you enter the command <code class="docutils literal"><span class="pre">:reg</span></code>, you will see all registers and their content.</p>
+<p>All letters and all numbers can be used as registers, that means that you can copy and paste 36 different things at the same time.</p>
+<p>Registers are accessible inside Vim with the &lt;&#8221;&gt; prefix.
+Here is the basic syntax</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="26%" />
+<col width="74%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&#8220;&lt;register&gt;y</td>
+<td>Copy into the register &lt;register&gt;</td>
+</tr>
+<tr class="row-odd"><td>&#8220;&lt;register&gt;p</td>
+<td>Cut into the register &lt;register&gt;</td>
+</tr>
+<tr class="row-even"><td>&#8220;&lt;register&gt;p</td>
+<td>Paste from the register &lt;register&gt;</td>
+</tr>
+<tr class="row-odd"><td>&#8220;*y</td>
+<td>Copy into the clipboard</td>
+</tr>
+<tr class="row-even"><td>&#8220;*p</td>
+<td>Paste from the clipboard</td>
+</tr>
+<tr class="row-odd"><td>&#8220;+y</td>
+<td>Copy into the X&#8217;s clipboard</td>
+</tr>
+<tr class="row-even"><td>&#8220;+p</td>
+<td>Paste from the X&#8217;s clipboard</td>
+</tr>
+</tbody>
+</table>
+<p>That being said, tose registers are still unusable outside Vim.</p>
+<p>There is two more special registers named <code class="docutils literal"><span class="pre">*</span></code> and <code class="docutils literal"><span class="pre">+</span></code>.</p>
+<blockquote>
+<div><ul class="simple">
+<li>When you copy some text with &lt;C-x&gt; or &lt;C-c&gt; outside vim. It&#8217;ll be accessible in the buffer named <code class="docutils literal"><span class="pre">+</span></code>.</li>
+<li>When you select some text without copying it, this one will be accessible in the buffer named <code class="docutils literal"><span class="pre">*</span></code>.</li>
+</ul>
+</div></blockquote>
+<p>You can, then access it with <code class="docutils literal"><span class="pre">&quot;+p</span></code>.</p>
+<p>And if you copy text in vim with <code class="docutils literal"><span class="pre">&quot;+y</span></code>, you are able to paste it with &lt;C-v&gt; outside Vim.</p>
+</div>
+<div class="section" id="cursor-manipulation">
+<h3>Cursor manipulation<a class="headerlink" href="#cursor-manipulation" title="Permalink to this headline">¶</a></h3>
+<table border="1" class="docutils">
+<colgroup>
+<col width="11%" />
+<col width="89%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;H&gt;</td>
+<td>Move cursor on the first line displayed on the screen</td>
+</tr>
+<tr class="row-odd"><td>&lt;M&gt;</td>
+<td>Move the cursor at the center of the screen</td>
+</tr>
+<tr class="row-even"><td>&lt;L&gt;</td>
+<td>Move cursor at the last line displayed on the screen</td>
+</tr>
+<tr class="row-odd"><td>&lt;&#8217;&gt;&lt;&#8217;&gt;</td>
+<td>Move the cursor at the last position.</td>
+</tr>
+<tr class="row-even"><td>&lt;&#8217;&gt;&lt;.&gt;</td>
+<td>Move cursor at the last modified line.</td>
+</tr>
+<tr class="row-odd"><td>&lt;^&gt;</td>
+<td>Move cursor at the first character of the current line.</td>
+</tr>
+<tr class="row-even"><td>&lt;I&gt;</td>
+<td>Move cursor at the first character of the current line in Insert mode</td>
+</tr>
+<tr class="row-odd"><td>&lt;(&gt;</td>
+<td>Move cursor at the beginning of the current paragraph
+(works with <code class="docutils literal"><span class="pre">{</span></code> as well).</td>
+</tr>
+<tr class="row-even"><td>&lt;)&gt;</td>
+<td>Move cursor at the end of the current paragraph
+(works with <code class="docutils literal"><span class="pre">{</span></code> as well).</td>
+</tr>
+<tr class="row-odd"><td>87&lt;G&gt;</td>
+<td>Move cursor at line 87 (works with &lt;g&gt;&lt;g&gt; as well)</td>
+</tr>
+<tr class="row-even"><td>&lt;z&gt;&lt;z&gt;</td>
+<td>Center the current line on the screen.</td>
+</tr>
+<tr class="row-odd"><td>&lt;z&gt;&lt;t&gt;</td>
+<td>Move current line at the top of the screen.</td>
+</tr>
+<tr class="row-even"><td>&lt;z&gt;&lt;b&gt;</td>
+<td>Move current line at the bottom of the screen.</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="manipulation">
+<h3>Manipulation<a class="headerlink" href="#manipulation" title="Permalink to this headline">¶</a></h3>
+<p>In order to modify case, you can select text and use these commands</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;g&gt;&lt;U&gt;</td>
+<td>Uppercase     <code class="docutils literal"><span class="pre">Text</span></code> ⇒ <code class="docutils literal"><span class="pre">TEXT</span></code></td>
+</tr>
+<tr class="row-odd"><td>&lt;g&gt;&lt;u&gt;</td>
+<td>Lowercase     <code class="docutils literal"><span class="pre">Text</span></code> ⇒ <code class="docutils literal"><span class="pre">text</span></code></td>
+</tr>
+<tr class="row-even"><td>&lt;g&gt;&lt;~&gt;</td>
+<td>Toggle Case   <code class="docutils literal"><span class="pre">Text</span></code> ⇒ <code class="docutils literal"><span class="pre">tEXT</span></code></td>
+</tr>
+</tbody>
+</table>
+<p>You also could use mix of all we saw.</p>
+<p>For example <code class="docutils literal"><span class="pre">&lt;V&gt;&lt;U&gt;</span></code> Uppercase the current line, etc…</p>
+<p>In vim, you can use diffent contextual elements.</p>
+<p>You can apply a command on the current word with the <code class="docutils literal"><span class="pre">iw</span></code> suffix.</p>
+<p>You can apply a command on everythin between <code class="docutils literal"><span class="pre">&quot;</span></code> with the <code class="docutils literal"><span class="pre">i&quot;</span></code> suffix as well.
+(Only if the cursor is placed between two <code class="docutils literal"><span class="pre">&quot;</span></code>, obviously)</p>
+<p>Those commands works with <code class="docutils literal"><span class="pre">&quot;</span></code>, <code class="docutils literal"><span class="pre">(</span></code>, <code class="docutils literal"><span class="pre">{</span></code>, <code class="docutils literal"><span class="pre">'</span></code>, and <code class="docutils literal"><span class="pre">[</span></code>.
+For the examples, I will use <code class="docutils literal"><span class="pre">&quot;</span></code>.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;v&gt;&lt;i&gt;&lt;&#8221;&gt;</td>
+<td>Selects text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-odd"><td>&lt;c&gt;&lt;i&gt;&lt;&#8221;&gt;</td>
+<td>Replaces text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-even"><td>&lt;y&gt;&lt;i&gt;&lt;&#8221;&gt;</td>
+<td>Copies text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-odd"><td>&lt;d&gt;&lt;i&gt;&lt;&#8221;&gt;</td>
+<td>Cut text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-even"><td>&lt;g&gt;&lt;u&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Lowercase the text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-odd"><td>&lt;g&gt;&lt;U&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Uppercase the text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+<tr class="row-even"><td>&lt;g&gt;&lt;~&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Toggle case of the text placed between the <code class="docutils literal"><span class="pre">&quot;</span></code>.</td>
+</tr>
+</tbody>
+</table>
+<p>Similirly, you can apply this to the current word</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Key</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;v&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Selects the current word</td>
+</tr>
+<tr class="row-odd"><td>&lt;c&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Replaces the current word</td>
+</tr>
+<tr class="row-even"><td>&lt;y&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Copies the current word</td>
+</tr>
+<tr class="row-odd"><td>&lt;d&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Cuts the current word</td>
+</tr>
+<tr class="row-even"><td>&lt;g&gt;&lt;u&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Lowercase the current word</td>
+</tr>
+<tr class="row-odd"><td>&lt;g&gt;&lt;U&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Uppercase the current word</td>
+</tr>
+<tr class="row-even"><td>&lt;g&gt;&lt;~&gt;&lt;i&gt;&lt;w&gt;</td>
+<td>Toggle case of the current word</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="windows">
+<h3>Windows<a class="headerlink" href="#windows" title="Permalink to this headline">¶</a></h3>
+<p><strong>Split the screen</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="20%" />
+<col width="80%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;C-w&gt;&lt;s&gt;</td>
+<td>Splits the current buffer horizontally</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt;&lt;v&gt;</td>
+<td>Splits the current buffer vertically</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Manipulate splits</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="22%" />
+<col width="78%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;C-w&gt;&lt;j&gt;</td>
+<td>Selects the split placed on the Top</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt;&lt;k&gt;</td>
+<td>Selects the split placed on the Bottom</td>
+</tr>
+<tr class="row-even"><td>&lt;C-w&gt;&lt;l&gt;</td>
+<td>Selects the split placed on the Right</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt;&lt;h&gt;</td>
+<td>Selects the split placed on the Left</td>
+</tr>
+<tr class="row-even"><td>&lt;C-w&gt;&lt;+&gt;</td>
+<td>Increase the horizontal split size</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt;&lt;-&gt;</td>
+<td>Decrease the horizontal split size</td>
+</tr>
+<tr class="row-even"><td>&lt;C-w&gt;&lt;&lt;&gt;</td>
+<td>Increase the vertical split size</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt;&lt;&gt;&gt;</td>
+<td>Decrease the vertical split size</td>
+</tr>
+<tr class="row-even"><td>&lt;C-w&gt;&lt;=&gt;</td>
+<td>Resize all splits</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Move splits</strong></p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="24%" />
+<col width="76%" />
+</colgroup>
+<thead valign="bottom">
+<tr class="row-odd"><th class="head">Command</th>
+<th class="head">Action</th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr class="row-even"><td>&lt;C-w&gt; &lt;H&gt;</td>
+<td>Move current split to the Left</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt; &lt;L&gt;</td>
+<td>Move current split to the Right</td>
+</tr>
+<tr class="row-even"><td>&lt;C-w&gt; &lt;K&gt;</td>
+<td>Move current split to the Top</td>
+</tr>
+<tr class="row-odd"><td>&lt;C-w&gt; &lt;J&gt;</td>
+<td>Move current split to the Bottom</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Commands</strong></p>
+<blockquote>
+<div><ul class="simple">
+<li>To search for a word in the current buffer, you should use <code class="docutils literal"><span class="pre">/pattern</span></code>.</li>
+<li>To search other iterations of the word on which is placed the cursor, type <code class="docutils literal"><span class="pre">*</span></code>.</li>
+<li>To move to the next iteration of the searched word, type <code class="docutils literal"><span class="pre">n</span></code>.</li>
+<li>To move to the previous iteration of the searched word, type <code class="docutils literal"><span class="pre">N</span></code>.</li>
+</ul>
+</div></blockquote>
+<p>There are plenty of useful commands in vim.
+I will not put every of them here, first because I dont know them all, but mostly because there is too much.
+Here is the one I use the most:</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">:s/foo/bar/g</span></code> ⇒ searches and replaces every <strong>foo</strong> by <strong>bar</strong> in the current line</li>
+<li><code class="docutils literal"><span class="pre">:%s/foo/bar/g</span></code> ⇒ searches and replaces every <strong>foo</strong> by <strong>bar</strong> in the current buffer</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+<div class="section" id="conclusion">
+<h2>Conclusion<a class="headerlink" href="#conclusion" title="Permalink to this headline">¶</a></h2>
+<p>All of these is already usable without __ANY__ configuration, and _ANY_ plugin.
+You can now imagine how powerful it is, well configured…
+Vim is a great editor, and the best, to me.</p>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="deb_packages.html" class="btn btn-neutral float-right" title=".deb packages modification" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="x2x.html" class="btn btn-neutral" title="How to drive a remote computer with X2GO" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,58 @@
+ACPI events management with systemd
+===================================
+
+We know it, since Systed, we have to deal with many changements, like ACPI events management. For example, before, when we pressed on the power button, a simple script was launched. So, I we would change the behaviour, we just needed to edit the script, and it did the trick. It's quiet different, today. It's `logind.conf <http://man7.org/linux/man-pages/man5/logind.conf.5.html>`_ that handles this. The logind.conf manual gives us some informations like those events ::
+
+    HandlePowerKey
+    HandleSuspendKey
+    HandleHibernateKey
+    HandleLidSwitch
+    HandleLidSwitchDocked
+
+If we look for the available behaviours which can be assigned we found ::
+
+    ignore
+    poweroff
+    reboot
+    halt
+    kexec
+    suspend
+    hibernate
+    hybrid-sleep
+    lock
+
+Let's try with the PowerKey. The default dehaviour is to turn off the computer (poweroff). Not that cool. Personally, I would like to suspend the system when I press on the button. So, I just need to edit the /etc/systemd/logind.conf file and add the HandlePowerKey=suspend line and then restart the service. ::
+
+    sudo service systemd-logind restart
+
+I press on the button, and the system corectly suspends. It's the same principle for the lid, for example.
+
+I have a problem, now : If I press again on the PowerButton, the session is directly restored, without asking for a password. So, I would like to lock the session before the system suspends (I've personally chosen i3lock)… And that's here, that ACPI will miss us a bit. After many searches, I've found this article.
+As explained, a solution is to create a service file that will be called by the sleep service.
+
+So I create the /etc/systemd/system/i3lock.service containing those lines ::
+
+    [Unit]
+    Description=i3lock
+    Before=sleep.target
+
+    [Service]
+    User=<USER>
+    Type=forking
+    Environment=DISPLAY=:0
+    ExecStart=/usr/bin/i3lock
+
+    [Install]
+    WantedBy=sleep.target
+
+We could notice, here, that the service is user specific ! As explained in the above article, this solution is not a good choice on a multi-user configuration because the $USER variable is not usable here.
+
+I enable the service like this ::
+
+    sudo systemctl enable i3lock.service
+
+Now, the session is well locked before the system suspends.
+
+Our habits are disrupted and it's not very user-fiendly.
+
+I will do more research about this, in order to found a more adaptive solution. For exemple, in order to use it on a multi-user environment, or to add functionnalities like a clean system shutdown when pressing the power key, etc…

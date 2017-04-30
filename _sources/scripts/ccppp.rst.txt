@@ -1,0 +1,9 @@
+CCPPP
+=====
+
+For Create C Plus Plus Project
+
+Juste a tool that will create basic files for a C++ project. Nothing more, nothing less.
+
+.. literalinclude:: ccppp
+   :language: bash

@@ -1,0 +1,348 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>ACPI events management with systemd &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tutos" href="index.html"/>
+        <link rel="next" title="Tips ‘n Tricks" href="../tipsntricks/index.html"/>
+        <link rel="prev" title="LXC and Dnsmasq" href="dnsmasq.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutos</a> &raquo;</li>
+        
+      <li>ACPI events management with systemd</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutos/acpi-systemd.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="acpi-events-management-with-systemd">
+<h1>ACPI events management with systemd<a class="headerlink" href="#acpi-events-management-with-systemd" title="Permalink to this headline">¶</a></h1>
+<p>We know it, since Systed, we have to deal with many changements, like ACPI events management. For example, before, when we pressed on the power button, a simple script was launched. So, I we would change the behaviour, we just needed to edit the script, and it did the trick. It&#8217;s quiet different, today. It&#8217;s <a class="reference external" href="http://man7.org/linux/man-pages/man5/logind.conf.5.html">logind.conf</a> that handles this. The logind.conf manual gives us some informations like those events</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">HandlePowerKey</span>
+<span class="n">HandleSuspendKey</span>
+<span class="n">HandleHibernateKey</span>
+<span class="n">HandleLidSwitch</span>
+<span class="n">HandleLidSwitchDocked</span>
+</pre></div>
+</div>
+<p>If we look for the available behaviours which can be assigned we found</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ignore</span>
+<span class="n">poweroff</span>
+<span class="n">reboot</span>
+<span class="n">halt</span>
+<span class="n">kexec</span>
+<span class="n">suspend</span>
+<span class="n">hibernate</span>
+<span class="n">hybrid</span><span class="o">-</span><span class="n">sleep</span>
+<span class="n">lock</span>
+</pre></div>
+</div>
+<p>Let&#8217;s try with the PowerKey. The default dehaviour is to turn off the computer (poweroff). Not that cool. Personally, I would like to suspend the system when I press on the button. So, I just need to edit the /etc/systemd/logind.conf file and add the HandlePowerKey=suspend line and then restart the service.</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">systemd</span><span class="o">-</span><span class="n">logind</span> <span class="n">restart</span>
+</pre></div>
+</div>
+<p>I press on the button, and the system corectly suspends. It&#8217;s the same principle for the lid, for example.</p>
+<p>I have a problem, now : If I press again on the PowerButton, the session is directly restored, without asking for a password. So, I would like to lock the session before the system suspends (I&#8217;ve personally chosen i3lock)… And that&#8217;s here, that ACPI will miss us a bit. After many searches, I&#8217;ve found this article.
+As explained, a solution is to create a service file that will be called by the sleep service.</p>
+<p>So I create the /etc/systemd/system/i3lock.service containing those lines</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">Unit</span><span class="p">]</span>
+<span class="n">Description</span><span class="o">=</span><span class="n">i3lock</span>
+<span class="n">Before</span><span class="o">=</span><span class="n">sleep</span><span class="o">.</span><span class="n">target</span>
+
+<span class="p">[</span><span class="n">Service</span><span class="p">]</span>
+<span class="n">User</span><span class="o">=&lt;</span><span class="n">USER</span><span class="o">&gt;</span>
+<span class="n">Type</span><span class="o">=</span><span class="n">forking</span>
+<span class="n">Environment</span><span class="o">=</span><span class="n">DISPLAY</span><span class="o">=</span><span class="p">:</span><span class="mi">0</span>
+<span class="n">ExecStart</span><span class="o">=/</span><span class="n">usr</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">i3lock</span>
+
+<span class="p">[</span><span class="n">Install</span><span class="p">]</span>
+<span class="n">WantedBy</span><span class="o">=</span><span class="n">sleep</span><span class="o">.</span><span class="n">target</span>
+</pre></div>
+</div>
+<p>We could notice, here, that the service is user specific ! As explained in the above article, this solution is not a good choice on a multi-user configuration because the $USER variable is not usable here.</p>
+<p>I enable the service like this</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">systemctl</span> <span class="n">enable</span> <span class="n">i3lock</span><span class="o">.</span><span class="n">service</span>
+</pre></div>
+</div>
+<p>Now, the session is well locked before the system suspends.</p>
+<p>Our habits are disrupted and it&#8217;s not very user-fiendly.</p>
+<p>I will do more research about this, in order to found a more adaptive solution. For exemple, in order to use it on a multi-user environment, or to add functionnalities like a clean system shutdown when pressing the power key, etc…</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tipsntricks/index.html" class="btn btn-neutral float-right" title="Tips ‘n Tricks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="dnsmasq.html" class="btn btn-neutral" title="LXC and Dnsmasq" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

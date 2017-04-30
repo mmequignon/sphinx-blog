@@ -1,0 +1,32 @@
+How to drive a remote computer with X2GO
+========================================
+
+First, I had to read a little about X.org. Devices (keyboard, mouse, screen) are connected to X.org. Keyboard and mouse send signals while screen receive its own from X.org.
+
+.. figure::  ../_static/x2x.png
+   :align: center
+
+   Diagram of how X.org works
+
+There is an useful property here. Devices should not necessary be plugged on a computer to be connected to X.org. Actually, you can connect two X.org through network. 
+
+To do this, you will need two things :
+ * SSH, well configured (alias and keys)
+ * x2x
+
+Next, you will just need to install ``x2x`` on the remote computer::
+
+    sudo apt install x2x
+
+And it's already done. Now, if you execute this command, you can move your cursor at the right of your screen. Then, your mouse and keyboard will drive the remote computer::
+
+    ssh -X local x2x -east -to :0.0
+
+One interesting option is ``-clipcheck``. It allows you to share clipboard between your two computers::
+
+    ssh -X local x2x -east -to :0.0 -clipcheck
+
+Do not hesitate to add an alias to your ``.bashrc`` !
+
+If it doesn't work, ensure that the option ``X11Forwarding`` is on yes and ``AllowTCPForwarding`` too.
+If those lines are missing, add them. Restart then ssh service.

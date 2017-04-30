@@ -1,0 +1,614 @@
+My dedicated server installation
+================================
+
+Host configuration
+__________________
+
+We first need to create an user and add it to the "sudo" group::
+
+    adduser matthieu
+    adduser matthieu sudo
+
+We install sudo and a text editor, doesn't matter which one. I personnally use vim.
+We configure ssh in /etc/ssh/sshd_config. I use keys authentication, that allows me to disallow password authentication.
+My advice here is to change the ssh biding port.
+If you chose to use key authentication, you will need to change the value of "PubkeyAuthentication" from no to yes.
+Here we go, let's restart the ssh daemon (``sudo service ssh restart``).
+
+From the computer that will connect to the server, I just have to connect one time (in order to ensure that previous configuration is ok)::
+
+    ssh -p <PORT> <USER>@<HOST>
+
+Here, you'll normally be asked for an authorization and a password, that you give (O RLY ?).
+
+Now that we are sure that the configuration is ok, we can copy our keys (if you don't already have yours, here is the command : ``ssh-keygen``).
+It's almost the same command than the previous one::
+
+    ssh-copy-id -p <PORT> <USER>@<HOST>
+
+Again (but last), you will be asked for a password.
+This command do not connect you to the server, but copy you public key in the ``.ssh/authorized_keys`` file of the remote user. 
+A message appears asking you to try to reconnect. We do it, then.
+
+If everything's all right, we are now connected without giving a password.
+We can then pass the``PasswordAuthentication`` value to no.
+
+.. warning::
+
+    Take care, here, if the option ``PubkeyAuthentication`` is on no, once the ssh daemon will be restarted you will not be able to reconnect (at all).
+    So just don't close this terminal until you are not absolutely sure that you can reconnect.
+
+On my server, I've decided to work like this :
+It will have two interfaces, one physical ``eth0``, to communicate with the Internet, and one virtual ``lxceth0``, to communicate with its containers. The lxceth0 will got the 192.168.1.1/24 address and will be the gateway for all the containers.
+
+We need here to modify the network configuration in order to create the lxceth0 interface in ``/etc/network/interfaces``::
+
+    auto lo
+    iface lo inet loopback
+
+    auto eth0
+    iface eth0 inet static
+        address XX.XX.XX.XX
+        netmask XX.XX.XX.XX
+        network XX.XX.XX.XX
+        broadcast XX.XX.XX.XX
+        gateway XX.XX.XX.XX
+
+    auto lxceth0
+    iface lxceth0 inet static
+        address 192.168.1.1
+        netmask 255.255.255.0
+        bridge_ports none
+
+We will activate the new interface with this command ``ifup lxceth0``.
+We will pass the option ``USE_LXC_BRIDGE`` on true in ``/etc/default/lxc-net`` as well.
+
+LVM
+___
+
+With the actual configuration, we have a physical volume /dev/md5. That is actually a logical volume of lv-foobar. So, we will delete the lv-foobar volume group after deleting the logical volume::
+
+    lvremove /dev/lv-foobar/machin
+    vgremove lv-foobar
+
+We remove the mount point from /etc/fstab (we just comment the line), then we restart the server.
+
+Once it's done, we can make the volume group. We can see it's name on the previously commented line in /etc/fstab. Mine was /dev/md5.
+I've personally called my volume group ``glycerine-vegetale`` (just a wordplay, does not matter)::
+
+    vgcreate glycerine-vegetale /dev/md5
+
+We do not have to create logical volumes. Actually, they will be automatically created each time we will create a new container.
+
+LXC
+___
+
+As we have modified the interface name that will communicate with containers, we will begin by replace ``lxcbr0`` by ``lxceth0`` in the /etc/lxc/default.conf file.
+
+lxc-create
+----------
+
+ * ``-t`` template a set of templates is provided with lxc. I use debian.
+ * ``-n`` name of the container
+ * ``-B`` lvm by défault, the container are located in ``/var/lib/lxc/container/rootfs`` but that's not that we want. We specify here "lvm" some options are then necessary :
+ * ``--vgname`` volume group name.
+ * ``--lvname`` volume name
+ * ``--fstype`` fs type of the volume
+ * ``--fssize`` fs size of the volume
+
+As an example, to create a container named "my-container" on a logical volume of 1TB::
+
+    sudo lxc-create -t debian -n my-container -B lvm --vgname myvg --lvname mycontainer --fstype ext4 --fssize 1T -- -r jessie -a amd64
+
+Containers configuration
+------------------------
+
+It will be made in ``/var/lib/lxc/mycontainer/config``.
+
+Network parameters::
+
+    lxc.network.ipv4 = 192.168.1.3/24
+    lxc.network.ipv4.gateway = 192.168.1.1
+
+
+Be careful here. If you make it this way, the network configuration by default is provided by "DHCP". It will work but the container will wait about one minute. It's, in fact, the time the container will wait to get it's network configuration from DHCP.
+We'll have to modify the container's network configuration in the container's ``/etc/network/interfaces`` file::
+
+    auto lo
+    iface lo inet loopback
+
+    auto eth0
+    iface eth0 inet static 
+        address 192.168.1.3
+        netmask 255.255.255.0
+        gateway 192.168.1.1
+        broadcast 192.168.1.255
+        network 192.168.1.0
+
+Autostart (in ``/var/lib/mycontainer/config``)::
+
+    lxc.start.auto = 1
+    lxc.start.delay = 5
+
+Managing container resources
+----------------------------
+
+LXC use cgroups, so we can use the lxc-cgroup command to manage containers acces to system resources.
+For example, to print cores on which my-container have acces::
+
+    lxc-cgroup -n my-container cpuset.cpus
+    > 0-7
+
+We also can make modifications in the container's configuration file. To restrict the use of the cores 0 an 1, we add this line::
+
+    lxc.cgroup.cpuset.cpus 0,1
+
+To restrict the memory access from 265MB when memory usage is low, to 512MB, when it's higher::
+
+    lxc.cgroup.memory.soft_limit_in_bytes 268435456
+    lxc.cgroup.memory.limit_in_bytes 53687091
+
+Rudiments
+---------
+
+Generally, when you want to specify a container in a command, you must use the ``-n`` option::
+
+    lxc-foo -n bar
+
+To list containers, we will use ``lxc-ls`` with the ``--fancy`` option, to beautify the output::
+
+    lxc-ls --fancy
+    NAME         STATE   AUTOSTART GROUPS IPV4                                         IPV6 
+
+We can also directly attach to the container from the host::
+
+    lxc-attach -n my-container
+
+That what we will use to attach a container, at it's firt launch.
+
+To start a container, we will use ``lxc-start``::
+
+    lxc-start -n my-container
+
+If there are a configuration mistake, the container won't start. So we will use the ``-F`` option (for foreground mode) to get informations that will be helpful to debug::
+
+    lxc-start -n my-container -F
+
+We also can stop a container with ``lxc-stop``. But I advice you to not make it this way. Instead, you can shut it down directly from the container. halt, or shutdown…
+That being said, here is the command::
+
+    lxc-stop -n my-container
+
+Sometimes, a container should have freeze and this command will not work. In this case, add the ``-k`` option (for kill)::
+
+    lxc-stop -n my-container -k
+
+That's it for the basics.
+
+.. note::
+
+    When a container don't start, it is possible to chroot inside it to fix problems.
+    At this point, we assume that the container is stopped and that logical volume named ``lv-my-container`` is on a volume group named ``my-vg``.
+    We create a new folder and mount the logical volume on it::
+
+        mkdir foobar && mount /dev/my-vg/lv-my-container foobar/
+
+    Then we can chroot inside the folder::
+
+        chroot foobar
+
+    Once modifications are done, we unmount the logical volume, and start the container.
+
+Iptables
+________
+
+I've chosen to use a NAT configuration. You can find other ways of doing this, based on libvirt, if it's what you want to use.
+
+So we activate forwarding, by changing the value of ``net.ipv4.ip_forward`` to 1 in ``/etc/sysctl.conf``::
+
+    net.ipv4.ip_forward=1
+
+To begin, there are some iptables commandes (as root).
+Here is how we can list all active rules::
+
+    iptables -L
+
+As we can see, there is three different tables: ``INPUT``, ``OUTPUT`` and ``FORWARD``.
+``INPUT`` represents incoming traffic, while ``OUTPUT`` represents outgoing traffic and ``FORWARD`` represents traffic that pass from an interface to another one.
+
+To print NAT rules::
+
+    iptables -t nat -L
+
+Here is a script, you just have to put it in /etc/init.d/ to modify it depending of your needs and to activate it::
+
+    IPT=/sbin/iptables
+
+    #service start function
+    function start {
+        #We don't want to close already established connexions 
+        $IPT -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+        $IPT -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+        #We locally accept everything in INPUT and OUTPUT tables
+        $IPT -A INPUT -i lo -j ACCEPT
+        $IPT -A OUTPUT -o lo -j ACCEPT
+
+        #INPUT TCP rules 
+        #This rule allows ssh
+        $IPT -A INPUT -p tcp --dport 22 -j ACCEPT
+        #OUTPUT TCP rules. We allow FTP, SFTP/SSH, SMTP, HTTP and HTTPS
+        $IPT -A OUTPUT -p tcp --dport 21 -j ACCEPT
+        $IPT -A OUTPUT -p tcp --dport 22 -j ACCEPT
+        $IPT -A OUTPUT -p tcp --dport 24 -j ACCEPT
+        $IPT -A OUTPUT -p tcp --dport 25 -j ACCEPT
+        $IPT -A OUTPUT -p tcp --dport 80 -j ACCEPT
+        $IPT -A OUTPUT -p tcp --dport 443 -j ACCEPT
+        #We allow WAN<->LAN traffic
+        $IPT -A FORWARD -s 192.168.1.0/24 -o br0 -j ACCEPT
+        $IPT -A FORWARD -s 192.168.1.0/24 -o br0 -j ACCEPT
+        $IPT -A FORWARD -d 192.168.1.0/24 -o lxcbr0 -j ACCEPT
+
+        #Masquerading activation
+        $IPT -t nat -A POSTROUTING -j MASQUERADE
+
+        #NAT SSH CONTAINERS
+        $IPT -A PREROUTING -t nat -i br0 -p tcp --dport <PORT> -j DNAT --to <IPCONTAINER>:<PORT>
+
+        #To disallow post scan
+        $IPT -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s -j ACCEPT
+
+        #To allow DNS requests
+        $IPT -t filter -A INPUT -p udp --dport 53 -j ACCEPT
+        $IPT -t filter -A OUTPUT -p udp --dport 53 -j ACCEPT
+
+        #We drop and log here, everything else
+        $IPT -A INPUT -p icmp -j ACCEPT
+        $IPT -A INPUT -j LOG --log-prefix '[IPTABLES] :'
+        $IPT -A INPUT -j REJECT
+        $IPT -P INPUT DROP
+        $IPT -A OUTPUT -j LOG --log-prefix '[IPTABLES] :'
+        $IPT -A PREROUTING -t nat -j LOG --log-prefix '[IPTABLES]:'
+
+    }
+    #service stop function
+    function stop {
+        #We flush everything
+        $IPT -F
+        $IPT -t nat -F
+        $IPT -t mangle -F
+        #We disallow incoming traffic
+        $IPT -P INPUT DROP
+        #We do not forward anything
+        $IPT -P FORWARD DROP
+        #But we still allow outgoing traffic
+        $IPT -P OUTPUT ACCEPT
+    }
+
+    #service restart function
+    function restart {
+        stop
+        start
+    }
+
+    case "$1" in
+    start)
+        start
+        exit 0
+        ;;
+    stop)
+        stop
+        exit 0
+        ;;
+    restart)
+        restart
+        exit 0
+        ;;
+    *)
+        echo "Usage: /etc/init.d/firewall {start|stop|restart}"
+        exit 1
+        ;;
+    Esac
+
+We need to make this script executable and to activate it::
+
+    sudo chmod +x /etc/init.d/firewall
+
+    sudo update-rc.d firewall start 99 2 . stop 00 2 0 1 6 .
+
+We can now customize our configuration, add a rule and restart the script. Those rules will be active at boot too.
+
+Ssmtp
+_____
+
+Now that our server is usable, we would like to be advised when a problem occurs. So we need to set up the send of mails. We will need two packages : ``ssmtp`` and ``mailutils``.
+
+The first one allows us to authenticate on a mail server (you can, adapt this configuration to use a gmail address, for example).
+The second one allows us to use the ``mail`` command.
+To configure ssmtp, we will have to edit two files.
+
+The first one ``/etc/ssmtp/ssmtp.conf``::
+
+    root=user@foo.bar # All users having an UID < 1000 will send a mail with this name
+    AuthUser=user # ID on your SMTP server (sometimes it is user@foo.bar)
+    AuthPass=motdepasse # Password of your user, on your SMTP server
+    mailhub=smtp.foo.bar:465 # FQDN:port of your SMTP server
+    FromLineOverride=YES # Allows the program to customize header
+    UseTLS=YES # Encrypts connection to SMTP server
+    hostname=my-server # your hostname. (What would you wish I told you ?)
+
+The second one ``/etc/ssmtp/revaliases``::
+
+    User:smtp-user:smtp.foo.bar:465
+    root:other-smtp-user:smtp.foo.bar:465
+    # utilisateur:serveur.smtp:port
+
+Then you should be able to send mails with this command::
+
+    echo Mail content | mail -s "Mail subject" recipient@domain.tld
+
+Smartmontools
+_____________
+
+Now that the send of mails is configured, we will install a tool that will scan disks and send mails in case of threats.
+So we install ``smartmontools``. We can make some tests.
+
+For example, in order to print some informations about a disk::
+
+    sudo smartctl -i /dev/sda
+
+    smartctl 6.2 2013-07-26 r3841 [x86_64-linux-3.13.0-74-generic] (local build)
+    Copyright (C) 2002-13, Bruce Allen, Christian Franke, www.smartmontools.org
+
+    === START OF INFORMATION SECTION ===
+    Device Model:     HGST HUS724020ALA640
+    Serial Number:    PN2181P6J4AP5P
+    LU WWN Device Id: 5 000cca 22dde2898
+    Firmware Version: MF6OAA70
+    User Capacity:    2 000 398 934 016 bytes [2,00 TB]
+    Sector Size:      512 bytes logical/physical
+    Rotation Rate:    7200 rpm
+    Device is:        Not in smartctl database [for details use: -P showall]
+    ATA Version is:   ATA8-ACS T13/1699-D revision 4
+    SATA Version is:  SATA 3.0, 6.0 Gb/s (current: 3.0 Gb/s)
+    Local Time is:    Wed Jan  6 22:59:59 2016 CET
+    SMART support is: Available - device has SMART capability.
+    SMART support is: Enabled
+
+To print health status of a disk::
+
+    sudo smartctl -c /dev/sda
+
+    […]
+    Short self-test routine
+    recommended polling time:        (   1) minutes.
+    Extended self-test routine
+    recommended polling time:        ( 314) minutes.
+    […]
+
+As we can see, thos two lines are saying that short and long tests should take approximately 1 and 314 minutes.
+
+We start then a short test::
+
+    sudo smartctl -t short /dev/sda
+
+And print the result (after waiting one minute, of course)::
+
+    sudo smartctl -l selftest /dev/sda
+
+    smartctl 6.2 2013-07-26 r3841 [x86_64-linux-3.13.0-74-generic] (local build)
+    Copyright (C) 2002-13, Bruce Allen, Christian Franke, www.smartmontools.org
+
+    === START OF READ SMART DATA SECTION ===
+    SMART Self-test log structure revision number 1
+    Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA_of_first_error
+    # 1  Short offline       Completed without error       00%      9430         -
+    […]
+
+
+As we can see here, no error has ben detected. For the long test, it's exacly the same, except that we will specify ``long`` instead of ``short``.
+
+Daemon configuration
+--------------------
+
+We will start to activate the automatic start of the deamon at server startup. To do this, we will need to edit the file ``/etc/default/smartmontools`` and uncomment the line ``start_smartd=yes``.
+
+Next, we will edit /etc/smartd.conf and add one line per disk to supervise. In my case, I have two disks::
+
+    /dev/sda -a -d sat -o on -S on -s (S/../.././02|L/../../6/03) -m user@foo.bar -M exec /usr/share/smartmontools/smartd-runner
+    /dev/sdb -a -d sat -o on -S on -s (S/../.././02|L/../../6/03) -m user@foo.bar -M exec /usr/share/smartmontools/smartd-runner
+
+We will also ensure to comment this line::
+
+    # DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smartd-runner
+
+As explained in the file, this scan disable every other one.
+
+Things to modify are the disks names and the recipient for the mail.
+There is a little explanation of the different options :
+
+ * ``/dev/sda`` It's the device name of the disk to supervise.
+ * ``-a`` Activates basical options
+ * ``-d sat`` if smartctl has no problem to detect out disc, smartd could. This option helps it.
+ * ``-o on -S on`` As for smartcl, a little higher.
+ * ``-s (S/../.././02|L/../../6/03)`` Test planning configuration. ``S`` for short and ``L`` for long. Here, the short test is every day at 2 am, and the long one, every 6th day of the week at 3 am.
+ * ``-m user@foo.bar`` Send a mail if an error occurs. This option requires the send of mails is already configured.
+ * ``-M exec /usr/share/smartmontools/smartd-runner`` (debian and derivates only) This option allows to execute a bunch of scripts in case of problem and to send an advertising e-mail.
+
+We will write a line for each disk to scan. To test the sending of mail, we will replace the option ``-M exec /usr/share/smartmontools/smartd-runner`` by ``-M test``.
+An email should be send after restarting the daemon. Once the test is done, replace the values again, as previously, and restart the daemon again.
+
+Rsyslog
+_______
+
+After reaching a certain amount of containers, it could be interesting to centralize their logs. So we will create a server that will collect all logs.
+
+Server configuration
+--------------------
+
+On the server, we will uncomment those to lines in order to listen on the 514 UDP port::
+
+    $ModLoad imudp
+    $UDPServerRun 514
+
+
+We can then restart the service an test that the server is listening::
+
+    sudo service rsysglog restart
+    sudo netstat -tulnp
+
+    […]
+    udp        0      0 0.0.0.0:514             0.0.0.0:*                           -
+    […]
+
+Logs are ordered in multiple categories (facilities) :
+
+ * ``auth`` authentication events
+ * ``authpriv`` access control related messages
+ * ``daemon`` Used for different system and application process
+ * ``kern`` kernel related messages
+ * ``mail`` mail related messages
+ * ``user`` It's the default facility when none is specified
+ * ``local7`` boot related messages
+ * ``*`` match every facility
+ * ``none`` match no facility
+
+And also in 8 levels of criticity :
+
+ * ``Emerg`` It's an emergency. The system is unusable
+ * ``Alert`` It's an altert. An intervention is required
+ * ``Crit`` Critical system error
+ * ``Err`` Fonctionnal error
+ * ``Warning`` Warning (heh)
+ * ``Notice`` Normal event that should be reported
+ * ``Info`` For information
+ * ``Debug`` Debugging message
+
+We will now configure the client in order it will send only interesting logs, and not informative ones.
+
+Client configuration
+--------------------
+
+Client-side, we will configure rsyslog so it will send all its logs to the server::
+
+    *.* @192.168.1.1:514
+
+We can cut each line in 3 parts:
+ * The part at the left of the first dot selects the category.
+ * The part on the right of the first dot selects the criticality
+ * The host and the port are defined on the right of the @
+
+Here, ``*`` means that I send every message (doesn't matter their type or their criticity) on the host 192.168.1.1:514.
+But we could also send messages of criticity ≥ Crit and those which concerns authentication (connection failures, etc…)::
+
+    *.crit @192.168.1.1:514
+    authpriv.notice @192.168.1.1:514
+
+To test this, you can voluntarily fail to connect on this host and find this kind of logs in ``/var/log/auth.log``::
+
+    Jan  8 17:02:57 srv-client sshd[29951]: pam_unix(sshd:auth): authentication failure; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.1.1  user=root
+    Jan  8 17:03:07 srv-root sshd[29951]: PAM 2 more authentication failures; logname= uid=0 euid=0 tty=ssh ruser= rhost=192.168.1.1  user=root
+
+Ansible
+_______
+
+Ansible is a configuration manager that is based on SSH and Python.
+It's pretty easy to use. Actually, we don't need any installation, client-side. The only requirements are SSH (well configured) and Python. 
+
+Initial configuration
+---------------------
+
+The user who will launch ansible instructions will need to have connection keys. So we execute this command to create them::
+
+    ssh-keygen
+
+Now that we have our keys, we will create a .ssh/config file, containing informations to connect on the different hosts to manage with ansible::
+
+    # We put here an alias. In my option, the easiest to remember is better.
+    Host alias
+        # Hostname or ip address of the target
+        Hostname 192.168.1.2
+        # The user. Here we will make things that requires root privileges.
+        User root
+        # The ssh port
+        Port 13580
+
+Client side ssh configuration::
+
+    # Here is the binding port
+    Port 13580
+    […]
+    # In order to allow root to connect
+    PermitRootLogin yes
+    […]
+    # Key authentication
+    PubkeyAuthentication yes
+
+We just need to restart ssh daemon::
+
+    sudo service ssh restart
+
+
+We can now copy our key on the container this way::
+
+    ssh-copy-id alias
+
+
+Afterwards, we can connect on the container and install python::
+
+    ssh alias
+    apt update && apt install python
+
+We also need to create a list of clients in /etc/ansible/hosts.
+As an example, we will make a group named "debian" which will contain the previously configured host::
+
+    [debian]
+
+    192.168.1.3 ansible_ssh_port=13581
+
+We can now execute our first commands::
+
+    ansible all -m ping
+
+    192.168.1.3 | success >> {
+        "changed": false,
+        "ping": "pong"
+    }
+
+Instead of "all" we also could chose a group name, or a particular host.
+You can now read this thread, containing some of my playbooks.
+
+Notes
+_____
+
+Mount inside a container
+------------------------
+
+If we need to mount things on our containers like with sshfs or anything else, we will fail ! It's because fuse is unusable.
+Despite this fact, if we try, we will be adviced to execute ``modprobe fuse`` but it will fail. It's a container and it don't have it's own kernel.
+Doesn't matter, we will create /dev/fuse by ourself::
+
+    /bin/mknod -m 666 /dev/fuse c 10 229
+
+* ``-m 666`` file's access rights
+* ``/dev/fuse`` the file that we want to create
+* ``c`` the kind of file. More precisely, it's a file in char mode (without buffer)
+* ``10`` defines major number of the file. It identifies the associated driver to the file
+* ``229`` This is the minor number. It's a number used by the kernel which determines the device that the file references
+
+sources :
+
+* `mknod manual page`_.
+* `explanations about minor an major numbers`_.
+
+.. _`explanations about minor an major numbers`: http://www.makelinux.net/ldd3/chp-3-sect-2
+.. _`mknod manual page`: http://manpages.ubuntu.com/manpages/xenial/en/man1/mknod.1.html
+
+And now, it works. The simplier way I've found in order to make it work automatically, is to add the following line in the root's crontab::
+
+    @reboot /bin/mknod -m 666 /dev/fuse c 10 229
+
+IP failover
+-----------
+
+J'ai rédigé un article pour l'allocation d'une ip publique à un container.

@@ -1,0 +1,66 @@
+LXC and Dnsmasq
+===============
+
+As I'm working in a lxc environment, I create many containers. The problem is that I have to configure network in all of them.
+My co-worker (actually using ubuntu) told me that on his computer, all his containers get automatically their network config.
+
+Well I'm a Debian fanboy, I'll do it by myself.
+I'm considering, here, that the host's network is already configured, and that you have enabled net ipv4 forwarding in /etc/sysctl.conf.
+
+First, you will have to install dnsmasq::
+
+    sudo apt install dnsmasq
+
+You'll also need to execute a command when <INTERFACE> is up, so you'll need to make a script (one per physical interface) like this one::
+
+    #!/bin/bash
+    [ "$IFACE" = <INTERFACE> ] || exit 0
+    iptables -t nat -F
+    iptables -t nat -A POSTROUTING -s 10.0.0.0/8 -o <INTERFACE> -j MASQUERADE
+
+This script, executes two iptables instructions each time <INTERFACE> is up.
+The first one just flushes the nat table, the second one, just nat trafic to destination of your virtual network on <INTERFACE>.
+
+Here, you can now edit /etc/dnsmasq.conf::
+
+    #Virtual interface that will be created
+    interface=br0                                                                                                                                                  
+    
+    #those lines are for the dhcp configuration, network, netmask and ip addresses range
+    domain=lxc,10.0.0.0/8
+    dhcp-range = 10.0.0.100,10.0.0.200,1h
+    
+    #This line is here to define the domain
+    local=/lxc/
+    
+    log-dhcp
+    log-queries
+
+
+Then, in /etc/lxc/default::
+
+    lxc.network.type =veth                                                                                                                                        
+    lxc.network.link = br0 
+
+At this point, everything works. More or less…
+Maybe you've tried to start a container and watched the logs. Dnsmasq received dhcp discover requests from the container, returned the offer, and nothing after.
+The problem is that dnsmasq doesn't send packets with a checksum, and so, dhcp client refuses them.
+So, you will have to execute this command at every host startup::
+
+    iptables -A POSTROUTING -t mangle -p udp --dport bootpc -j CHECKSUM --checksum-fill
+
+At this point, your container get it's network configuration at startup.
+
+Dnsmasq is not only a DHCP server, it's also a DNS server. So we can use the dhcp cache to get containers hostnames.
+
+Just add this line in you /etc/dhcp/dhclient.conf::
+
+    prepend domain-name-servers 127.0.0.1;
+
+As you can see, when you request for a network configuration to your dhcp, the dhcp client will prepend the returned dns by the dnsmasq address.
+
+You can now make things like::
+
+    lxc-create test; lxc-start test; ping test.lxc
+
+Enjoy !

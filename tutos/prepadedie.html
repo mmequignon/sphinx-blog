@@ -1,0 +1,888 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>My dedicated server installation &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tutos" href="index.html"/>
+        <link rel="next" title="LXC and Dnsmasq" href="dnsmasq.html"/>
+        <link rel="prev" title="Tutos" href="index.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutos</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutos</a> &raquo;</li>
+        
+      <li>My dedicated server installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tutos/prepadedie.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="my-dedicated-server-installation">
+<h1>My dedicated server installation<a class="headerlink" href="#my-dedicated-server-installation" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="host-configuration">
+<h2>Host configuration<a class="headerlink" href="#host-configuration" title="Permalink to this headline">¶</a></h2>
+<p>We first need to create an user and add it to the &#8220;sudo&#8221; group:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">adduser</span> <span class="n">matthieu</span>
+<span class="n">adduser</span> <span class="n">matthieu</span> <span class="n">sudo</span>
+</pre></div>
+</div>
+<p>We install sudo and a text editor, doesn&#8217;t matter which one. I personnally use vim.
+We configure ssh in /etc/ssh/sshd_config. I use keys authentication, that allows me to disallow password authentication.
+My advice here is to change the ssh biding port.
+If you chose to use key authentication, you will need to change the value of &#8220;PubkeyAuthentication&#8221; from no to yes.
+Here we go, let&#8217;s restart the ssh daemon (<code class="docutils literal"><span class="pre">sudo</span> <span class="pre">service</span> <span class="pre">ssh</span> <span class="pre">restart</span></code>).</p>
+<p>From the computer that will connect to the server, I just have to connect one time (in order to ensure that previous configuration is ok):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">PORT</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;@&lt;</span><span class="n">HOST</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Here, you&#8217;ll normally be asked for an authorization and a password, that you give (O RLY ?).</p>
+<p>Now that we are sure that the configuration is ok, we can copy our keys (if you don&#8217;t already have yours, here is the command : <code class="docutils literal"><span class="pre">ssh-keygen</span></code>).
+It&#8217;s almost the same command than the previous one:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="o">-</span><span class="n">p</span> <span class="o">&lt;</span><span class="n">PORT</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">USER</span><span class="o">&gt;@&lt;</span><span class="n">HOST</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Again (but last), you will be asked for a password.
+This command do not connect you to the server, but copy you public key in the <code class="docutils literal"><span class="pre">.ssh/authorized_keys</span></code> file of the remote user.
+A message appears asking you to try to reconnect. We do it, then.</p>
+<p>If everything&#8217;s all right, we are now connected without giving a password.
+We can then pass the``PasswordAuthentication`` value to no.</p>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">Take care, here, if the option <code class="docutils literal"><span class="pre">PubkeyAuthentication</span></code> is on no, once the ssh daemon will be restarted you will not be able to reconnect (at all).
+So just don&#8217;t close this terminal until you are not absolutely sure that you can reconnect.</p>
+</div>
+<p>On my server, I&#8217;ve decided to work like this :
+It will have two interfaces, one physical <code class="docutils literal"><span class="pre">eth0</span></code>, to communicate with the Internet, and one virtual <code class="docutils literal"><span class="pre">lxceth0</span></code>, to communicate with its containers. The lxceth0 will got the 192.168.1.1/24 address and will be the gateway for all the containers.</p>
+<p>We need here to modify the network configuration in order to create the lxceth0 interface in <code class="docutils literal"><span class="pre">/etc/network/interfaces</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">lo</span>
+<span class="n">iface</span> <span class="n">lo</span> <span class="n">inet</span> <span class="n">loopback</span>
+
+<span class="n">auto</span> <span class="n">eth0</span>
+<span class="n">iface</span> <span class="n">eth0</span> <span class="n">inet</span> <span class="n">static</span>
+    <span class="n">address</span> <span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span>
+    <span class="n">netmask</span> <span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span>
+    <span class="n">network</span> <span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span>
+    <span class="n">broadcast</span> <span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span>
+    <span class="n">gateway</span> <span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span><span class="o">.</span><span class="n">XX</span>
+
+<span class="n">auto</span> <span class="n">lxceth0</span>
+<span class="n">iface</span> <span class="n">lxceth0</span> <span class="n">inet</span> <span class="n">static</span>
+    <span class="n">address</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>
+    <span class="n">netmask</span> <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>
+    <span class="n">bridge_ports</span> <span class="n">none</span>
+</pre></div>
+</div>
+<p>We will activate the new interface with this command <code class="docutils literal"><span class="pre">ifup</span> <span class="pre">lxceth0</span></code>.
+We will pass the option <code class="docutils literal"><span class="pre">USE_LXC_BRIDGE</span></code> on true in <code class="docutils literal"><span class="pre">/etc/default/lxc-net</span></code> as well.</p>
+</div>
+<div class="section" id="lvm">
+<h2>LVM<a class="headerlink" href="#lvm" title="Permalink to this headline">¶</a></h2>
+<p>With the actual configuration, we have a physical volume /dev/md5. That is actually a logical volume of lv-foobar. So, we will delete the lv-foobar volume group after deleting the logical volume:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lvremove</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">lv</span><span class="o">-</span><span class="n">foobar</span><span class="o">/</span><span class="n">machin</span>
+<span class="n">vgremove</span> <span class="n">lv</span><span class="o">-</span><span class="n">foobar</span>
+</pre></div>
+</div>
+<p>We remove the mount point from /etc/fstab (we just comment the line), then we restart the server.</p>
+<p>Once it&#8217;s done, we can make the volume group. We can see it&#8217;s name on the previously commented line in /etc/fstab. Mine was /dev/md5.
+I&#8217;ve personally called my volume group <code class="docutils literal"><span class="pre">glycerine-vegetale</span></code> (just a wordplay, does not matter):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">vgcreate</span> <span class="n">glycerine</span><span class="o">-</span><span class="n">vegetale</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">md5</span>
+</pre></div>
+</div>
+<p>We do not have to create logical volumes. Actually, they will be automatically created each time we will create a new container.</p>
+</div>
+<div class="section" id="lxc">
+<h2>LXC<a class="headerlink" href="#lxc" title="Permalink to this headline">¶</a></h2>
+<p>As we have modified the interface name that will communicate with containers, we will begin by replace <code class="docutils literal"><span class="pre">lxcbr0</span></code> by <code class="docutils literal"><span class="pre">lxceth0</span></code> in the /etc/lxc/default.conf file.</p>
+<div class="section" id="lxc-create">
+<h3>lxc-create<a class="headerlink" href="#lxc-create" title="Permalink to this headline">¶</a></h3>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">-t</span></code> template a set of templates is provided with lxc. I use debian.</li>
+<li><code class="docutils literal"><span class="pre">-n</span></code> name of the container</li>
+<li><code class="docutils literal"><span class="pre">-B</span></code> lvm by défault, the container are located in <code class="docutils literal"><span class="pre">/var/lib/lxc/container/rootfs</span></code> but that&#8217;s not that we want. We specify here &#8220;lvm&#8221; some options are then necessary :</li>
+<li><code class="docutils literal"><span class="pre">--vgname</span></code> volume group name.</li>
+<li><code class="docutils literal"><span class="pre">--lvname</span></code> volume name</li>
+<li><code class="docutils literal"><span class="pre">--fstype</span></code> fs type of the volume</li>
+<li><code class="docutils literal"><span class="pre">--fssize</span></code> fs size of the volume</li>
+</ul>
+</div></blockquote>
+<p>As an example, to create a container named &#8220;my-container&#8221; on a logical volume of 1TB:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">lxc</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="n">debian</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span> <span class="o">-</span><span class="n">B</span> <span class="n">lvm</span> <span class="o">--</span><span class="n">vgname</span> <span class="n">myvg</span> <span class="o">--</span><span class="n">lvname</span> <span class="n">mycontainer</span> <span class="o">--</span><span class="n">fstype</span> <span class="n">ext4</span> <span class="o">--</span><span class="n">fssize</span> <span class="mi">1</span><span class="n">T</span> <span class="o">--</span> <span class="o">-</span><span class="n">r</span> <span class="n">jessie</span> <span class="o">-</span><span class="n">a</span> <span class="n">amd64</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="containers-configuration">
+<h3>Containers configuration<a class="headerlink" href="#containers-configuration" title="Permalink to this headline">¶</a></h3>
+<p>It will be made in <code class="docutils literal"><span class="pre">/var/lib/lxc/mycontainer/config</span></code>.</p>
+<p>Network parameters:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">ipv4</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.3</span><span class="o">/</span><span class="mi">24</span>
+<span class="n">lxc</span><span class="o">.</span><span class="n">network</span><span class="o">.</span><span class="n">ipv4</span><span class="o">.</span><span class="n">gateway</span> <span class="o">=</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>
+</pre></div>
+</div>
+<p>Be careful here. If you make it this way, the network configuration by default is provided by &#8220;DHCP&#8221;. It will work but the container will wait about one minute. It&#8217;s, in fact, the time the container will wait to get it&#8217;s network configuration from DHCP.
+We&#8217;ll have to modify the container&#8217;s network configuration in the container&#8217;s <code class="docutils literal"><span class="pre">/etc/network/interfaces</span></code> file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">auto</span> <span class="n">lo</span>
+<span class="n">iface</span> <span class="n">lo</span> <span class="n">inet</span> <span class="n">loopback</span>
+
+<span class="n">auto</span> <span class="n">eth0</span>
+<span class="n">iface</span> <span class="n">eth0</span> <span class="n">inet</span> <span class="n">static</span>
+    <span class="n">address</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.3</span>
+    <span class="n">netmask</span> <span class="mf">255.255</span><span class="o">.</span><span class="mf">255.0</span>
+    <span class="n">gateway</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>
+    <span class="n">broadcast</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.255</span>
+    <span class="n">network</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.0</span>
+</pre></div>
+</div>
+<p>Autostart (in <code class="docutils literal"><span class="pre">/var/lib/mycontainer/config</span></code>):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">auto</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">lxc</span><span class="o">.</span><span class="n">start</span><span class="o">.</span><span class="n">delay</span> <span class="o">=</span> <span class="mi">5</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="managing-container-resources">
+<h3>Managing container resources<a class="headerlink" href="#managing-container-resources" title="Permalink to this headline">¶</a></h3>
+<p>LXC use cgroups, so we can use the lxc-cgroup command to manage containers acces to system resources.
+For example, to print cores on which my-container have acces:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">cgroup</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span> <span class="n">cpuset</span><span class="o">.</span><span class="n">cpus</span>
+<span class="o">&gt;</span> <span class="mi">0</span><span class="o">-</span><span class="mi">7</span>
+</pre></div>
+</div>
+<p>We also can make modifications in the container&#8217;s configuration file. To restrict the use of the cores 0 an 1, we add this line:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">.</span><span class="n">cgroup</span><span class="o">.</span><span class="n">cpuset</span><span class="o">.</span><span class="n">cpus</span> <span class="mi">0</span><span class="p">,</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>To restrict the memory access from 265MB when memory usage is low, to 512MB, when it&#8217;s higher:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">.</span><span class="n">cgroup</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">soft_limit_in_bytes</span> <span class="mi">268435456</span>
+<span class="n">lxc</span><span class="o">.</span><span class="n">cgroup</span><span class="o">.</span><span class="n">memory</span><span class="o">.</span><span class="n">limit_in_bytes</span> <span class="mi">53687091</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="rudiments">
+<h3>Rudiments<a class="headerlink" href="#rudiments" title="Permalink to this headline">¶</a></h3>
+<p>Generally, when you want to specify a container in a command, you must use the <code class="docutils literal"><span class="pre">-n</span></code> option:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">foo</span> <span class="o">-</span><span class="n">n</span> <span class="n">bar</span>
+</pre></div>
+</div>
+<p>To list containers, we will use <code class="docutils literal"><span class="pre">lxc-ls</span></code> with the <code class="docutils literal"><span class="pre">--fancy</span></code> option, to beautify the output:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">ls</span> <span class="o">--</span><span class="n">fancy</span>
+<span class="n">NAME</span>         <span class="n">STATE</span>   <span class="n">AUTOSTART</span> <span class="n">GROUPS</span> <span class="n">IPV4</span>                                         <span class="n">IPV6</span>
+</pre></div>
+</div>
+<p>We can also directly attach to the container from the host:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">attach</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span>
+</pre></div>
+</div>
+<p>That what we will use to attach a container, at it&#8217;s firt launch.</p>
+<p>To start a container, we will use <code class="docutils literal"><span class="pre">lxc-start</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span>
+</pre></div>
+</div>
+<p>If there are a configuration mistake, the container won&#8217;t start. So we will use the <code class="docutils literal"><span class="pre">-F</span></code> option (for foreground mode) to get informations that will be helpful to debug:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span> <span class="o">-</span><span class="n">F</span>
+</pre></div>
+</div>
+<p>We also can stop a container with <code class="docutils literal"><span class="pre">lxc-stop</span></code>. But I advice you to not make it this way. Instead, you can shut it down directly from the container. halt, or shutdown…
+That being said, here is the command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">stop</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span>
+</pre></div>
+</div>
+<p>Sometimes, a container should have freeze and this command will not work. In this case, add the <code class="docutils literal"><span class="pre">-k</span></code> option (for kill):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">stop</span> <span class="o">-</span><span class="n">n</span> <span class="n">my</span><span class="o">-</span><span class="n">container</span> <span class="o">-</span><span class="n">k</span>
+</pre></div>
+</div>
+<p>That&#8217;s it for the basics.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>When a container don&#8217;t start, it is possible to chroot inside it to fix problems.
+At this point, we assume that the container is stopped and that logical volume named <code class="docutils literal"><span class="pre">lv-my-container</span></code> is on a volume group named <code class="docutils literal"><span class="pre">my-vg</span></code>.
+We create a new folder and mount the logical volume on it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">foobar</span> <span class="o">&amp;&amp;</span> <span class="n">mount</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">my</span><span class="o">-</span><span class="n">vg</span><span class="o">/</span><span class="n">lv</span><span class="o">-</span><span class="n">my</span><span class="o">-</span><span class="n">container</span> <span class="n">foobar</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Then we can chroot inside the folder:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">chroot</span> <span class="n">foobar</span>
+</pre></div>
+</div>
+<p class="last">Once modifications are done, we unmount the logical volume, and start the container.</p>
+</div>
+</div>
+</div>
+<div class="section" id="iptables">
+<h2>Iptables<a class="headerlink" href="#iptables" title="Permalink to this headline">¶</a></h2>
+<p>I&#8217;ve chosen to use a NAT configuration. You can find other ways of doing this, based on libvirt, if it&#8217;s what you want to use.</p>
+<p>So we activate forwarding, by changing the value of <code class="docutils literal"><span class="pre">net.ipv4.ip_forward</span></code> to 1 in <code class="docutils literal"><span class="pre">/etc/sysctl.conf</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">net</span><span class="o">.</span><span class="n">ipv4</span><span class="o">.</span><span class="n">ip_forward</span><span class="o">=</span><span class="mi">1</span>
+</pre></div>
+</div>
+<p>To begin, there are some iptables commandes (as root).
+Here is how we can list all active rules:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">L</span>
+</pre></div>
+</div>
+<p>As we can see, there is three different tables: <code class="docutils literal"><span class="pre">INPUT</span></code>, <code class="docutils literal"><span class="pre">OUTPUT</span></code> and <code class="docutils literal"><span class="pre">FORWARD</span></code>.
+<code class="docutils literal"><span class="pre">INPUT</span></code> represents incoming traffic, while <code class="docutils literal"><span class="pre">OUTPUT</span></code> represents outgoing traffic and <code class="docutils literal"><span class="pre">FORWARD</span></code> represents traffic that pass from an interface to another one.</p>
+<p>To print NAT rules:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">iptables</span> <span class="o">-</span><span class="n">t</span> <span class="n">nat</span> <span class="o">-</span><span class="n">L</span>
+</pre></div>
+</div>
+<p>Here is a script, you just have to put it in /etc/init.d/ to modify it depending of your needs and to activate it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>IPT=/sbin/iptables
+
+#service start function
+function start {
+    #We don&#39;t want to close already established connexions
+    $IPT -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+    $IPT -A OUTPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+    #We locally accept everything in INPUT and OUTPUT tables
+    $IPT -A INPUT -i lo -j ACCEPT
+    $IPT -A OUTPUT -o lo -j ACCEPT
+
+    #INPUT TCP rules
+    #This rule allows ssh
+    $IPT -A INPUT -p tcp --dport 22 -j ACCEPT
+    #OUTPUT TCP rules. We allow FTP, SFTP/SSH, SMTP, HTTP and HTTPS
+    $IPT -A OUTPUT -p tcp --dport 21 -j ACCEPT
+    $IPT -A OUTPUT -p tcp --dport 22 -j ACCEPT
+    $IPT -A OUTPUT -p tcp --dport 24 -j ACCEPT
+    $IPT -A OUTPUT -p tcp --dport 25 -j ACCEPT
+    $IPT -A OUTPUT -p tcp --dport 80 -j ACCEPT
+    $IPT -A OUTPUT -p tcp --dport 443 -j ACCEPT
+    #We allow WAN&lt;-&gt;LAN traffic
+    $IPT -A FORWARD -s 192.168.1.0/24 -o br0 -j ACCEPT
+    $IPT -A FORWARD -s 192.168.1.0/24 -o br0 -j ACCEPT
+    $IPT -A FORWARD -d 192.168.1.0/24 -o lxcbr0 -j ACCEPT
+
+    #Masquerading activation
+    $IPT -t nat -A POSTROUTING -j MASQUERADE
+
+    #NAT SSH CONTAINERS
+    $IPT -A PREROUTING -t nat -i br0 -p tcp --dport &lt;PORT&gt; -j DNAT --to &lt;IPCONTAINER&gt;:&lt;PORT&gt;
+
+    #To disallow post scan
+    $IPT -A FORWARD -p tcp --tcp-flags SYN,ACK,FIN,RST RST -m limit --limit 1/s -j ACCEPT
+
+    #To allow DNS requests
+    $IPT -t filter -A INPUT -p udp --dport 53 -j ACCEPT
+    $IPT -t filter -A OUTPUT -p udp --dport 53 -j ACCEPT
+
+    #We drop and log here, everything else
+    $IPT -A INPUT -p icmp -j ACCEPT
+    $IPT -A INPUT -j LOG --log-prefix &#39;[IPTABLES] :&#39;
+    $IPT -A INPUT -j REJECT
+    $IPT -P INPUT DROP
+    $IPT -A OUTPUT -j LOG --log-prefix &#39;[IPTABLES] :&#39;
+    $IPT -A PREROUTING -t nat -j LOG --log-prefix &#39;[IPTABLES]:&#39;
+
+}
+#service stop function
+function stop {
+    #We flush everything
+    $IPT -F
+    $IPT -t nat -F
+    $IPT -t mangle -F
+    #We disallow incoming traffic
+    $IPT -P INPUT DROP
+    #We do not forward anything
+    $IPT -P FORWARD DROP
+    #But we still allow outgoing traffic
+    $IPT -P OUTPUT ACCEPT
+}
+
+#service restart function
+function restart {
+    stop
+    start
+}
+
+case &quot;$1&quot; in
+start)
+    start
+    exit 0
+    ;;
+stop)
+    stop
+    exit 0
+    ;;
+restart)
+    restart
+    exit 0
+    ;;
+*)
+    echo &quot;Usage: /etc/init.d/firewall {start|stop|restart}&quot;
+    exit 1
+    ;;
+Esac
+</pre></div>
+</div>
+<p>We need to make this script executable and to activate it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">chmod</span> <span class="o">+</span><span class="n">x</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">init</span><span class="o">.</span><span class="n">d</span><span class="o">/</span><span class="n">firewall</span>
+
+<span class="n">sudo</span> <span class="n">update</span><span class="o">-</span><span class="n">rc</span><span class="o">.</span><span class="n">d</span> <span class="n">firewall</span> <span class="n">start</span> <span class="mi">99</span> <span class="mi">2</span> <span class="o">.</span> <span class="n">stop</span> <span class="mi">00</span> <span class="mi">2</span> <span class="mi">0</span> <span class="mi">1</span> <span class="mi">6</span> <span class="o">.</span>
+</pre></div>
+</div>
+<p>We can now customize our configuration, add a rule and restart the script. Those rules will be active at boot too.</p>
+</div>
+<div class="section" id="ssmtp">
+<h2>Ssmtp<a class="headerlink" href="#ssmtp" title="Permalink to this headline">¶</a></h2>
+<p>Now that our server is usable, we would like to be advised when a problem occurs. So we need to set up the send of mails. We will need two packages : <code class="docutils literal"><span class="pre">ssmtp</span></code> and <code class="docutils literal"><span class="pre">mailutils</span></code>.</p>
+<p>The first one allows us to authenticate on a mail server (you can, adapt this configuration to use a gmail address, for example).
+The second one allows us to use the <code class="docutils literal"><span class="pre">mail</span></code> command.
+To configure ssmtp, we will have to edit two files.</p>
+<p>The first one <code class="docutils literal"><span class="pre">/etc/ssmtp/ssmtp.conf</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">root</span><span class="o">=</span><span class="n">user</span><span class="nd">@foo</span><span class="o">.</span><span class="n">bar</span> <span class="c1"># All users having an UID &lt; 1000 will send a mail with this name</span>
+<span class="n">AuthUser</span><span class="o">=</span><span class="n">user</span> <span class="c1"># ID on your SMTP server (sometimes it is user@foo.bar)</span>
+<span class="n">AuthPass</span><span class="o">=</span><span class="n">motdepasse</span> <span class="c1"># Password of your user, on your SMTP server</span>
+<span class="n">mailhub</span><span class="o">=</span><span class="n">smtp</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span><span class="mi">465</span> <span class="c1"># FQDN:port of your SMTP server</span>
+<span class="n">FromLineOverride</span><span class="o">=</span><span class="n">YES</span> <span class="c1"># Allows the program to customize header</span>
+<span class="n">UseTLS</span><span class="o">=</span><span class="n">YES</span> <span class="c1"># Encrypts connection to SMTP server</span>
+<span class="n">hostname</span><span class="o">=</span><span class="n">my</span><span class="o">-</span><span class="n">server</span> <span class="c1"># your hostname. (What would you wish I told you ?)</span>
+</pre></div>
+</div>
+<p>The second one <code class="docutils literal"><span class="pre">/etc/ssmtp/revaliases</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">User</span><span class="p">:</span><span class="n">smtp</span><span class="o">-</span><span class="n">user</span><span class="p">:</span><span class="n">smtp</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span><span class="mi">465</span>
+<span class="n">root</span><span class="p">:</span><span class="n">other</span><span class="o">-</span><span class="n">smtp</span><span class="o">-</span><span class="n">user</span><span class="p">:</span><span class="n">smtp</span><span class="o">.</span><span class="n">foo</span><span class="o">.</span><span class="n">bar</span><span class="p">:</span><span class="mi">465</span>
+<span class="c1"># utilisateur:serveur.smtp:port</span>
+</pre></div>
+</div>
+<p>Then you should be able to send mails with this command:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="n">Mail</span> <span class="n">content</span> <span class="o">|</span> <span class="n">mail</span> <span class="o">-</span><span class="n">s</span> <span class="s2">&quot;Mail subject&quot;</span> <span class="n">recipient</span><span class="nd">@domain</span><span class="o">.</span><span class="n">tld</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="smartmontools">
+<h2>Smartmontools<a class="headerlink" href="#smartmontools" title="Permalink to this headline">¶</a></h2>
+<p>Now that the send of mails is configured, we will install a tool that will scan disks and send mails in case of threats.
+So we install <code class="docutils literal"><span class="pre">smartmontools</span></code>. We can make some tests.</p>
+<p>For example, in order to print some informations about a disk:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartctl</span> <span class="o">-</span><span class="n">i</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+
+<span class="n">smartctl</span> <span class="mf">6.2</span> <span class="mi">2013</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">26</span> <span class="n">r3841</span> <span class="p">[</span><span class="n">x86_64</span><span class="o">-</span><span class="n">linux</span><span class="o">-</span><span class="mf">3.13</span><span class="o">.</span><span class="mi">0</span><span class="o">-</span><span class="mi">74</span><span class="o">-</span><span class="n">generic</span><span class="p">]</span> <span class="p">(</span><span class="n">local</span> <span class="n">build</span><span class="p">)</span>
+<span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2002</span><span class="o">-</span><span class="mi">13</span><span class="p">,</span> <span class="n">Bruce</span> <span class="n">Allen</span><span class="p">,</span> <span class="n">Christian</span> <span class="n">Franke</span><span class="p">,</span> <span class="n">www</span><span class="o">.</span><span class="n">smartmontools</span><span class="o">.</span><span class="n">org</span>
+
+<span class="o">===</span> <span class="n">START</span> <span class="n">OF</span> <span class="n">INFORMATION</span> <span class="n">SECTION</span> <span class="o">===</span>
+<span class="n">Device</span> <span class="n">Model</span><span class="p">:</span>     <span class="n">HGST</span> <span class="n">HUS724020ALA640</span>
+<span class="n">Serial</span> <span class="n">Number</span><span class="p">:</span>    <span class="n">PN2181P6J4AP5P</span>
+<span class="n">LU</span> <span class="n">WWN</span> <span class="n">Device</span> <span class="n">Id</span><span class="p">:</span> <span class="mi">5</span> <span class="mi">000</span><span class="n">cca</span> <span class="mi">22</span><span class="n">dde2898</span>
+<span class="n">Firmware</span> <span class="n">Version</span><span class="p">:</span> <span class="n">MF6OAA70</span>
+<span class="n">User</span> <span class="n">Capacity</span><span class="p">:</span>    <span class="mi">2</span> <span class="mi">000</span> <span class="mi">398</span> <span class="mi">934</span> <span class="mi">016</span> <span class="nb">bytes</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">00</span> <span class="n">TB</span><span class="p">]</span>
+<span class="n">Sector</span> <span class="n">Size</span><span class="p">:</span>      <span class="mi">512</span> <span class="nb">bytes</span> <span class="n">logical</span><span class="o">/</span><span class="n">physical</span>
+<span class="n">Rotation</span> <span class="n">Rate</span><span class="p">:</span>    <span class="mi">7200</span> <span class="n">rpm</span>
+<span class="n">Device</span> <span class="ow">is</span><span class="p">:</span>        <span class="n">Not</span> <span class="ow">in</span> <span class="n">smartctl</span> <span class="n">database</span> <span class="p">[</span><span class="k">for</span> <span class="n">details</span> <span class="n">use</span><span class="p">:</span> <span class="o">-</span><span class="n">P</span> <span class="n">showall</span><span class="p">]</span>
+<span class="n">ATA</span> <span class="n">Version</span> <span class="ow">is</span><span class="p">:</span>   <span class="n">ATA8</span><span class="o">-</span><span class="n">ACS</span> <span class="n">T13</span><span class="o">/</span><span class="mi">1699</span><span class="o">-</span><span class="n">D</span> <span class="n">revision</span> <span class="mi">4</span>
+<span class="n">SATA</span> <span class="n">Version</span> <span class="ow">is</span><span class="p">:</span>  <span class="n">SATA</span> <span class="mf">3.0</span><span class="p">,</span> <span class="mf">6.0</span> <span class="n">Gb</span><span class="o">/</span><span class="n">s</span> <span class="p">(</span><span class="n">current</span><span class="p">:</span> <span class="mf">3.0</span> <span class="n">Gb</span><span class="o">/</span><span class="n">s</span><span class="p">)</span>
+<span class="n">Local</span> <span class="n">Time</span> <span class="ow">is</span><span class="p">:</span>    <span class="n">Wed</span> <span class="n">Jan</span>  <span class="mi">6</span> <span class="mi">22</span><span class="p">:</span><span class="mi">59</span><span class="p">:</span><span class="mi">59</span> <span class="mi">2016</span> <span class="n">CET</span>
+<span class="n">SMART</span> <span class="n">support</span> <span class="ow">is</span><span class="p">:</span> <span class="n">Available</span> <span class="o">-</span> <span class="n">device</span> <span class="n">has</span> <span class="n">SMART</span> <span class="n">capability</span><span class="o">.</span>
+<span class="n">SMART</span> <span class="n">support</span> <span class="ow">is</span><span class="p">:</span> <span class="n">Enabled</span>
+</pre></div>
+</div>
+<p>To print health status of a disk:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>sudo smartctl -c /dev/sda
+
+[…]
+Short self-test routine
+recommended polling time:        (   1) minutes.
+Extended self-test routine
+recommended polling time:        ( 314) minutes.
+[…]
+</pre></div>
+</div>
+<p>As we can see, thos two lines are saying that short and long tests should take approximately 1 and 314 minutes.</p>
+<p>We start then a short test:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">smartctl</span> <span class="o">-</span><span class="n">t</span> <span class="n">short</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span>
+</pre></div>
+</div>
+<p>And print the result (after waiting one minute, of course):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>sudo smartctl -l selftest /dev/sda
+
+smartctl 6.2 2013-07-26 r3841 [x86_64-linux-3.13.0-74-generic] (local build)
+Copyright (C) 2002-13, Bruce Allen, Christian Franke, www.smartmontools.org
+
+=== START OF READ SMART DATA SECTION ===
+SMART Self-test log structure revision number 1
+Num  Test_Description    Status                  Remaining  LifeTime(hours)  LBA_of_first_error
+# 1  Short offline       Completed without error       00%      9430         -
+[…]
+</pre></div>
+</div>
+<p>As we can see here, no error has ben detected. For the long test, it&#8217;s exacly the same, except that we will specify <code class="docutils literal"><span class="pre">long</span></code> instead of <code class="docutils literal"><span class="pre">short</span></code>.</p>
+<div class="section" id="daemon-configuration">
+<h3>Daemon configuration<a class="headerlink" href="#daemon-configuration" title="Permalink to this headline">¶</a></h3>
+<p>We will start to activate the automatic start of the deamon at server startup. To do this, we will need to edit the file <code class="docutils literal"><span class="pre">/etc/default/smartmontools</span></code> and uncomment the line <code class="docutils literal"><span class="pre">start_smartd=yes</span></code>.</p>
+<p>Next, we will edit /etc/smartd.conf and add one line per disk to supervise. In my case, I have two disks:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sda</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">d</span> <span class="n">sat</span> <span class="o">-</span><span class="n">o</span> <span class="n">on</span> <span class="o">-</span><span class="n">S</span> <span class="n">on</span> <span class="o">-</span><span class="n">s</span> <span class="p">(</span><span class="n">S</span><span class="o">/../.././</span><span class="mi">02</span><span class="o">|</span><span class="n">L</span><span class="o">/../../</span><span class="mi">6</span><span class="o">/</span><span class="mi">03</span><span class="p">)</span> <span class="o">-</span><span class="n">m</span> <span class="n">user</span><span class="nd">@foo</span><span class="o">.</span><span class="n">bar</span> <span class="o">-</span><span class="n">M</span> <span class="n">exec</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">smartmontools</span><span class="o">/</span><span class="n">smartd</span><span class="o">-</span><span class="n">runner</span>
+<span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">sdb</span> <span class="o">-</span><span class="n">a</span> <span class="o">-</span><span class="n">d</span> <span class="n">sat</span> <span class="o">-</span><span class="n">o</span> <span class="n">on</span> <span class="o">-</span><span class="n">S</span> <span class="n">on</span> <span class="o">-</span><span class="n">s</span> <span class="p">(</span><span class="n">S</span><span class="o">/../.././</span><span class="mi">02</span><span class="o">|</span><span class="n">L</span><span class="o">/../../</span><span class="mi">6</span><span class="o">/</span><span class="mi">03</span><span class="p">)</span> <span class="o">-</span><span class="n">m</span> <span class="n">user</span><span class="nd">@foo</span><span class="o">.</span><span class="n">bar</span> <span class="o">-</span><span class="n">M</span> <span class="n">exec</span> <span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">smartmontools</span><span class="o">/</span><span class="n">smartd</span><span class="o">-</span><span class="n">runner</span>
+</pre></div>
+</div>
+<p>We will also ensure to comment this line:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># DEVICESCAN -d removable -n standby -m root -M exec /usr/share/smartmontools/smartd-runner</span>
+</pre></div>
+</div>
+<p>As explained in the file, this scan disable every other one.</p>
+<p>Things to modify are the disks names and the recipient for the mail.
+There is a little explanation of the different options :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">/dev/sda</span></code> It&#8217;s the device name of the disk to supervise.</li>
+<li><code class="docutils literal"><span class="pre">-a</span></code> Activates basical options</li>
+<li><code class="docutils literal"><span class="pre">-d</span> <span class="pre">sat</span></code> if smartctl has no problem to detect out disc, smartd could. This option helps it.</li>
+<li><code class="docutils literal"><span class="pre">-o</span> <span class="pre">on</span> <span class="pre">-S</span> <span class="pre">on</span></code> As for smartcl, a little higher.</li>
+<li><code class="docutils literal"><span class="pre">-s</span> <span class="pre">(S/../.././02|L/../../6/03)</span></code> Test planning configuration. <code class="docutils literal"><span class="pre">S</span></code> for short and <code class="docutils literal"><span class="pre">L</span></code> for long. Here, the short test is every day at 2 am, and the long one, every 6th day of the week at 3 am.</li>
+<li><code class="docutils literal"><span class="pre">-m</span> <span class="pre">user&#64;foo.bar</span></code> Send a mail if an error occurs. This option requires the send of mails is already configured.</li>
+<li><code class="docutils literal"><span class="pre">-M</span> <span class="pre">exec</span> <span class="pre">/usr/share/smartmontools/smartd-runner</span></code> (debian and derivates only) This option allows to execute a bunch of scripts in case of problem and to send an advertising e-mail.</li>
+</ul>
+</div></blockquote>
+<p>We will write a line for each disk to scan. To test the sending of mail, we will replace the option <code class="docutils literal"><span class="pre">-M</span> <span class="pre">exec</span> <span class="pre">/usr/share/smartmontools/smartd-runner</span></code> by <code class="docutils literal"><span class="pre">-M</span> <span class="pre">test</span></code>.
+An email should be send after restarting the daemon. Once the test is done, replace the values again, as previously, and restart the daemon again.</p>
+</div>
+</div>
+<div class="section" id="rsyslog">
+<h2>Rsyslog<a class="headerlink" href="#rsyslog" title="Permalink to this headline">¶</a></h2>
+<p>After reaching a certain amount of containers, it could be interesting to centralize their logs. So we will create a server that will collect all logs.</p>
+<div class="section" id="server-configuration">
+<h3>Server configuration<a class="headerlink" href="#server-configuration" title="Permalink to this headline">¶</a></h3>
+<p>On the server, we will uncomment those to lines in order to listen on the 514 UDP port:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>$ModLoad imudp
+$UDPServerRun 514
+</pre></div>
+</div>
+<p>We can then restart the service an test that the server is listening:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>sudo service rsysglog restart
+sudo netstat -tulnp
+
+[…]
+udp        0      0 0.0.0.0:514             0.0.0.0:*                           -
+[…]
+</pre></div>
+</div>
+<p>Logs are ordered in multiple categories (facilities) :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">auth</span></code> authentication events</li>
+<li><code class="docutils literal"><span class="pre">authpriv</span></code> access control related messages</li>
+<li><code class="docutils literal"><span class="pre">daemon</span></code> Used for different system and application process</li>
+<li><code class="docutils literal"><span class="pre">kern</span></code> kernel related messages</li>
+<li><code class="docutils literal"><span class="pre">mail</span></code> mail related messages</li>
+<li><code class="docutils literal"><span class="pre">user</span></code> It&#8217;s the default facility when none is specified</li>
+<li><code class="docutils literal"><span class="pre">local7</span></code> boot related messages</li>
+<li><code class="docutils literal"><span class="pre">*</span></code> match every facility</li>
+<li><code class="docutils literal"><span class="pre">none</span></code> match no facility</li>
+</ul>
+</div></blockquote>
+<p>And also in 8 levels of criticity :</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">Emerg</span></code> It&#8217;s an emergency. The system is unusable</li>
+<li><code class="docutils literal"><span class="pre">Alert</span></code> It&#8217;s an altert. An intervention is required</li>
+<li><code class="docutils literal"><span class="pre">Crit</span></code> Critical system error</li>
+<li><code class="docutils literal"><span class="pre">Err</span></code> Fonctionnal error</li>
+<li><code class="docutils literal"><span class="pre">Warning</span></code> Warning (heh)</li>
+<li><code class="docutils literal"><span class="pre">Notice</span></code> Normal event that should be reported</li>
+<li><code class="docutils literal"><span class="pre">Info</span></code> For information</li>
+<li><code class="docutils literal"><span class="pre">Debug</span></code> Debugging message</li>
+</ul>
+</div></blockquote>
+<p>We will now configure the client in order it will send only interesting logs, and not informative ones.</p>
+</div>
+<div class="section" id="client-configuration">
+<h3>Client configuration<a class="headerlink" href="#client-configuration" title="Permalink to this headline">¶</a></h3>
+<p>Client-side, we will configure rsyslog so it will send all its logs to the server:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*.*</span> <span class="nd">@192</span><span class="o">.</span><span class="mf">168.1</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">514</span>
+</pre></div>
+</div>
+<dl class="docutils">
+<dt>We can cut each line in 3 parts:</dt>
+<dd><ul class="first last simple">
+<li>The part at the left of the first dot selects the category.</li>
+<li>The part on the right of the first dot selects the criticality</li>
+<li>The host and the port are defined on the right of the &#64;</li>
+</ul>
+</dd>
+</dl>
+<p>Here, <code class="docutils literal"><span class="pre">*</span></code> means that I send every message (doesn&#8217;t matter their type or their criticity) on the host 192.168.1.1:514.
+But we could also send messages of criticity ≥ Crit and those which concerns authentication (connection failures, etc…):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">*.</span><span class="n">crit</span> <span class="nd">@192</span><span class="o">.</span><span class="mf">168.1</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">514</span>
+<span class="n">authpriv</span><span class="o">.</span><span class="n">notice</span> <span class="nd">@192</span><span class="o">.</span><span class="mf">168.1</span><span class="o">.</span><span class="mi">1</span><span class="p">:</span><span class="mi">514</span>
+</pre></div>
+</div>
+<p>To test this, you can voluntarily fail to connect on this host and find this kind of logs in <code class="docutils literal"><span class="pre">/var/log/auth.log</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Jan</span>  <span class="mi">8</span> <span class="mi">17</span><span class="p">:</span><span class="mi">02</span><span class="p">:</span><span class="mi">57</span> <span class="n">srv</span><span class="o">-</span><span class="n">client</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">29951</span><span class="p">]:</span> <span class="n">pam_unix</span><span class="p">(</span><span class="n">sshd</span><span class="p">:</span><span class="n">auth</span><span class="p">):</span> <span class="n">authentication</span> <span class="n">failure</span><span class="p">;</span> <span class="n">logname</span><span class="o">=</span> <span class="n">uid</span><span class="o">=</span><span class="mi">0</span> <span class="n">euid</span><span class="o">=</span><span class="mi">0</span> <span class="n">tty</span><span class="o">=</span><span class="n">ssh</span> <span class="n">ruser</span><span class="o">=</span> <span class="n">rhost</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>  <span class="n">user</span><span class="o">=</span><span class="n">root</span>
+<span class="n">Jan</span>  <span class="mi">8</span> <span class="mi">17</span><span class="p">:</span><span class="mi">03</span><span class="p">:</span><span class="mi">07</span> <span class="n">srv</span><span class="o">-</span><span class="n">root</span> <span class="n">sshd</span><span class="p">[</span><span class="mi">29951</span><span class="p">]:</span> <span class="n">PAM</span> <span class="mi">2</span> <span class="n">more</span> <span class="n">authentication</span> <span class="n">failures</span><span class="p">;</span> <span class="n">logname</span><span class="o">=</span> <span class="n">uid</span><span class="o">=</span><span class="mi">0</span> <span class="n">euid</span><span class="o">=</span><span class="mi">0</span> <span class="n">tty</span><span class="o">=</span><span class="n">ssh</span> <span class="n">ruser</span><span class="o">=</span> <span class="n">rhost</span><span class="o">=</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.1</span>  <span class="n">user</span><span class="o">=</span><span class="n">root</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="ansible">
+<h2>Ansible<a class="headerlink" href="#ansible" title="Permalink to this headline">¶</a></h2>
+<p>Ansible is a configuration manager that is based on SSH and Python.
+It&#8217;s pretty easy to use. Actually, we don&#8217;t need any installation, client-side. The only requirements are SSH (well configured) and Python.</p>
+<div class="section" id="initial-configuration">
+<h3>Initial configuration<a class="headerlink" href="#initial-configuration" title="Permalink to this headline">¶</a></h3>
+<p>The user who will launch ansible instructions will need to have connection keys. So we execute this command to create them:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">keygen</span>
+</pre></div>
+</div>
+<p>Now that we have our keys, we will create a .ssh/config file, containing informations to connect on the different hosts to manage with ansible:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># We put here an alias. In my option, the easiest to remember is better.</span>
+<span class="n">Host</span> <span class="n">alias</span>
+    <span class="c1"># Hostname or ip address of the target</span>
+    <span class="n">Hostname</span> <span class="mf">192.168</span><span class="o">.</span><span class="mf">1.2</span>
+    <span class="c1"># The user. Here we will make things that requires root privileges.</span>
+    <span class="n">User</span> <span class="n">root</span>
+    <span class="c1"># The ssh port</span>
+    <span class="n">Port</span> <span class="mi">13580</span>
+</pre></div>
+</div>
+<p>Client side ssh configuration:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span># Here is the binding port
+Port 13580
+[…]
+# In order to allow root to connect
+PermitRootLogin yes
+[…]
+# Key authentication
+PubkeyAuthentication yes
+</pre></div>
+</div>
+<p>We just need to restart ssh daemon:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">ssh</span> <span class="n">restart</span>
+</pre></div>
+</div>
+<p>We can now copy our key on the container this way:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">alias</span>
+</pre></div>
+</div>
+<p>Afterwards, we can connect on the container and install python:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">alias</span>
+<span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">python</span>
+</pre></div>
+</div>
+<p>We also need to create a list of clients in /etc/ansible/hosts.
+As an example, we will make a group named &#8220;debian&#8221; which will contain the previously configured host:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">debian</span><span class="p">]</span>
+
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.3</span> <span class="n">ansible_ssh_port</span><span class="o">=</span><span class="mi">13581</span>
+</pre></div>
+</div>
+<p>We can now execute our first commands:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ansible</span> <span class="nb">all</span> <span class="o">-</span><span class="n">m</span> <span class="n">ping</span>
+
+<span class="mf">192.168</span><span class="o">.</span><span class="mf">1.3</span> <span class="o">|</span> <span class="n">success</span> <span class="o">&gt;&gt;</span> <span class="p">{</span>
+    <span class="s2">&quot;changed&quot;</span><span class="p">:</span> <span class="n">false</span><span class="p">,</span>
+    <span class="s2">&quot;ping&quot;</span><span class="p">:</span> <span class="s2">&quot;pong&quot;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>Instead of &#8220;all&#8221; we also could chose a group name, or a particular host.
+You can now read this thread, containing some of my playbooks.</p>
+</div>
+</div>
+<div class="section" id="notes">
+<h2>Notes<a class="headerlink" href="#notes" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="mount-inside-a-container">
+<h3>Mount inside a container<a class="headerlink" href="#mount-inside-a-container" title="Permalink to this headline">¶</a></h3>
+<p>If we need to mount things on our containers like with sshfs or anything else, we will fail ! It&#8217;s because fuse is unusable.
+Despite this fact, if we try, we will be adviced to execute <code class="docutils literal"><span class="pre">modprobe</span> <span class="pre">fuse</span></code> but it will fail. It&#8217;s a container and it don&#8217;t have it&#8217;s own kernel.
+Doesn&#8217;t matter, we will create /dev/fuse by ourself:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mknod</span> <span class="o">-</span><span class="n">m</span> <span class="mi">666</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">fuse</span> <span class="n">c</span> <span class="mi">10</span> <span class="mi">229</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><code class="docutils literal"><span class="pre">-m</span> <span class="pre">666</span></code> file&#8217;s access rights</li>
+<li><code class="docutils literal"><span class="pre">/dev/fuse</span></code> the file that we want to create</li>
+<li><code class="docutils literal"><span class="pre">c</span></code> the kind of file. More precisely, it&#8217;s a file in char mode (without buffer)</li>
+<li><code class="docutils literal"><span class="pre">10</span></code> defines major number of the file. It identifies the associated driver to the file</li>
+<li><code class="docutils literal"><span class="pre">229</span></code> This is the minor number. It&#8217;s a number used by the kernel which determines the device that the file references</li>
+</ul>
+<p>sources :</p>
+<ul class="simple">
+<li><a class="reference external" href="http://manpages.ubuntu.com/manpages/xenial/en/man1/mknod.1.html">mknod manual page</a>.</li>
+<li><a class="reference external" href="http://www.makelinux.net/ldd3/chp-3-sect-2">explanations about minor an major numbers</a>.</li>
+</ul>
+<p>And now, it works. The simplier way I&#8217;ve found in order to make it work automatically, is to add the following line in the root&#8217;s crontab:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="nd">@reboot</span> <span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">mknod</span> <span class="o">-</span><span class="n">m</span> <span class="mi">666</span> <span class="o">/</span><span class="n">dev</span><span class="o">/</span><span class="n">fuse</span> <span class="n">c</span> <span class="mi">10</span> <span class="mi">229</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="ip-failover">
+<h3>IP failover<a class="headerlink" href="#ip-failover" title="Permalink to this headline">¶</a></h3>
+<p>J&#8217;ai rédigé un article pour l&#8217;allocation d&#8217;une ip publique à un container.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="dnsmasq.html" class="btn btn-neutral float-right" title="LXC and Dnsmasq" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="index.html" class="btn btn-neutral" title="Tutos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

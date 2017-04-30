@@ -1,0 +1,37 @@
+lxc-up / down
+=============
+
+My scripts for starting / stopping containers.
+
+usage ::
+
+    lxc-up `container-name`
+    lxc-down `container-name`
+
+dependancies :
+
+    * softs : sshfs, tmux
+    * ssh properly configured, with .ssh/config file and key authentication.
+
+lxc up
+------
+
+    * Starts the container container-name.
+    * Mounts the remote homedir on ~/sshfs/containername with sshfs.
+    * Creates a tmux session, named container-name.
+    * Creates a first window in the tmux session named "CODE".
+    * Creates a second one, named "SERVER" logged into the container through SSH.
+    * Creates a third one, named "TUN", and open a SSH tunnel. Here, the tunel targets the postgres default bind port. You can change this, depending of your need, as the localhost port.
+
+.. literalinclude:: lxc-up
+   :language: bash
+
+lxc-down
+--------
+
+    * Kills the tmux session.
+    * Unmount the sshfs mountpoint.
+    * Stops the container.
+
+.. literalinclude:: lxc-down
+   :language: bash

@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>pg-cli &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Scripts" href="index.html"/>
+        <link rel="prev" title="lxc-up / down" href="lxc-up_down.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutos/index.html">Tutos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/acpi-systemd.html">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts</a> &raquo;</li>
+        
+      <li>pg-cli</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/pg-cli.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pg-cli">
+<h1>pg-cli<a class="headerlink" href="#pg-cli" title="Permalink to this headline">¶</a></h1>
+<p>Just a wrapper of the pgcli postgres client.</p>
+<p>Usage:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pg</span><span class="o">-</span><span class="n">cli</span> <span class="o">&lt;</span><span class="n">container</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">db</span><span class="o">-</span><span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Requirements :</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/dbcli/pgcli">pgcli</a></li>
+<li>a /tmp/pg_table file filled by the <a class="reference external" href="https://github.com/mmequignon/bin/blob/master/lxc-up">lxc-up</a> script.</li>
+<li>SSH properly configured.</li>
+</ul>
+</div></blockquote>
+<p>It allows me to connect on a remote database, available on localhost through a SSH tunnel.</p>
+<blockquote>
+<div>It uses the /tmp/pg_table created by the lxc-up script to get the port to connect on.
+It gets the username to connect with in your ~/.ssh/config file.</div></blockquote>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">PGCLI</span><span class="o">=</span><span class="s2">&quot;/usr/bin/pgcli&quot;</span>
+<span class="nv">PG_TABLE</span><span class="o">=</span><span class="s2">&quot;/tmp/pg_table&quot;</span>
+<span class="nv">AWK</span><span class="o">=</span><span class="s2">&quot;/usr/bin/awk&quot;</span>
+
+<span class="k">function</span> get-user <span class="o">{</span>
+    <span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span><span class="nv">$AWK</span> <span class="s1">&#39;/&#39;</span><span class="nv">$1</span><span class="s1">&#39;/ {for(i=1; i&lt;=4; i++) {getline ; print;}}&#39;</span> <span class="nv">$HOME</span>/.ssh/config <span class="p">|</span> grep User <span class="p">|</span> <span class="nv">$AWK</span> <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
+<span class="o">}</span>
+
+<span class="k">function</span> get-pg-port <span class="o">{</span>
+    <span class="nb">echo</span> <span class="k">$(</span>grep <span class="nv">$1</span> <span class="nv">$PG_TABLE</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<span class="o">}</span>
+
+<span class="nv">pg_port</span><span class="o">=</span><span class="k">$(</span>get-pg-port <span class="nv">$1</span><span class="k">)</span>
+<span class="nv">username</span><span class="o">=</span><span class="k">$(</span>get-user <span class="nv">$1</span><span class="k">)</span>
+
+<span class="nv">$PGCLI</span> -U <span class="nv">$username</span> -h localhost -p <span class="nv">$pg_port</span> -d <span class="nv">$2</span>
+</pre></div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="lxc-up_down.html" class="btn btn-neutral" title="lxc-up / down" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -1,0 +1,31 @@
+How to drive a remote comuter with X2GO
+=======================================
+
+First, I had to read a little about X.org. Devices (keyboard, mouse, screen) are connected to X.org. Keyboard and mouse send signals while screen receive 
+Dans un premier temps, j'ai du comprendre -grossièrement- le fonctionnement de X.org. Les périphériques (clavier, souris, affichage) sont connectés à X.org. Le clavier et la souris envoient des signaux tandis que l'écran reçoit le sien du X.org.
+
+Schématisation du fonctionnement du Xserver
+
+La propriété qui va me servir, c'est qu'il n'est pas nécessaire que ces périphériques soient tous sur la même machine. Et par le fait, je peux piloter mon ordinateur grace à ça, en connectant via le réseau mon clavier et ma souris, connectés à un autre Xserver. C'est exactement ce dont j'avais besoin.
+
+Pour faire ça, il va falloir deux choses. Je vais avoir besoin de SSH, et de X2X. J'expliquais dans un autre article comment configurer ssh afin de prendre la main sur un poste. Le but ici, histoire de simplifier la chose, est de pouvoir se connecter par un simple "ssh nom_d_hote".
+
+Voici le lien vers l'article configuration de SSH.
+
+Ensuite, il faut simplement installer x2x sur le poste distant.
+
+sudo apt install x2x
+
+Et c'est déjà fini. Dorénavant, si vous entrez cette ligne de commande vous pourrez sortir le curseur de votre souris à droite l'écran du poste local. Dès lors, votre clavier et votre souris piloteront le poste distant.
+
+ssh -X local x2x -east -to :0.0
+
+Une option intéressante est '-clipcheck'. Celle-ci permet de partager le presse-papier entre les deux postes::
+
+    ssh -X local x2x -east -to :0.0 -clipcheck
+
+Les alias, c'est bon, mangez-en ! N'hesitez pas à en créer un dans votre .bashrc.
+
+If it doesn't work, ensure that the option ``X11Forwarding`` is on yes and ``AllowTCPForwarding`` too.
+If those lines are missing, add them. Restart then ssh service.
+

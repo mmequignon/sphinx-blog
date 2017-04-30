@@ -1,0 +1,420 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>lxc-up / down &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Scripts" href="index.html"/>
+        <link rel="next" title="pg-cli" href="pg-cli.html"/>
+        <link rel="prev" title="CCPPP" href="ccppp.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutos/index.html">Tutos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/acpi-systemd.html">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Scripts</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="ccppp.html">CCPPP</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Scripts</a> &raquo;</li>
+        
+      <li>lxc-up / down</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/scripts/lxc-up_down.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="lxc-up-down">
+<h1>lxc-up / down<a class="headerlink" href="#lxc-up-down" title="Permalink to this headline">¶</a></h1>
+<p>My scripts for starting / stopping containers.</p>
+<p>usage</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>lxc-up `container-name`
+lxc-down `container-name`
+</pre></div>
+</div>
+<p>dependancies :</p>
+<blockquote>
+<div><ul class="simple">
+<li>softs : sshfs, tmux</li>
+<li>ssh properly configured, with .ssh/config file and key authentication.</li>
+</ul>
+</div></blockquote>
+<div class="section" id="lxc-up">
+<h2>lxc up<a class="headerlink" href="#lxc-up" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Starts the container container-name.</li>
+<li>Mounts the remote homedir on ~/sshfs/containername with sshfs.</li>
+<li>Creates a tmux session, named container-name.</li>
+<li>Creates a first window in the tmux session named &#8220;CODE&#8221;.</li>
+<li>Creates a second one, named &#8220;SERVER&#8221; logged into the container through SSH.</li>
+<li>Creates a third one, named &#8220;TUN&#8221;, and open a SSH tunnel. Here, the tunel targets the postgres default bind port. You can change this, depending of your need, as the localhost port.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">LXCSTART</span><span class="o">=</span><span class="s2">&quot;sudo /usr/bin/lxc-start&quot;</span>
+<span class="nv">SSHFS</span><span class="o">=</span><span class="s2">&quot;/usr/bin/sshfs&quot;</span>
+<span class="nv">SLEEP</span><span class="o">=</span><span class="s2">&quot;/bin/sleep&quot;</span>
+<span class="nv">TMUX</span><span class="o">=</span><span class="s2">&quot;/usr/bin/tmux&quot;</span>
+<span class="nv">SSH</span><span class="o">=</span><span class="s2">&quot;/usr/bin/ssh&quot;</span>
+<span class="nv">PG_TABLE</span><span class="o">=</span><span class="s2">&quot;/tmp/pg_table&quot;</span>
+<span class="nv">PG_PORT</span><span class="o">=</span><span class="s2">&quot;5432&quot;</span>
+
+<span class="k">function</span> get-next-port <span class="o">{</span>
+    <span class="nv">retour</span><span class="o">=</span><span class="k">$(($(</span>awk <span class="s1">&#39;{print $2}&#39;</span> <span class="nv">$PG_TABLE</span> <span class="p">|</span> sort <span class="p">|</span> awk <span class="s1">&#39;END{print}&#39;</span><span class="k">)</span><span class="o">+</span><span class="m">1</span><span class="k">))</span>
+    <span class="k">if</span> <span class="o">[</span> <span class="nv">$retour</span> -eq <span class="s2">&quot;1&quot;</span> <span class="o">]</span>
+    <span class="k">then</span>
+        <span class="nb">echo</span> <span class="m">5432</span>
+    <span class="k">else</span>
+        <span class="nb">echo</span> <span class="nv">$retour</span>
+    <span class="k">fi</span>
+<span class="o">}</span>
+
+<span class="k">function</span> get-container-port <span class="o">{</span>
+    <span class="nb">echo</span> <span class="k">$(</span>grep <span class="nv">$1</span> <span class="nv">$PG_TABLE</span> <span class="p">|</span> awk <span class="s1">&#39;{print $2}&#39;</span><span class="k">)</span>
+<span class="o">}</span>
+
+<span class="nv">arguments</span><span class="o">=(</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span> <span class="o">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">arguments</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="s2">&quot;1&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Missing options&quot;</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="nv">$LXCSTART</span> -n <span class="nv">$1</span>
+<span class="nv">$SLEEP</span> <span class="m">10</span>
+<span class="k">if</span> <span class="o">[</span> ! -d <span class="s2">&quot;</span><span class="nv">$HOME</span><span class="s2">/sshfs/</span><span class="nv">$1</span><span class="s2">&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Creating </span><span class="nv">$HOME</span><span class="s2">/sshfs/</span><span class="nv">$1</span><span class="s2">&quot;</span>
+    mkdir <span class="nv">$HOME</span>/sshfs/<span class="nv">$1</span>
+<span class="k">fi</span>
+sshfs <span class="nv">$1</span>: -o <span class="nv">idmap</span><span class="o">=</span>user <span class="nv">$HOME</span>/sshfs/<span class="nv">$1</span>
+
+<span class="nv">new_port</span><span class="o">=</span><span class="k">$(</span>get-next-port<span class="k">)</span>
+
+<span class="nv">$TMUX</span> -2 new-session -d -s <span class="nv">$1</span>
+<span class="nv">$TMUX</span> rename-window -t <span class="nv">$1</span>:0 CODE
+<span class="nv">$TMUX</span> <span class="k">select</span>-window -t <span class="nv">$SESSION</span>:CODE
+<span class="nv">$TMUX</span> new-window -t <span class="nv">$1</span>:1 -n SERVER
+<span class="nv">$TMUX</span> <span class="k">select</span>-window -t <span class="nv">$SESSION</span>:SERVER
+<span class="nv">$TMUX</span> send-keys <span class="s2">&quot;ssh </span><span class="nv">$1</span><span class="s2">&quot;</span> C-m
+<span class="nv">$TMUX</span> send-keys <span class="s2">&quot;cd odoo&quot;</span> C-m C-l
+<span class="nv">$TMUX</span> <span class="k">select</span>-window -t <span class="nv">$SESSION</span>:CODE
+<span class="nv">$TMUX</span> send-keys <span class="s2">&quot;cd sshfs/</span><span class="nv">$1</span><span class="s2">&quot;</span> C-m C-l
+<span class="nv">$TMUX</span> new-window -t TUNS -n <span class="nv">$1</span> <span class="m">2</span>&gt; /dev/null <span class="o">||</span> <span class="o">(</span> <span class="nv">$TMUX</span> new-session -d -s TUNS <span class="o">&amp;&amp;</span> <span class="nv">$TMUX</span> rename-window -t TUNS:0 <span class="nv">$1</span> <span class="o">)</span>
+<span class="nv">$TMUX</span> send-keys -t TUNS:<span class="nv">$1</span> <span class="s2">&quot;ssh -N </span><span class="nv">$1</span><span class="s2"> -L </span><span class="nv">$new_port</span><span class="s2">:localhost:5432&quot;</span> C-m C-l
+<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$1</span><span class="s2"> </span><span class="nv">$new_port</span><span class="s2">&quot;</span> &gt;&gt; <span class="nv">$PG_TABLE</span>
+<span class="nv">$TMUX</span> a -t <span class="nv">$1</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="lxc-down">
+<h2>lxc-down<a class="headerlink" href="#lxc-down" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ul class="simple">
+<li>Kills the tmux session.</li>
+<li>Unmount the sshfs mountpoint.</li>
+<li>Stops the container.</li>
+</ul>
+</div></blockquote>
+<div class="highlight-bash"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
+
+<span class="nv">LXCSTOP</span><span class="o">=</span><span class="s2">&quot;sudo /usr/bin/lxc-stop&quot;</span>
+<span class="nv">FUSERMOUNT</span><span class="o">=</span><span class="s2">&quot;/bin/fusermount&quot;</span>
+<span class="nv">SLEEP</span><span class="o">=</span><span class="s2">&quot;/bin/sleep&quot;</span>
+<span class="nv">TMUX</span><span class="o">=</span><span class="s2">&quot;/usr/bin/tmux&quot;</span>
+<span class="nv">SED</span><span class="o">=</span><span class="s2">&quot;/bin/sed&quot;</span>
+<span class="nv">PG_TABLE</span><span class="o">=</span><span class="s2">&quot;/tmp/pg_table&quot;</span>
+
+<span class="k">function</span> remove-line <span class="o">{</span>
+    <span class="nv">$SED</span> -i <span class="s2">&quot;/</span><span class="nv">$1</span><span class="s2">/d&quot;</span> <span class="nv">$PG_TABLE</span>
+<span class="o">}</span>
+
+<span class="nv">arguments</span><span class="o">=(</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span> <span class="o">)</span>
+<span class="k">if</span> <span class="o">[</span> <span class="si">${#</span><span class="nv">arguments</span><span class="p">[@]</span><span class="si">}</span> -lt <span class="s2">&quot;1&quot;</span> <span class="o">]</span>
+<span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Missing options&quot;</span>
+    <span class="nb">exit</span> <span class="m">0</span>
+<span class="k">fi</span>
+
+<span class="nv">$TMUX</span> kill-window -a -t <span class="nv">$1</span>
+<span class="nv">$TMUX</span> kill-session -t <span class="nv">$1</span>
+<span class="nv">$TMUX</span> kill-window -t TUNS:<span class="nv">$1</span>
+<span class="nv">$FUSERMOUNT</span> -u <span class="nv">$HOME</span>/sshfs/<span class="nv">$1</span>
+<span class="nv">$SLEEP</span> <span class="m">10</span>
+<span class="nv">$LXCSTOP</span> -n <span class="nv">$1</span>
+<span class="k">$(</span>remove-line <span class="nv">$1</span><span class="k">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="pg-cli.html" class="btn btn-neutral float-right" title="pg-cli" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="ccppp.html" class="btn btn-neutral" title="CCPPP" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

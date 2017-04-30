@@ -1,0 +1,331 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>.deb packages modification &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tips ‘n Tricks" href="index.html"/>
+        <link rel="next" title="Scripts" href="../scripts/index.html"/>
+        <link rel="prev" title="Just a vim reminder" href="vim.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../tutos/index.html">Tutos</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tutos/prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/acpi-systemd.html">ACPI events management with systemd</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tips &#8216;n Tricks</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tips &#8216;n Tricks</a> &raquo;</li>
+        
+      <li>.deb packages modification</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="../_sources/tipsntricks/deb_packages.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deb-packages-modification">
+<h1>.deb packages modification<a class="headerlink" href="#deb-packages-modification" title="Permalink to this headline">¶</a></h1>
+<p>I wanted to install a python package, few days ago. An old package which is not maintained anymore. A .deb file was available on the website, so I tried to install it and then…</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">package</span><span class="o">&gt;</span> <span class="n">depends</span> <span class="n">on</span> <span class="n">python</span><span class="o">-</span><span class="n">wxgtk2</span><span class="o">.</span><span class="mi">6</span> <span class="p">;</span> <span class="n">but</span> <span class="p">:</span>
+<span class="n">Package</span> <span class="n">python</span><span class="o">-</span><span class="n">wxgtk2</span><span class="o">.</span><span class="mi">6</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">installed</span><span class="o">.</span>
+</pre></div>
+</div>
+<p>Let&#8217;s see available packages</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>apt-cache search python-wxgtk
+[…]
+python-wxgtk-media3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit (wx.media)
+python-wxgtk-webview3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit (wx.html2)
+python-wxgtk3.0 - Python interface to the wxWidgets Cross-platform C++ GUI toolkit
+python-wxgtk3.0-dev - Development files for wxPython
+</pre></div>
+</div>
+<p>I install then the available version from the debian repositories, but the program still fails to launch. But, the installed version maybe uses the same attributes and methods, so both versions maybe are not that different ? So, I tried to remove the dependancy from the .deb package.</p>
+<p>First, I had to extract content from the package in a temporary directory</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span><span class="o">-</span><span class="n">deb</span> <span class="o">-</span><span class="n">x</span> <span class="n">package</span><span class="o">-</span><span class="n">version</span><span class="o">.</span><span class="n">deb</span> <span class="n">package</span><span class="o">-</span><span class="n">tmp</span>
+</pre></div>
+</div>
+<p>Then, I needed to extract control files in a DEBIAN/ directory</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span><span class="o">-</span><span class="n">deb</span> <span class="o">--</span><span class="n">control</span> <span class="n">package</span><span class="o">-</span><span class="n">version</span><span class="o">.</span><span class="n">deb</span> <span class="n">package</span><span class="o">-</span><span class="n">tmp</span><span class="o">/</span><span class="n">DEBIAN</span><span class="o">/</span>
+</pre></div>
+</div>
+<p>Now, I can edit the package-tmp/DEBIAN/control file in order to modify the following line</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Depends</span><span class="p">:</span> <span class="n">python</span><span class="p">,</span> <span class="n">python</span><span class="o">-</span><span class="n">serial</span><span class="p">,</span> <span class="n">python</span><span class="o">-</span><span class="n">wxgtk2</span><span class="o">.</span><span class="mi">6</span>
+</pre></div>
+</div>
+<p>I remove, then, the python-wxgtk2.6 dependancy and rebuild the package</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">dpkg</span> <span class="o">-</span><span class="n">b</span> <span class="n">package</span><span class="o">-</span><span class="n">tmp</span> <span class="n">package</span><span class="o">-</span><span class="n">custom</span><span class="o">.</span><span class="n">deb</span>
+</pre></div>
+</div>
+<p>Now, I try to install it again, and it works now.</p>
+<p>In my case, this modification was enough because, as I expected, both versions are similar. But it may not be for other dependencies.</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../scripts/index.html" class="btn btn-neutral float-right" title="Scripts" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="vim.html" class="btn btn-neutral" title="Just a vim reminder" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2017, Matthieu Méquignon.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>
