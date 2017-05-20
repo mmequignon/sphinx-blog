@@ -1,14 +1,14 @@
 How to drive a remote computer with X2GO
 ========================================
 
-First, I had to read a little about X.org. Devices (keyboard, mouse, screen) are connected to X.org. Keyboard and mouse send signals while screen receive its own from X.org.
+First, I had to read a little about X.org. Devices (keyboard, mouse, screen) are connected to X.org. Keyboard and mouse send signals while screen gets its own one from X.org.
 
 .. figure::  ../_static/x2x.png
    :align: center
 
    Diagram of how X.org works
 
-There is an useful property here. Devices should not necessary be plugged on a computer to be connected to X.org. Actually, you can connect two X.org through network. 
+There is a useful property here. Devices should not necessary be plugged on a computer to be connected to X.org. Actually, you can connect two X.org through network. 
 
 To do this, you will need two things :
  * SSH, well configured (alias and keys)
