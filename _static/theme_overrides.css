@@ -1,3 +1,7 @@
 .wy-side-nav-search > a img.logo{
     width: 250px;
 }
+
+.wy-nav-content{
+    max-width: none;
+}
