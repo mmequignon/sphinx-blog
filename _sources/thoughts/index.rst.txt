@@ -1,0 +1,7 @@
+Personnal thoughts
+==================
+
+.. toctree::
+   :maxdepth: 2
+
+   how-to-eat-better

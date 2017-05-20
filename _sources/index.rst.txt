@@ -20,3 +20,4 @@ I've heard, once "The linux way of solving problems" that's exactly what I like.
    Tutos <tutos/index>
    Tips 'n Tricks <tipsntricks/index>
    Scripts <scripts/index>
+   Personal Thoughts <thoughts/index>
