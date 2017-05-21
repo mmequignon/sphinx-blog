@@ -23,6 +23,8 @@ Contact
  - E-mail : ``matthieu [at] fwzte [dot] xyz``
 
 
+Categories
+++++++++++
 .. toctree::
    :maxdepth: 1
 
