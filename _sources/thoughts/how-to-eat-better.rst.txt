@@ -2,7 +2,19 @@ How to eat better ?
 ===================
 
 
-After looking some articles like this one https://www.theguardian.com/sustainable-business/2017/jan/03/challenges-sustainable-food-2017-organic-farming or this one, I'm forced to admit that there's a big problem.
+After looking some articles like `this <https://www.theguardian.com/sustainable-business/2017/jan/03/challenges-sustainable-food-2017-organic-farming>`_ or this `one <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_, I'm forced to admit that there's a big problem.
+
+.. figure::  ../_static/slavery.jpg
+   :align: center
+
+   Just a child, making out chocolate bars
+
+
+.. figure:: ../_static/duck.jpg
+   :align: center
+
+   Seems normal
+
 
 
 What about massive meat production factories ?
