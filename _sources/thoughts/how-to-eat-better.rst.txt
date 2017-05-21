@@ -7,13 +7,13 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
 .. figure::  ../_static/slavery.jpg
    :align: center
 
-   Just a child, making out chocolate bars
+   Just a child, making out chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
 
 .. figure:: ../_static/duck.jpg
    :align: center
 
-   Seems normal
+   Everything seems all right here too (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
 
 
 

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Tutos &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  <title>Mails migration &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
   
 
   
@@ -38,8 +38,9 @@
               href="../genindex.html"/>
         <link rel="search" title="Search" href="../search.html"/>
     <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
-        <link rel="next" title="My dedicated server installation" href="prepadedie.html"/>
-        <link rel="prev" title="$ whoami" href="../index.html"/> 
+        <link rel="up" title="Tutos" href="index.html"/>
+        <link rel="next" title="Tips ‘n Tricks" href="../tipsntricks/index.html"/>
+        <link rel="prev" title="ACPI events management with systemd" href="acpi-systemd.html"/> 
 
   
   <script src="../_static/js/modernizr.min.js"></script>
@@ -86,7 +87,7 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutos</a><ul>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutos</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="prepadedie.html">My dedicated server installation</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="prepadedie.html#host-configuration">Host configuration</a></li>
 <li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lvm">LVM</a></li>
@@ -121,7 +122,7 @@
 </li>
 <li class="toctree-l2"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
-<li class="toctree-l2"><a class="reference internal" href="migration-mails.html">Mails migration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Mails migration</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
@@ -210,7 +211,9 @@
     
       <li><a href="../index.html">Docs</a> &raquo;</li>
         
-      <li>Tutos</li>
+          <li><a href="index.html">Tutos</a> &raquo;</li>
+        
+      <li>Mails migration</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -227,16 +230,32 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="tutos">
-<h1>Tutos<a class="headerlink" href="#tutos" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="prepadedie.html">My dedicated server installation</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
-<li class="toctree-l1"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
-<li class="toctree-l1"><a class="reference internal" href="migration-mails.html">Mails migration</a></li>
-</ul>
+  <div class="section" id="mails-migration">
+<h1>Mails migration<a class="headerlink" href="#mails-migration" title="Permalink to this headline">¶</a></h1>
+<p>Here is the soft I&#8217;ve chosen <a class="reference external" href="https://github.com/imapsync/imapsync">ImapSync</a>.</p>
+<p>First, we have to upgrade the system, and then install dépendancies:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">apt</span> <span class="n">update</span> <span class="o">&amp;&amp;</span> <span class="n">sudo</span> <span class="n">apt</span> <span class="n">upgrade</span>
+<span class="n">sudo</span> <span class="n">apt</span> <span class="n">install</span> <span class="n">libauthen</span><span class="o">-</span><span class="n">ntlm</span><span class="o">-</span><span class="n">perl</span> <span class="n">libcrypt</span><span class="o">-</span><span class="n">ssleay</span><span class="o">-</span><span class="n">perl</span> <span class="n">libdigest</span><span class="o">-</span><span class="n">hmac</span><span class="o">-</span><span class="n">perl</span> <span class="n">libfile</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="n">recursive</span><span class="o">-</span><span class="n">perl</span> <span class="n">libio</span><span class="o">-</span><span class="n">compress</span><span class="o">-</span><span class="n">perl</span> <span class="n">libio</span><span class="o">-</span><span class="n">socket</span><span class="o">-</span><span class="n">inet6</span><span class="o">-</span><span class="n">perl</span> <span class="n">libio</span><span class="o">-</span><span class="n">socket</span><span class="o">-</span><span class="n">ssl</span><span class="o">-</span><span class="n">perl</span> <span class="n">libio</span><span class="o">-</span><span class="n">tee</span><span class="o">-</span><span class="n">perl</span> <span class="n">libmodule</span><span class="o">-</span><span class="n">scandeps</span><span class="o">-</span><span class="n">perl</span> <span class="n">libnet</span><span class="o">-</span><span class="n">ssleay</span><span class="o">-</span><span class="n">perl</span> <span class="n">libpar</span><span class="o">-</span><span class="n">packer</span><span class="o">-</span><span class="n">perl</span> <span class="n">libterm</span><span class="o">-</span><span class="n">readkey</span><span class="o">-</span><span class="n">perl</span> <span class="n">libtest</span><span class="o">-</span><span class="n">pod</span><span class="o">-</span><span class="n">perl</span> <span class="n">libtest</span><span class="o">-</span><span class="n">simple</span><span class="o">-</span><span class="n">perl</span> <span class="n">libunicode</span><span class="o">-</span><span class="n">string</span><span class="o">-</span><span class="n">perl</span> <span class="n">liburi</span><span class="o">-</span><span class="n">perl</span> <span class="n">cpanminus</span>
+</pre></div>
 </div>
+<p>Now, we can clone the github <a class="reference external" href="https://github.com/imapsync/imapsync">repository</a>, here, in /tmp:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">/</span><span class="n">tmp</span> <span class="o">&amp;&amp;</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">imapsync</span><span class="o">/</span><span class="n">imapsync</span><span class="o">.</span><span class="n">git</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">imapsync</span>
+</pre></div>
+</div>
+<p>Install imapsync:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">make</span> <span class="n">install</span>
+</pre></div>
+</div>
+<p>Command example:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">imapcopy</span> <span class="o">--</span><span class="n">host1</span> <span class="n">mail</span><span class="o">.</span><span class="n">myoldsmtpserver</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">user1</span> <span class="n">test</span> <span class="o">--</span><span class="n">password1</span> <span class="s2">&quot;1234512345&quot;</span> <span class="o">--</span><span class="n">host2</span> <span class="n">mail</span><span class="o">.</span><span class="n">mynewsmtpserver</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">user2</span> <span class="n">test</span> <span class="o">--</span><span class="n">password2</span> <span class="s2">&quot;1234512345&quot;</span>
+</pre></div>
+</div>
+<p>This commande is enough if you don&#8217;t use smtpS.
+If not, you can add &#8211;ssl1 and &#8211;ssl2 options like so:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">imapcopy</span> <span class="o">--</span><span class="n">host1</span> <span class="n">mail</span><span class="o">.</span><span class="n">myoldsmtpserver</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">user1</span> <span class="n">test</span> <span class="o">--</span><span class="n">password1</span> <span class="s2">&quot;1234512345&quot;</span> <span class="o">--</span><span class="n">ssl1</span> <span class="o">--</span><span class="n">host2</span> <span class="n">mail</span><span class="o">.</span><span class="n">mynewsmtpserver</span><span class="o">.</span><span class="n">com</span> <span class="o">--</span><span class="n">user2</span> <span class="n">test</span> <span class="o">--</span><span class="n">password2</span> <span class="s2">&quot;1234512345&quot;</span> <span class="o">--</span><span class="n">ssl2</span>
+</pre></div>
+</div>
+<p>In conclusion, it&#8217;s easy and it works well. I recommend.</p>
 </div>
 
 
@@ -249,10 +268,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="prepadedie.html" class="btn btn-neutral float-right" title="My dedicated server installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="../tipsntricks/index.html" class="btn btn-neutral float-right" title="Tips ‘n Tricks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="../index.html" class="btn btn-neutral" title="$ whoami" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="acpi-systemd.html" class="btn btn-neutral" title="ACPI events management with systemd" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

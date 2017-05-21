@@ -6,3 +6,4 @@ Tutos
    prepadedie
    dnsmasq
    acpi-systemd
+   migration-mails
