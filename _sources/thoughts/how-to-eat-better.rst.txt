@@ -24,8 +24,12 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
 .. figure:: ../_static/burger.jpg
    :align: center
 
-   Seems common
+   Triple bypass burger ! 
 
+.. figure:: ../_static/water.jpg
+   :align: center
+
+   What amount of water is need to grow your food
 
 .. figure:: ../_static/food_porn.jpg
    :align: center
@@ -40,6 +44,7 @@ What about massive meat production factories ?
 
 I will don't suggest you to stop eating meat. I actually like meat too.
 The point is that these days, most of us are eating meat everyday. That is the problem.
+Each Human eat around 180g of meat each day
 I's strong growth of meet needs implies larger and larger animal breedings, blabla
 
 
