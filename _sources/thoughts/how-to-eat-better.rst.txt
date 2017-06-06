@@ -42,27 +42,27 @@ Breeding is the cause of more than 14,5% greenhouse gas emission according to th
 What about massive meat production factories ?
 ----------------------------------------------
 
-I will don't suggest you to stop eating meat. I actually like meat too.
+I wont suggest you stoping eating meat. I actually like meat.
 The point is that these days, most of us are eating meat everyday. That is the problem.
-Each Human eat around 180g of meat each day and it's growing.
+Each Human eats around 180g of meat each day and that number is growing.
 
-And obviously, as our needs in meat (that are actually already enormous) are growing, animal breedings too.
+And obviously, as our needs in meat (that are actually already enormous) are growing, so is animal agriculture.
 
 
 So, do we have alternatives ?
 -----------------------------
 
-Actually, there are so many alternatives like Falafel, seitan, tempeh, tofu, amarante, pois cassés, lentilles corail, protéines de soja texturées… 
+Actually, there are so many alternatives like Falafel, seitan, tempeh, tofu, amarante, split peas, coral lentils soya proteins… 
 And more…
 
 But the point is not about meat. It's about fair food.
 
-You can replace meat by tofu, for example, that is actually made of soja.
+You can replace meat by tofu, for example, that is actually made of soya.
 
 .. figure:: ../_static/soja.jpg
    :align: center
    
-   Amazonia is actually deforested in order to grow gigantic amounts of soja (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
+   Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
 L’école de santé publique de Harvard recommande de limiter notre consommation de viande à 90g par jour (nous en consommons actuellement 180g/j)
 et de limiter la consommation de laitages à deux portions par jours. Nous en consommons entre 2,5 et 3 portions dans les pays occidentaux.
