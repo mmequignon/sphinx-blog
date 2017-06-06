@@ -19,27 +19,28 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
 .. figure:: ../_static/not_your_mom.jpg
    :align: center
 
-   Men are the only ones who drinks the milk of other species.
+   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
 
 .. figure:: ../_static/burger.jpg
    :align: center
 
-   Triple bypass burger ! 
+   Triple bypass burger ! (source : `fitneass.com  <https://www.fitneass.com/eating-habit/>`_) 
 
 .. figure:: ../_static/water.jpg
    :align: center
 
-   What amount of water is need to grow your food
+   What amount of water is need to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
 
 .. figure:: ../_static/food_porn.jpg
    :align: center
 
-   «Not really what I expected when you told -vegetarian- !… Can I taste this ?»
+   «Not really what I expected when you told -vegetarian- !… Can I taste this ?» (source `twitter.com @vegetarianfoodporn <https://twitter.com/vegetarian_porn/status/501952454255468544/photo/1>`_)
 
 .. figure:: ../_static/sexy.jpg
    :align: center
 
-   Vegan ? What is it ? Is that something I can eat?
+   Vegan ? What is it ? Is that something I can eat? (source: `tumblr.com - carlvegandude <http://carlvegandude.tumblr.com/post/131938748612>`_)
+
 
 Breeding is the cause of more than 14,5% greenhouse gas emission according to this `link <http://leclimatchange.fr/attenuations-des-changements/>`_.
 
