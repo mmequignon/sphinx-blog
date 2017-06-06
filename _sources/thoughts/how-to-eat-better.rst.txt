@@ -19,7 +19,7 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
 .. figure:: ../_static/not_your_mom.jpg
    :align: center
 
-   Mens are the only ones who dring the milk of other species.
+   Men are the only ones who dring the milk of other species.
 
 .. figure:: ../_static/burger.jpg
    :align: center
@@ -35,6 +35,11 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
    :align: center
 
    «Not really what I expected when you told -vegetarian- !… Can I taste this ?»
+
+.. figure:: ../_static/sexy.jpg
+   :align: center
+
+   Vegan ? What is it ? Is that something I can eat?
 
 Breeding is the cause of more than 14,5% greenhouse gas emission according to this `link <http://leclimatchange.fr/attenuations-des-changements/>`_.
 
