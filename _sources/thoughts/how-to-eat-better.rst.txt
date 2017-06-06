@@ -7,7 +7,7 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
 .. figure::  ../_static/slavery.jpg
    :align: center
 
-   Just a child, making out chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
+   Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
 
 .. figure:: ../_static/duck.jpg
@@ -16,22 +16,53 @@ After looking some articles like `this <https://www.theguardian.com/sustainable-
    Everything seems all right here too (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
 
 
+.. figure:: ../_static/not_your_mom.jpg
+   :align: center
+
+   Mens are the only ones who dring the milk of other species.
+
+.. figure:: ../_static/burger.jpg
+   :align: center
+
+   Seems common
+
+
+.. figure:: ../_static/food_porn.jpg
+   :align: center
+
+   «Not really what I expected when you told -vegetarian- !… Can I taste this ?»
+
+Breeding is the cause of more than 14,5% greenhouse gas emission according to this `link <http://leclimatchange.fr/attenuations-des-changements/>`_.
+
 
 What about massive meat production factories ?
 ----------------------------------------------
 
 I will don't suggest you to stop eating meat. I actually like meat too.
 The point is that these days, most of us are eating meat everyday. That is the problem.
-I's strong growth of meet needs implies larger and larger animal breedings, 
+I's strong growth of meet needs implies larger and larger animal breedings, blabla
 
 
 So, do we have alternatives ?
 -----------------------------
 
+Actually, there are so many alternatives like Falafel, seitan, tempeh, tofu, amarante, pois cassés, lentilles corail, protéines de soja texturées… 
+And more…
+
+But the point is not about meat. It's about fair food.
+
+L’école de santé publique de Harvard recommande de limiter notre consommation de viande à 90g par jour (nous en consommons actuellement 180g/j)
+et de limiter la consommation de laitages à deux portions par jours. Nous en consommons entre 2,5 et 3 portions dans les pays occidentaux.
 
 
 What could I do to make things better ?
 ---------------------------------------
 
+A `list <https://en.wikipedia.org/wiki/List_of_vegetarians>`_ of famous vegetarians.
 
-
+More of 200 000 people are
+Plus de 200 000 personnes sont atteintes chaque année en France de maladies d’origine alimentaire et, 
+dans l’immense majorité des cas, du fait de la consommation de produits animaux. 
+La végétalisation de notre alimentation pourrait contribuer à un meilleur état de santé dans la population et aussi limiter les déficits d’assurance-maladie. 
+Au delà d'une réduction de la consommation qui est déjà un bon premier pas, il est intéressant de noter que la viande, le poisson, 
+les oeufs et le lait ne sont pas nécessaires à notre santé : nous pouvons donc faire le choix de totalement nous passer de produits animaux. Cela en vaut la peine.
