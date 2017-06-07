@@ -1,75 +1,82 @@
 How to eat better ?
 ===================
 
-
 After looking some articles like `this <https://www.theguardian.com/sustainable-business/2017/jan/03/challenges-sustainable-food-2017-organic-farming>`_ or this `one <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_, I'm forced to admit that there's a big problem.
 
-.. figure::  ../_static/slavery.jpg
-   :align: center
+What about massive meat production factories ?
+----------------------------------------------
 
-   Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
+ - 83% of broilers are raised indoor.
+ - 68% of chikens and 99% of rabbits are caged.
+ - 20% of raised pigs dies before they are killed.
 
-
-.. figure:: ../_static/duck.jpg
-   :align: center
-
-   Everything seems all right here too (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
-
-
-.. figure:: ../_static/not_your_mom.jpg
-   :align: center
-
-   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
-
-.. figure:: ../_static/burger.jpg
-   :align: center
-
-   Triple bypass burger ! (source : `fitneass.com  <https://www.fitneass.com/eating-habit/>`_) 
-
-.. figure:: ../_static/water.jpg
-   :align: center
-
-   What amount of water is need to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
-
-.. figure:: ../_static/food_porn.jpg
-   :align: center
-
-   «Not really what I expected when you told -vegetarian- !… Can I taste this ?» (source `twitter.com @vegetarianfoodporn <https://twitter.com/vegetarian_porn/status/501952454255468544/photo/1>`_)
+(source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
 
 .. figure:: ../_static/sexy.jpg
    :align: center
 
    Vegan ? What is it ? Is that something I can eat? (source: `tumblr.com - carlvegandude <http://carlvegandude.tumblr.com/post/131938748612>`_)
 
-
-Breeding is the cause of more than 14,5% greenhouse gas emission according to this `link <http://leclimatchange.fr/attenuations-des-changements/>`_.
-
-
-What about massive meat production factories ?
-----------------------------------------------
-
-I wont suggest you stoping eating meat. I actually like meat.
-The point is that these days, most of us are eating meat everyday. That is the problem.
+I wont suggest you stoping eating meat. Actually, I do like meat myself.
+The point is that these days, most of us are eating meat everyday, and that is the problem.
 Each Human eats around 180g of meat each day and that number is growing.
 
 And obviously, as our needs in meat (that are actually already enormous) are growing, so is animal agriculture.
+
+Breeding is the cause of more than 14,5% greenhouse gas emission according to this `link <http://leclimatchange.fr/attenuations-des-changements/>`_.
+
+Animals raised for their meat consumes far more water than anyone vegetable for the same quantity of food.
+
+.. figure:: ../_static/water.jpg
+   :align: center
+
+   What amount of water is need to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
+
+.. figure:: ../_static/duck.jpg
+   :align: center
+
+   Hi folks ! (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
+
+There is also some ethical reasons, to stop eating raised animals. Their living conditions are actually horrible.
+
+Please make sure that I will never protest, about carrots abuse !
+
+.. figure:: ../_static/unhappy.jpg
+   :align: center
+
+   UNHAPPY ! (source : `hungryforever.com <https://www.hungryforever.com/theres-a-hilarious-war-against-vegans-underway-on-this-restaurants-facebook-page/>`_)
 
 
 So, do we have alternatives ?
 -----------------------------
 
-Actually, there are so many alternatives like Falafel, seitan, tempeh, tofu, amarante, split peas, coral lentils soya proteins… 
+Actually, there are so many alternatives like Falafel, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya…
 And more…
+
+.. figure:: ../_static/food_porn.jpg
+   :align: center
+
+   «I expected lettuce, when you told -vegetarian- !…» (source `twitter.com @vegetarianfoodporn <https://twitter.com/vegetarian_porn/status/501952454255468544/photo/1>`_)
 
 But the point is not about meat. It's about fair food.
 
-You can replace meat by tofu, for example, that is actually made of soya.
+For example, you can replace meat by tofu, that is actually made of soya.
+But the fact is that Amazonia is deforested in order to gros gigantic amounts of soya.
+Not fair…
 
 .. figure:: ../_static/soja.jpg
    :align: center
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
+Maybe I could eat chocolate bars ?
+No, because in West Africa, that is slave childs that are actually making our chocolate bars.
+Not fair…
+
+.. figure::  ../_static/slavery.jpg
+   :align: center
+
+   Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
 What could I do to make things better ?
 ---------------------------------------
@@ -79,13 +86,20 @@ They also recommends to restrict the consumtion of dairy products. People consum
 
 We can also favor local products. By the way, it costs more, it's a fact. But in France, we have many laws ans restrictions.
 For example, a child can't word before 16 years old. Boycot Nestlé, Mars etc… will protect childs of East Africa.
-blabla
-
-A `list <https://en.wikipedia.org/wiki/List_of_vegetarians>`_ of famous vegetarians.
 
 Actually, more than 200 000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
+
+.. figure:: ../_static/burger.jpg
+   :align: center
+
+   Triple bypass burger ! (source : `fitneass.com  <https://www.fitneass.com/eating-habit/>`_) 
 
 To not eating (or eat less) meat could contribute to a healthier life for everybody, including animals.
 
 By the way, it's important to understand that meat, or fish, or eggs of even milk is not needed for our health.
-So we can chose to not eat this.
+So we can chose to not eat these products, or to reduce our consumption.
+
+.. figure:: ../_static/not_your_mom.jpg
+   :align: center
+
+   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
