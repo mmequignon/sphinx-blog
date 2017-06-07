@@ -26,7 +26,7 @@ Obviously, as our needs in meat (that are already enormous) are growing, so is a
 .. figure:: ../_static/methane.png
    :align: center
 
-   Breeding is the cause of more than 16% greenhouse gas emission (source : `intergovernemental panel on climate change <https://www.ipcc.ch/report/ar5/syr/>`_.
+   Breeding is the cause of more than 16% greenhouse gas emission according to the :ref:`IPCC Fifth Assessment Report <ipcc>`.
 
 Animals raised for their meat consumes far more water than any vegetable for the same quantity of food.
 
@@ -112,4 +112,6 @@ So we can chose to not eat these products, or to reduce our consumption.
 References
 ++++++++++
 
- - `IPCC, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp. <https://www.ipcc.ch/report/ar5/syr/>`_
+.. _ipcc:
+
+ - `IPCC (intergovernemental panel on climate change) <https://www.ipcc.ch/report/ar5/syr/>`_, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp.`
