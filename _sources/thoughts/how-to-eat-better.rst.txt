@@ -23,6 +23,9 @@ Each Human eats around 180g of meat each day and that number is growing.
 
 Obviously, as our needs in meat (that are already enormous) are growing, so is animal agriculture.
 
+
+.. _ipcc_back:
+
 .. figure:: ../_static/methane.png
    :align: center
 
@@ -114,4 +117,4 @@ References
 
 .. _ipcc:
 
- - `IPCC (intergovernemental panel on climate change) <https://www.ipcc.ch/report/ar5/syr/>`_, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp.`
+ - `IPCC (intergovernemental panel on climate change) <https://www.ipcc.ch/report/ar5/syr/>`_, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp. (:ref:`↑ <ipcc_back>`)
