@@ -1,0 +1,205 @@
+Reverse proxy with Apache (and HTTPS !)
+=======================================
+
+Today, an article about Apache and Let's Encrypt.
+
+As you saw in my previous articles, I use a dedicated server to run LXC containers. I forward incoming traffic on them. For example, the traffic coming on 80 and 443 ports on the host are redirected to the web dedicated container.
+But there is a problem :
+What happens if two (or more) should print webpages ?
+An obvious response is reverse proxy.
+To do this, I use Apache2. All the 80 and 443 traffic is redirected by the "master" Apache and it will redirect them where I told.
+
+I've used `this article <http://blog.garamotte.net/posts/2016/02/27/fr-ssl-certificates-with-let-s-encrypt.html>`_ for the let's encrypt part.
+
+First we enable the necessary modules::
+
+    sudo a2enmod proxy proxy_http
+
+We will use virtualhosts, with simple HTTP, for now. I use a single file per domain / sub-domain, it allows me to work simply on one of those without impacting others.
+We will create, the, our initial configuration file, for the <mydomain.tld> site::
+
+    touch /etc/apache2/sites-available/<mydomain.conf>
+
+A default configuration sould looks like this, assuming your website path is /var/www::
+
+    <VirtualHost *:80>
+        ServerName <mydomain.tld>
+        ServerAdmin root@<mydomain.tld>
+        DocumentRoot /var/www/
+    </VirtualHost>
+
+We activate, then, our site and reload Apache::
+
+    a2ensite mydomain && service apache2 reload
+
+Our website is now accessible with out favourite browser.
+
+For a mor concrete example !
+We have a Roundcube instance on the mail dedicated container, which it's address is 192.168.1.25
+We have correctly modified our DNS zone, and mail.mydomain.tlp point on the host's public address.
+We now want to redirect the mail.mydomain.tld requests on the mail container.
+To do this, we will begin by creating a new "mail.conf".::
+
+    touch /etc/apache2/sites-available/mail.conf
+
+Then we insert those lines::
+
+    <VirtualHost *:80>
+        #Those lines will be found on each sub-domain configuration file
+        ProxyRequests Off
+        ProxyPreserveHost On
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+        #Those are specific lines that needs to be changed for each new subdomain
+        ServerName mail.<mydomain.tld>
+        ProxyPass / http://192.168.1.25/
+        ProxyPassReverse / http://192.168.1.25/
+    </VirtualHost>
+
+As earlier, we activate now the site and reload Apache::
+
+    a2ensite mail && service apache2 reload
+
+Now, our reverse proxy correctly redirects traffic on the good container.
+We will now enable encryption on our websites.
+
+We could build our own self-signed certificates, but more and more, advertising messages looks like alert messages like those we can see each time we disable our adblocker "CARE, YOU FOOL, YOUR COMPUTER IS INFECTED ! DOWNLOAD OUR NEW AWESOME ANTIVIR !"…
+Is there a better way to dissuade readers to visit our website ?
+
+Fine, we will build our own certificates with Let's Encrypt.
+
+To do this, we will use the let's encrypt client. As it doesn't exists in the debian depositories, we install it from pip.
+I've heard about it's many dependancies, so I have chosen to install it in a virtualenv.
+We install, then, the required dependancies::
+
+    apt install virtualenv ca-certificates dialog libaugeas0 augeas-lenses gcc python-dev libssl-dev libffi-dev python-pip
+
+**note :** For an oldest release than Jessie, the package to install is python-virtualenv.
+
+Well, we can now create the environment that will receive the Let's Encrypt client and install it via pip::
+
+    virtualenv /opt/virtualenv/letsencrypt
+    /opt/virtualenv/letsencrypt/bin/pip install letsencrypt
+
+The client usage is not root restricted, so we will create a dedicated user that will use it::
+
+    sudo adduser letsencrypt
+    sudo mkdir -p /{etc,var/log,var/www}/letsencrypt
+    sudo chown -R letsencrypt:letsencrypt /{etc,var/log,var/www}/letsencrypt
+
+Let's encrypt is now installed, we can now create and edit it's configuration file. By default, it's usable in an interactive way and is inusable in an automatic way. So we will configure it in order that it will don't as us to enter basic parameters.
+Here is mine::
+
+    # RSA key size 
+    rsa-key-size = 4096
+    # webmaster email address
+    email = <webmaster@example.com>
+
+    # Let's encrypt requires an authentication. Here, we will say it to search on an accessible path
+    authenticator = webroot
+    # The path where the client will put files.
+    webroot-path = /var/www/letsencrypt
+
+    # There is options that we need to activate for a non-interactive usage
+    # Auto-accept
+    agree-tos = True
+    # Non-interactive 
+    non-interactive = True
+    # Certificates automatic renewal if necessary. Here, 30 days before it expires
+    keep-until-expiring = True
+
+Here, the problem is that the certification authorithy should access to tokens placed by the client on &lt;mydomain.tld>/.well-known/acme-challenge address for each site we ask a certificate for.
+The simpliest way to do this is to create an unique folder and to create an alias that points on this folder in the Apache configuration file.
+
+We could the create a **/etc/apache2/conf-enabled/letsencrypt.conf** file containing those lines::
+
+    ProxyPass /.well-known/acme-challenge !
+    Alias /.well-known/acme-challenge /var/www/letsencrypt/.well-known/acme-challenge
+    <Directory /var/www/letsencrypt/.well-known/acme-challenge>
+        Options -Indexes
+        Order allow,deny
+        Allow from all
+    </Directory>
+
+And we reload Apache again (and again, and again…)::
+
+    sudo service apache2 resload
+
+We can, now, create our first certificate. As the client is in a virtualenv, it's necessary to specify the full path to invoke it.::
+
+    /opt/virtualenv/letsencrypt/bin/letsencrypt certonly --domain <mydomain.tld>
+
+Certificates are automatically created in the /etc/letsencrypt/archive/&lt;mydomain.tld>/ folder and a symlink here /etc/letsencrypt/live/&lt;subdomain.example.com>/
+Four files are created. The certificate, the key an intermediate chain an the fullchain.
+
+Apache side, before the first use of the certificate, we have to activate the SSL module.::
+
+    sudo a2enmod ssl
+
+Well. We want to deny HTTP connexions and redirect them on a securised connection.
+So we need to edit the two config files of our websites.
+For each site, we will need two Virtualhosts. The first for HTTP connections and the second for HTTPS. 
+For the HTTP connections, it's quiet simple. We simply do not want of them, so we will create a redirection on the 443th port.
+For HTTPS, we just need to specify the path where are located necessary files, the fullchain and the key. We will ned to activate SSL mod for the website.::
+
+    <VirtualHost *:443>
+        ServerName <mydomain.tld>
+
+        SSLEngine On
+        SSLCertificateFile /etc/letsencrypt/live/<mydomain.tld>/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/<mydomain.tld>/privkey.pem
+        SSLVerifyClient none
+        ProxyRequests Off
+        ProxyPreserveHost On
+        DocumentRoot /var/www/
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+    </VirtualHost>
+
+    <VirtualHost *:80>
+        ServerName <mydomain.tld>
+        Redirect / https://<mydomain.tld>/
+    </VirtualHost>
+
+The virtualhost port has changed, it's 443 (HTTPS) now. The other virtualhost is just here to redirect on the first one.
+
+Exactly the same thing for the webmail::
+
+    <VirtualHost *:443>
+        ServerName mail.<mydomain.tld>
+        SSLCertificateFile /etc/letsencrypt/live/mail.<mydomain.tld>/fullchain.pem
+        SSLCertificateKeyFile /etc/letsencrypt/live/mail.<mydomain.tld>/privkey.pem
+        <Proxy *>
+            Order deny,allow
+            Allow from all
+        </Proxy>
+        SSLEngine on
+        SSLProxyEngine On
+        ProxyRequests Off
+        ProxyPreserveHost On
+        ProxyPass / http://192.168.1.25/
+        ProxyPassReverse / http://192.168.1.25/
+    </VirtualHost>
+
+    <VirtualHost *:80>
+        ServerName mail.<mydomain.tld>
+        Redirect / https://mail.<mydomain.tld>/
+    </VirtualHost>
+
+Just a little particularity, the reverse proxy redirects on HTTP. It's the host that establish the encrypted connection, not the container !
+
+
+We can now reload apache (for the last time).
+
+Each website is now HTTPS accessible, but certificates have short duration (90 days).
+So, we want renew them automatically.
+To do this, we will just add this line in the **letsencrypt** user crontab : ::
+
+    0 0 * * * /opt/virtualenv/letsencrypt/bin/letsencrypt renew
+
+Our websites are now HTTPS accessibles an certificates are automatically renewed.
+Do not hesitate to send me any comment about this article.

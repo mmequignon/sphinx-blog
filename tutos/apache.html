@@ -1,0 +1,500 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Reverse proxy with Apache (and HTTPS !) &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tutos" href="index.html"/>
+        <link rel="next" title="Tips ‘n Tricks" href="../tipsntricks/index.html"/>
+        <link rel="prev" title="Mails migration" href="migration-mails.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-mails.html">Mails migration</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Reverse proxy with Apache (and HTTPS !)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../thoughts/index.html">Personal Thoughts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../thoughts/how-to-eat-better.html">How to eat better ?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-about-massive-meat-production-factories">What about massive meat production factories ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#so-do-we-have-alternatives">So, do we have alternatives ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-could-i-do-to-make-things-better">What could I do to make things better ?</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutos</a> &raquo;</li>
+        
+      <li>Reverse proxy with Apache (and HTTPS !)</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="reverse-proxy-with-apache-and-https">
+<h1>Reverse proxy with Apache (and HTTPS !)<a class="headerlink" href="#reverse-proxy-with-apache-and-https" title="Permalink to this headline">¶</a></h1>
+<p>Today, an article about Apache and Let&#8217;s Encrypt.</p>
+<p>As you saw in my previous articles, I use a dedicated server to run LXC containers. I forward incoming traffic on them. For example, the traffic coming on 80 and 443 ports on the host are redirected to the web dedicated container.
+But there is a problem :
+What happens if two (or more) should print webpages ?
+An obvious response is reverse proxy.
+To do this, I use Apache2. All the 80 and 443 traffic is redirected by the &#8220;master&#8221; Apache and it will redirect them where I told.</p>
+<p>I&#8217;ve used <a class="reference external" href="http://blog.garamotte.net/posts/2016/02/27/fr-ssl-certificates-with-let-s-encrypt.html">this article</a> for the let&#8217;s encrypt part.</p>
+<p>First we enable the necessary modules:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">a2enmod</span> <span class="n">proxy</span> <span class="n">proxy_http</span>
+</pre></div>
+</div>
+<p>We will use virtualhosts, with simple HTTP, for now. I use a single file per domain / sub-domain, it allows me to work simply on one of those without impacting others.
+We will create, the, our initial configuration file, for the &lt;mydomain.tld&gt; site:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">conf</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>A default configuration sould looks like this, assuming your website path is /var/www:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="n">ServerName</span> <span class="o">&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">ServerAdmin</span> <span class="n">root</span><span class="o">@&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">DocumentRoot</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>We activate, then, our site and reload Apache:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">a2ensite</span> <span class="n">mydomain</span> <span class="o">&amp;&amp;</span> <span class="n">service</span> <span class="n">apache2</span> <span class="n">reload</span>
+</pre></div>
+</div>
+<p>Our website is now accessible with out favourite browser.</p>
+<p>For a mor concrete example !
+We have a Roundcube instance on the mail dedicated container, which it&#8217;s address is 192.168.1.25
+We have correctly modified our DNS zone, and mail.mydomain.tlp point on the host&#8217;s public address.
+We now want to redirect the mail.mydomain.tld requests on the mail container.
+To do this, we will begin by creating a new &#8220;mail.conf&#8221;.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">touch</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">apache2</span><span class="o">/</span><span class="n">sites</span><span class="o">-</span><span class="n">available</span><span class="o">/</span><span class="n">mail</span><span class="o">.</span><span class="n">conf</span>
+</pre></div>
+</div>
+<p>Then we insert those lines:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="c1">#Those lines will be found on each sub-domain configuration file</span>
+    <span class="n">ProxyRequests</span> <span class="n">Off</span>
+    <span class="n">ProxyPreserveHost</span> <span class="n">On</span>
+    <span class="o">&lt;</span><span class="n">Proxy</span> <span class="o">*&gt;</span>
+        <span class="n">Order</span> <span class="n">deny</span><span class="p">,</span><span class="n">allow</span>
+        <span class="n">Allow</span> <span class="kn">from</span> <span class="nn">all</span>
+    <span class="o">&lt;/</span><span class="n">Proxy</span><span class="o">&gt;</span>
+    <span class="c1">#Those are specific lines that needs to be changed for each new subdomain</span>
+    <span class="n">ServerName</span> <span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">ProxyPass</span> <span class="o">/</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.25</span><span class="o">/</span>
+    <span class="n">ProxyPassReverse</span> <span class="o">/</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.25</span><span class="o">/</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>As earlier, we activate now the site and reload Apache:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">a2ensite</span> <span class="n">mail</span> <span class="o">&amp;&amp;</span> <span class="n">service</span> <span class="n">apache2</span> <span class="n">reload</span>
+</pre></div>
+</div>
+<p>Now, our reverse proxy correctly redirects traffic on the good container.
+We will now enable encryption on our websites.</p>
+<p>We could build our own self-signed certificates, but more and more, advertising messages looks like alert messages like those we can see each time we disable our adblocker &#8220;CARE, YOU FOOL, YOUR COMPUTER IS INFECTED ! DOWNLOAD OUR NEW AWESOME ANTIVIR !&#8221;…
+Is there a better way to dissuade readers to visit our website ?</p>
+<p>Fine, we will build our own certificates with Let&#8217;s Encrypt.</p>
+<p>To do this, we will use the let&#8217;s encrypt client. As it doesn&#8217;t exists in the debian depositories, we install it from pip.
+I&#8217;ve heard about it&#8217;s many dependancies, so I have chosen to install it in a virtualenv.
+We install, then, the required dependancies:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">apt</span> <span class="n">install</span> <span class="n">virtualenv</span> <span class="n">ca</span><span class="o">-</span><span class="n">certificates</span> <span class="n">dialog</span> <span class="n">libaugeas0</span> <span class="n">augeas</span><span class="o">-</span><span class="n">lenses</span> <span class="n">gcc</span> <span class="n">python</span><span class="o">-</span><span class="n">dev</span> <span class="n">libssl</span><span class="o">-</span><span class="n">dev</span> <span class="n">libffi</span><span class="o">-</span><span class="n">dev</span> <span class="n">python</span><span class="o">-</span><span class="n">pip</span>
+</pre></div>
+</div>
+<p><strong>note :</strong> For an oldest release than Jessie, the package to install is python-virtualenv.</p>
+<p>Well, we can now create the environment that will receive the Let&#8217;s Encrypt client and install it via pip:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">virtualenv</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">letsencrypt</span>
+<span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">pip</span> <span class="n">install</span> <span class="n">letsencrypt</span>
+</pre></div>
+</div>
+<p>The client usage is not root restricted, so we will create a dedicated user that will use it:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">adduser</span> <span class="n">letsencrypt</span>
+<span class="n">sudo</span> <span class="n">mkdir</span> <span class="o">-</span><span class="n">p</span> <span class="o">/</span><span class="p">{</span><span class="n">etc</span><span class="p">,</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="p">,</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="p">}</span><span class="o">/</span><span class="n">letsencrypt</span>
+<span class="n">sudo</span> <span class="n">chown</span> <span class="o">-</span><span class="n">R</span> <span class="n">letsencrypt</span><span class="p">:</span><span class="n">letsencrypt</span> <span class="o">/</span><span class="p">{</span><span class="n">etc</span><span class="p">,</span><span class="n">var</span><span class="o">/</span><span class="n">log</span><span class="p">,</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="p">}</span><span class="o">/</span><span class="n">letsencrypt</span>
+</pre></div>
+</div>
+<p>Let&#8217;s encrypt is now installed, we can now create and edit it&#8217;s configuration file. By default, it&#8217;s usable in an interactive way and is inusable in an automatic way. So we will configure it in order that it will don&#8217;t as us to enter basic parameters.
+Here is mine:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="c1"># RSA key size</span>
+<span class="n">rsa</span><span class="o">-</span><span class="n">key</span><span class="o">-</span><span class="n">size</span> <span class="o">=</span> <span class="mi">4096</span>
+<span class="c1"># webmaster email address</span>
+<span class="n">email</span> <span class="o">=</span> <span class="o">&lt;</span><span class="n">webmaster</span><span class="nd">@example</span><span class="o">.</span><span class="n">com</span><span class="o">&gt;</span>
+
+<span class="c1"># Let&#39;s encrypt requires an authentication. Here, we will say it to search on an accessible path</span>
+<span class="n">authenticator</span> <span class="o">=</span> <span class="n">webroot</span>
+<span class="c1"># The path where the client will put files.</span>
+<span class="n">webroot</span><span class="o">-</span><span class="n">path</span> <span class="o">=</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span><span class="n">letsencrypt</span>
+
+<span class="c1"># There is options that we need to activate for a non-interactive usage</span>
+<span class="c1"># Auto-accept</span>
+<span class="n">agree</span><span class="o">-</span><span class="n">tos</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1"># Non-interactive</span>
+<span class="n">non</span><span class="o">-</span><span class="n">interactive</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="c1"># Certificates automatic renewal if necessary. Here, 30 days before it expires</span>
+<span class="n">keep</span><span class="o">-</span><span class="n">until</span><span class="o">-</span><span class="n">expiring</span> <span class="o">=</span> <span class="kc">True</span>
+</pre></div>
+</div>
+<p>Here, the problem is that the certification authorithy should access to tokens placed by the client on &amp;lt;mydomain.tld&gt;/.well-known/acme-challenge address for each site we ask a certificate for.
+The simpliest way to do this is to create an unique folder and to create an alias that points on this folder in the Apache configuration file.</p>
+<p>We could the create a <strong>/etc/apache2/conf-enabled/letsencrypt.conf</strong> file containing those lines:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span>ProxyPass /.well-known/acme-challenge !
+Alias /.well-known/acme-challenge /var/www/letsencrypt/.well-known/acme-challenge
+&lt;Directory /var/www/letsencrypt/.well-known/acme-challenge&gt;
+    Options -Indexes
+    Order allow,deny
+    Allow from all
+&lt;/Directory&gt;
+</pre></div>
+</div>
+<p>And we reload Apache again (and again, and again…):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">service</span> <span class="n">apache2</span> <span class="n">resload</span>
+</pre></div>
+</div>
+<p>We can, now, create our first certificate. As the client is in a virtualenv, it&#8217;s necessary to specify the full path to invoke it.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">letsencrypt</span> <span class="n">certonly</span> <span class="o">--</span><span class="n">domain</span> <span class="o">&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Certificates are automatically created in the /etc/letsencrypt/archive/&amp;lt;mydomain.tld&gt;/ folder and a symlink here /etc/letsencrypt/live/&amp;lt;subdomain.example.com&gt;/
+Four files are created. The certificate, the key an intermediate chain an the fullchain.</p>
+<p>Apache side, before the first use of the certificate, we have to activate the SSL module.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">sudo</span> <span class="n">a2enmod</span> <span class="n">ssl</span>
+</pre></div>
+</div>
+<p>Well. We want to deny HTTP connexions and redirect them on a securised connection.
+So we need to edit the two config files of our websites.
+For each site, we will need two Virtualhosts. The first for HTTP connections and the second for HTTPS.
+For the HTTP connections, it&#8217;s quiet simple. We simply do not want of them, so we will create a redirection on the 443th port.
+For HTTPS, we just need to specify the path where are located necessary files, the fullchain and the key. We will ned to activate SSL mod for the website.:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">443</span><span class="o">&gt;</span>
+    <span class="n">ServerName</span> <span class="o">&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+
+    <span class="n">SSLEngine</span> <span class="n">On</span>
+    <span class="n">SSLCertificateFile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span><span class="n">fullchain</span><span class="o">.</span><span class="n">pem</span>
+    <span class="n">SSLCertificateKeyFile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span><span class="n">privkey</span><span class="o">.</span><span class="n">pem</span>
+    <span class="n">SSLVerifyClient</span> <span class="n">none</span>
+    <span class="n">ProxyRequests</span> <span class="n">Off</span>
+    <span class="n">ProxyPreserveHost</span> <span class="n">On</span>
+    <span class="n">DocumentRoot</span> <span class="o">/</span><span class="n">var</span><span class="o">/</span><span class="n">www</span><span class="o">/</span>
+    <span class="o">&lt;</span><span class="n">Proxy</span> <span class="o">*&gt;</span>
+        <span class="n">Order</span> <span class="n">deny</span><span class="p">,</span><span class="n">allow</span>
+        <span class="n">Allow</span> <span class="kn">from</span> <span class="nn">all</span>
+    <span class="o">&lt;/</span><span class="n">Proxy</span><span class="o">&gt;</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="n">ServerName</span> <span class="o">&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">Redirect</span> <span class="o">/</span> <span class="n">https</span><span class="p">:</span><span class="o">//&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>The virtualhost port has changed, it&#8217;s 443 (HTTPS) now. The other virtualhost is just here to redirect on the first one.</p>
+<p>Exactly the same thing for the webmail:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">443</span><span class="o">&gt;</span>
+    <span class="n">ServerName</span> <span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">SSLCertificateFile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/</span><span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span><span class="n">fullchain</span><span class="o">.</span><span class="n">pem</span>
+    <span class="n">SSLCertificateKeyFile</span> <span class="o">/</span><span class="n">etc</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="n">live</span><span class="o">/</span><span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span><span class="n">privkey</span><span class="o">.</span><span class="n">pem</span>
+    <span class="o">&lt;</span><span class="n">Proxy</span> <span class="o">*&gt;</span>
+        <span class="n">Order</span> <span class="n">deny</span><span class="p">,</span><span class="n">allow</span>
+        <span class="n">Allow</span> <span class="kn">from</span> <span class="nn">all</span>
+    <span class="o">&lt;/</span><span class="n">Proxy</span><span class="o">&gt;</span>
+    <span class="n">SSLEngine</span> <span class="n">on</span>
+    <span class="n">SSLProxyEngine</span> <span class="n">On</span>
+    <span class="n">ProxyRequests</span> <span class="n">Off</span>
+    <span class="n">ProxyPreserveHost</span> <span class="n">On</span>
+    <span class="n">ProxyPass</span> <span class="o">/</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.25</span><span class="o">/</span>
+    <span class="n">ProxyPassReverse</span> <span class="o">/</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="mf">192.168</span><span class="o">.</span><span class="mf">1.25</span><span class="o">/</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+
+<span class="o">&lt;</span><span class="n">VirtualHost</span> <span class="o">*</span><span class="p">:</span><span class="mi">80</span><span class="o">&gt;</span>
+    <span class="n">ServerName</span> <span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;</span>
+    <span class="n">Redirect</span> <span class="o">/</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">mail</span><span class="o">.&lt;</span><span class="n">mydomain</span><span class="o">.</span><span class="n">tld</span><span class="o">&gt;/</span>
+<span class="o">&lt;/</span><span class="n">VirtualHost</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Just a little particularity, the reverse proxy redirects on HTTP. It&#8217;s the host that establish the encrypted connection, not the container !</p>
+<p>We can now reload apache (for the last time).</p>
+<p>Each website is now HTTPS accessible, but certificates have short duration (90 days).
+So, we want renew them automatically.
+To do this, we will just add this line in the <strong>letsencrypt</strong> user crontab :</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="mi">0</span> <span class="mi">0</span> <span class="o">*</span> <span class="o">*</span> <span class="o">*</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">virtualenv</span><span class="o">/</span><span class="n">letsencrypt</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">letsencrypt</span> <span class="n">renew</span>
+</pre></div>
+</div>
+<p>Our websites are now HTTPS accessibles an certificates are automatically renewed.
+Do not hesitate to send me any comment about this article.</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tipsntricks/index.html" class="btn btn-neutral float-right" title="Tips ‘n Tricks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="migration-mails.html" class="btn btn-neutral" title="Mails migration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

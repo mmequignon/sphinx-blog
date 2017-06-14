@@ -7,3 +7,4 @@ Tutos
    dnsmasq
    acpi-systemd
    migration-mails
+   apache
