@@ -8,3 +8,4 @@ Tutos
    acpi-systemd
    migration-mails
    apache
+   virtualenvs
