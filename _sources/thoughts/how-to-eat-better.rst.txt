@@ -51,7 +51,7 @@ Ecology
 
    Breeding is the cause of more than 16% greenhouse gas emission according to the :ref:`IPCC Fifth Assessment Report <ipcc>`.
 
-Animals raised for their meat consumes far more water than any vegetable for the same quantity of food.
+Animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
 
 .. figure:: ../_static/water.jpg
    :align: center
@@ -88,7 +88,7 @@ Not fair…
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-Some brands of chocolate-based produits like Mars of Nestlé use slave-children in West-Africa to harvest cocoa.
+Some brands of chocolate-based produits like Mars or Nestlé use slave-children in West-Africa to harvest cocoa.
 Not fair…
 
 .. figure::  ../_static/slavery.jpg
@@ -98,7 +98,7 @@ Not fair…
 
 Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
 Most of processed tomatoes we eat are cultivated in China and harvested by slave children.
-In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate an harvest tomatoes.
+In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and harvest tomatoes.
 And that's what we are actually eating, in eating pizzas, ketchup, etc…
 Not fair…
 
@@ -110,7 +110,7 @@ Not fair…
 Health
 ------
 
-Actually, more than 200 000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
+Actually, more than 200,000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
 
 .. figure:: ../_static/burger.jpg
    :align: center
@@ -127,7 +127,7 @@ Harvard school of public health recommends to eat around 90g of meat per day, in
 They also recommend to restrict the consumtion of dairy products. Most of us are eating an average of 2.5 servings per day in Western countries.
 
 We could also favor local products.
-Actually, to goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
+Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
 Everybody should be able to say where their food come from.
 Well, it's also good from an economic point of view.
 
