@@ -1,13 +1,17 @@
 How to eat better ?
 ===================
 
-After looking some articles like `this <https://www.theguardian.com/sustainable-business/2017/jan/03/challenges-sustainable-food-2017-organic-farming>`_ or this `one <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_, I'm forced to admit that there's a big problem.
+Some facts
+++++++++++
 
-What about massive meat production factories ?
-----------------------------------------------
+Animal welfare
+--------------
 
- - 83% of broilers are raised indoor.
- - 68% of chikens and 99% of rabbits are caged.
+Raised animales are living in unacceptable conditions.
+For example :
+
+ - 83% of broilers are raised indoor;
+ - 68% of chikens and 99% of rabbits are caged;
  - 20% of raised pigs dies before they are killed.
 
 (source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
@@ -17,11 +21,27 @@ What about massive meat production factories ?
 
    Vegan ? What is it ? Is that something I can eat? (source: `tumblr.com - carlvegandude <http://carlvegandude.tumblr.com/post/131938748612>`_)
 
-I won't suggest you quit eating meat. Actually, I do like meat myself.
-The point is that these days, more or less everyone eats meat everyday, and that should be a concern.
-Each Human eats around 180g of meat each day and that number is growing.
+In the dairy industry, males are useless.
+However, females must have calves to give milk.
+Males are then killed from birth, in order to not feed them.
 
-Obviously, as our needs in meat (that are already enormous) are growing, so is animal agriculture.
+.. figure:: ../_static/not_your_mom.jpg
+   :align: center
+
+   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
+
+In the foie-gras industry, ducks are spoiled all their lives.
+In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
+Once it's big enough, ducks are then killed.
+
+.. figure:: ../_static/duck.jpg
+   :align: center
+
+   Everybody raise you hands ! (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
+
+Ecology
+-------
+
 
 
 .. _ipcc_back:
@@ -38,13 +58,6 @@ Animals raised for their meat consumes far more water than any vegetable for the
 
    What amount of water is needed to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
 
-.. figure:: ../_static/duck.jpg
-   :align: center
-
-   Hi folks ! (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
-
-There are also some ethical reasons to quit eating raised animals. Their living conditions are actually horrible.
-
 We could produce enormous quantities of vegetables. I will never protest about carrots abuse !
 
 .. figure:: ../_static/unhappy.jpg
@@ -53,8 +66,8 @@ We could produce enormous quantities of vegetables. I will never protest about c
    UNHAPPY ! (source : `hungryforever.com <https://www.hungryforever.com/theres-a-hilarious-war-against-vegans-underway-on-this-restaurants-facebook-page/>`_)
 
 
-So, do we have alternatives ?
------------------------------
+Ethical eating
+--------------
 
 Actually, there are so many alternatives like chickpea, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya, quinoa…
 And more…
@@ -66,7 +79,7 @@ And more…
 
 But the point is not about meat. It's about fair food.
 
-For example, you can replace meat by tofu, that is actually made of soya.
+For example, you can replace meat by tofu, that is actually made of soya and is a good source of protein.
 But the fact is that Amazonia is deforested in order to grow gigantic amounts of soya.
 Not fair…
 
@@ -75,8 +88,7 @@ Not fair…
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-Maybe I could eat chocolate bars ?
-No, because in West Africa, there is slave children that are actually making our chocolate bars.
+Some brands of chocolate-based produits like Mars of Nestlé use slave-children in West-Africa to harvest cocoa.
 Not fair…
 
 .. figure::  ../_static/slavery.jpg
@@ -84,15 +96,19 @@ Not fair…
 
    Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
-What could I do to make things better ?
----------------------------------------
+Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
+Most of processed tomatoes we eat are cultivated in China and harvested by slave children.
+In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate an harvest tomatoes.
+And that's what we are actually eating, in eating pizzas, ketchup, etc…
+Not fair…
 
-First, we could all eat less meat. Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
-They also recommend to restrict the consumtion of dairy products. Most of us are eating an average of 2.5 servings per day in Western countries.
+.. figure:: ../_static/tomatoes.jpg
+   :align: center
+   
+   source : `francetvinfo <http://www.francetvinfo.fr/monde/italie/comment-la-mafia-italienne-pourrit-vos-tomates_2195005.html>`_
 
-We could also favor local products. Actually, to goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
-
-Also, In france, a child can't work before 16 years old. By boycotting Nestlé, Mars and Hershey we will protect children of East Africa that do not have laws to protect them.
+Health
+------
 
 Actually, more than 200 000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
 
@@ -103,14 +119,23 @@ Actually, more than 200 000 people are dying every year in France because of poo
 
 To not eating (or eat less) meat could contribute to a healthier life for everybody, including animals.
 
+What should we do to make things better ?
++++++++++++++++++++++++++++++++++++++++++
+
+First, we could all eat less meat.
+Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
+They also recommend to restrict the consumtion of dairy products. Most of us are eating an average of 2.5 servings per day in Western countries.
+
+We could also favor local products.
+Actually, to goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
+Everybody should be able to say where their food come from.
+Well, it's also good from an economic point of view.
+
+Also, In france, a child can't work before 16 years old.
+In boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
+
 By the way, it's important to understand that meat, or fish, or eggs of even milk is not needed for our health.
 So we can chose to not eat these products, or to reduce our consumption.
-
-.. figure:: ../_static/not_your_mom.jpg
-   :align: center
-
-   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
-
 
 References
 ++++++++++
