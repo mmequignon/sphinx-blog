@@ -35,6 +35,8 @@ Animal welfare
 .. figure:: ../_static/dairy_cows.jpg
    :align: center
 
+   (source : `ouestfrance <http://www.ouest-france.fr/economie/agroalimentaire/space-2014-aux-etats-unis-visitez-la-ferme-aux-40-000-vaches-4475233>`_)
+
 | In the foie gras industry, ducks are force-fed all their lives.
 | The beak of the males are cut, in order to prevent attacks while females are crushed because their liver is too small.
 | In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
