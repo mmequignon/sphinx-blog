@@ -196,3 +196,12 @@ References
 .. _fao:
 
  - `FAO (Food and Agriculture Organization of the United Nations) <http://www.fao.org/home/en/>`_ (:ref:`↑ <fao_back>`) 
+
+----------------------------------
+
+Meanwhile, hunting makes more and more victims.
+
+.. figure:: ../_static/doreen.png
+   :align: center
+
+   «I told you it was fucking hunting season Doreen ! But nooooo ! We just HAD to visit your sister near the lake !»
