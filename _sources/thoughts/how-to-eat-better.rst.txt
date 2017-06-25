@@ -14,7 +14,8 @@ Animal welfare
    - 68% of chikens and 99% of rabbits are caged;
    - 20% of raised pigs dies before they are killed.
 
-(source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
+| (source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
+|
 
 .. figure:: ../_static/sexy.jpg
    :align: center
@@ -29,17 +30,17 @@ Animal welfare
 | They will be killed (pregnent, most of the time) and made into chopped steaks.
 | Did you know that 70% of beef comes from dairy cows ?
 | In the wild, they can live easily 20 years.
+|
 
-.. figure:: ../_static/not_your_mom.jpg
+.. figure:: ../_static/dairy_cows.jpg
    :align: center
-
-   Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
 
 | In the foie gras industry, ducks are force-fed all their lives.
 | The beak of the males are cut, in order to prevent attacks while females are crushed because their liver is too small.
 | In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
 | Once it's big enough, ducks are then killed.
 | Foie gras do not kill only force-fed ducks.
+|
 
 .. figure:: ../_static/duck.jpg
    :align: center
@@ -51,7 +52,14 @@ Animal welfare
 Ecology
 -------
 
+.. _fao_back:
 
+| A new report from the :ref:`FAO <fao>` says that breeding is one of the main causes of environmental problems like :
+
+   - global warming;
+   - land degradation;
+   - pollution of air and water;
+   - loss of biodiversity.
 
 .. _ipcc_back:
 
@@ -60,7 +68,11 @@ Ecology
 
    Breeding is the cause of more than 16% greenhouse gas emission according to the :ref:`IPCC Fifth Assessment Report <ipcc>`.
 
-| Animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
+| Agriculture needs more or less water depending on its type of production. This depends on the physiological needs of the plants, animals and food of these animals.
+| To these water needs of organisms are added those of food processing processes, such as water used to clean slaughterhouses, for example.
+| All this water is called «virtual water», which means the total amount of water to produce something.
+| That being said, animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
+|
 
 .. figure:: ../_static/water.jpg
    :align: center
@@ -76,11 +88,11 @@ Ethical eating
 
 | Actually, there are so many alternatives like chickpea, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya, quinoa, and more…
 | But the point is not about meat. It's about fair food.
-
-
+|
 | For example, you can replace meat by tofu, that is actually made of soya and is a good source of protein.
 | But the fact is that Amazonia is deforested in order to grow gigantic amounts of soya.
 | Not fair…
+|
 
 .. figure:: ../_static/soja.jpg
    :align: center
@@ -88,7 +100,9 @@ Ethical eating
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
 | Some brands of chocolate-based produits like Mars or Nestlé use slave-children in West-Africa to harvest cocoa.
+| Do you really believe that a chocolate bar only costs 1€ ?
 | Not fair…
+|
 
 .. figure::  ../_static/slavery.jpg
    :align: center
@@ -100,6 +114,7 @@ Ethical eating
 | In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and harvest tomatoes.
 | And that's what we are actually eating, in eating pizzas, ketchup, etc…
 | Not fair…
+|
 
 .. figure:: ../_static/tomatoes.jpg
    :align: center
@@ -111,7 +126,24 @@ Ethical eating
 Health
 ------
 
+| More and more specialists are accusing industrial food to contain too much fat, sugar, salt and to be too poor in vegetables.
+
+| Poor eating habits could be, for some of these specialists, responsible of these numbers :
+ 
+   - 8 million obese people
+   - 500,000 people suffering of cardiac insufficiency
+   - 2 million people suffering of diabete
+   - 25% cancers are poor eating habits related
+
+| For example :
+
+   - consuming top much fat directly increase risks of heart disease;
+   - cholesterol blocks the arteries and can cause infarction;
+   - consuming too much salt increases risk of high blood pressure;
+   - consuming too much sugar increase the risk of diabetes.
+
 | Actually, more than 200,000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
+| 
 
 .. figure:: ../_static/burger.jpg
    :align: center
@@ -129,20 +161,26 @@ What should we do to make things better ?
   Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
 | They also recommend to restrict the consumtion of dairy products.
   Most of us are eating an average of 2.5 servings per day in Western countries.
-
-
+|
+| One other point meet related.
+| Few years ago, when a butcher had receive a cow, he didn't order another one until it was entierely sold.
+| Today, we can buy only chicken legs, despite the fact that chikens only have two of them.
+| We can also buy only ribs of beef, etc…
+| And it is not normal.
+|
 | We could also favor local products.
   Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
 | Everybody should be able to say where their food come from.
 | Well, it's also good from an economic point of view.
-
-
+|
 | Also, In france, a child can't work before 16 years old.
 | In boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
-
-
+|
 | By the way, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
   So we can chose to not eat these products, or to reduce our consumption.     
+|
+| We could also eat only seasonal vegetables : There are _no_ tomatoes or strawberry in Winter !
+|
 
 ----------------------------------
 
@@ -152,3 +190,7 @@ References
 .. _ipcc:
 
  - `IPCC (intergovernemental panel on climate change) <https://www.ipcc.ch/report/ar5/syr/>`_, 2014: Climate Change 2014: Synthesis Report. Contribution of Working Groups I, II and III to the Fifth Assessment Report of the Intergovernmental Panel on Climate Change [Core Writing Team, R.K. Pachauri and L.A. Meyer (eds.)]. IPCC, Geneva, Switzerland, 151 pp. (:ref:`↑ <ipcc_back>`)
+
+.. _fao:
+
+ - `FAO (Food and Agriculture Organization of the United Nations) <http://www.fao.org/home/en/>`_ (:ref:`↑ <fao_back>`) 
