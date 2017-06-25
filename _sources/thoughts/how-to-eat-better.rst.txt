@@ -73,7 +73,7 @@ Ecology
 | Agriculture needs more or less water depending on its type of production. This depends on the physiological needs of plants, animals and food of these animals.
 | To these water needs of organisms are added those of food processing processes, such as water used to clean slaughterhouses, for example.
 | All those water needs are called «virtual water», which means the total amount of water to produce something.
-| That being said, animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
+| That being said, animals raised for their meat consume far more water than any vegetable for the same quantity of produced food.
 |
 
 .. figure:: ../_static/water.jpg
@@ -81,7 +81,7 @@ Ecology
 
    What amount of water is needed to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
 
-| We could produce enormous quantities of vegetables. I will never protest about carrots abuse !
+| We could produce huge quantities of vegetables. I will never protest about carrots abuse !
 
 ----------------------------------
 
@@ -101,8 +101,8 @@ Ethical eating
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-| Some brands of chocolate-based produits like Mars or Nestlé uses slave children in West-Africa to collect cocoa.
-| Do you really believe that chocolate bars only costs 1¤ ?
+| Some brands of chocolate-based produits like Mars or Nestlé use slave children in West-Africa to collect cocoa.
+| Do you really believe that chocolate bars only cost 1¤ ?
 | Not fair…
 |
 
@@ -112,8 +112,11 @@ Ethical eating
    Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
 | Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
-| Most of processed tomatoes we eat are cultivated in China and are collected by slave children.
+| Most of processed tomatoes we eat are grown in China and are collected by children who are actually enslaved.
 | In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and collect tomatoes.
+| This association have created ghettos in which glandestine immigrants live.
+  Those immigrants are paid with local money that can only be spent in these ghettos.
+  They are emprisonned and forced to work.
 | And that's what we are actually eating, by eating pizzas, ketchup, etc…
 | Not fair…
 |
@@ -134,7 +137,7 @@ Health
  
    - 8 million obese people
    - 500,000 people suffering of cardiac insufficiency
-   - 2 million people suffering of diabete
+   - 2 million people suffering from diabete
    - 25% cancers are poor eating habits related
 
 | For example :
@@ -164,21 +167,19 @@ What should we do to make things better ?
 | They also recommend to restrict the consumtion of dairy products.
   Most of us are eating an average of 2.5 servings per day in Western countries.
 |
-| One other point meat related.
 | Few years ago, when a butcher received a cow, he didn't order another one until the first it was entierely sold-out.
 | Today, we can buy only chicken legs, despite the fact that chikens only have two.
 | We can also buy only ribs of beef, etc…
-| And it is not normal.
 |
 | We could also favor local products.
   Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
 | Everybody should be able to say where their food comes from.
-| Well, it's also good from an economic point of view.
+| And well, it's also good from an economic point of view.
 |
 | Also, In france, a child can't work before 16 years old.
-| In boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
+| By boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
 |
-| By the way, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
+| And above all, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
   So we can chose to not eat these products, or to reduce our consumption.     
 |
 | We could also eat only seasonal vegetables : There are **no** tomatoes or strawberry during Winter !
