@@ -181,7 +181,7 @@ What should we do to make things better ?
 | By the way, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
   So we can chose to not eat these products, or to reduce our consumption.     
 |
-| We could also eat only seasonal vegetables : There are _no_ tomatoes or strawberry in Winter !
+| We could also eat only seasonal vegetables : There are **no** tomatoes or strawberry during Winter !
 |
 
 ----------------------------------
