@@ -7,12 +7,12 @@ Some facts
 Animal welfare
 --------------
 
-Raised animales are living in unacceptable conditions.
-For example :
+| Raised animales are living in unacceptable conditions.
+| For example :
 
- - 83% of broilers are raised indoor;
- - 68% of chikens and 99% of rabbits are caged;
- - 20% of raised pigs dies before they are killed.
+   - 83% of broilers are raised indoor;
+   - 68% of chikens and 99% of rabbits are caged;
+   - 20% of raised pigs dies before they are killed.
 
 (source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
 
@@ -21,23 +21,32 @@ For example :
 
    Vegan ? What is it ? Is that something I can eat? (source: `tumblr.com - carlvegandude <http://carlvegandude.tumblr.com/post/131938748612>`_)
 
-In the dairy industry, males are useless.
-However, females must have calves to give milk.
-Males are then killed from birth, in order to not feed them.
+| In the dairy industry, males are useless.
+| However, females must have calves to give milk.
+| Only three months after she gives birth she will be fertilized by force.
+| Males are then killed from birth, in order to not feed them.
+| Cows in dairy industry are commonly dying at 5 or 6 years old.
+| They will be killed (pregnent, most of the time) and made into chopped steaks.
+| Did you know that 70% of beef comes from dairy cows ?
+| In the wild, they can live easily 20 years.
 
 .. figure:: ../_static/not_your_mom.jpg
    :align: center
 
    Men are the only ones who drinks the milk of other species. (source : `reddit.com <https://www.reddit.com/r/vegan/comments/31nybs/not_your_mom_not_your_milk/>`_)
 
-In the foie-gras industry, ducks are spoiled all their lives.
-In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
-Once it's big enough, ducks are then killed.
+| In the foie gras industry, ducks are force-fed all their lives.
+| The beak of the males are cut, in order to prevent attacks while females are crushed because their liver is too small.
+| In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
+| Once it's big enough, ducks are then killed.
+| Foie gras do not kill only force-fed ducks.
 
 .. figure:: ../_static/duck.jpg
    :align: center
 
-   Everybody raise you hands ! (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
+   Everybody raise your hands ! (source: `LeMonde <http://www.lemonde.fr/politique/article/2012/07/28/hollande-defend-le-foie-gras-francais-face-aux-lobbys-anglosaxons_1739762_823448.html>`_)
+
+----------------------------------
 
 Ecology
 -------
@@ -51,91 +60,91 @@ Ecology
 
    Breeding is the cause of more than 16% greenhouse gas emission according to the :ref:`IPCC Fifth Assessment Report <ipcc>`.
 
-Animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
+| Animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
 
 .. figure:: ../_static/water.jpg
    :align: center
 
    What amount of water is needed to grow your food ? (source : `ediblemadison.com <http://ediblemadison.com/articles/view/water-behind-meat-potatoes>`_)
 
-We could produce enormous quantities of vegetables. I will never protest about carrots abuse !
+| We could produce enormous quantities of vegetables. I will never protest about carrots abuse !
 
-.. figure:: ../_static/unhappy.jpg
-   :align: center
-
-   UNHAPPY ! (source : `hungryforever.com <https://www.hungryforever.com/theres-a-hilarious-war-against-vegans-underway-on-this-restaurants-facebook-page/>`_)
-
+----------------------------------
 
 Ethical eating
 --------------
 
-Actually, there are so many alternatives like chickpea, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya, quinoa…
-And more…
+| Actually, there are so many alternatives like chickpea, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya, quinoa, and more…
+| But the point is not about meat. It's about fair food.
 
-.. figure:: ../_static/food_porn.jpg
-   :align: center
 
-   «I expected lettuce, when you told -vegetarian- !…» (source `twitter.com @vegetarianfoodporn <https://twitter.com/vegetarian_porn/status/501952454255468544/photo/1>`_)
-
-But the point is not about meat. It's about fair food.
-
-For example, you can replace meat by tofu, that is actually made of soya and is a good source of protein.
-But the fact is that Amazonia is deforested in order to grow gigantic amounts of soya.
-Not fair…
+| For example, you can replace meat by tofu, that is actually made of soya and is a good source of protein.
+| But the fact is that Amazonia is deforested in order to grow gigantic amounts of soya.
+| Not fair…
 
 .. figure:: ../_static/soja.jpg
    :align: center
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-Some brands of chocolate-based produits like Mars or Nestlé use slave-children in West-Africa to harvest cocoa.
-Not fair…
+| Some brands of chocolate-based produits like Mars or Nestlé use slave-children in West-Africa to harvest cocoa.
+| Not fair…
 
 .. figure::  ../_static/slavery.jpg
    :align: center
 
    Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
-Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
-Most of processed tomatoes we eat are cultivated in China and harvested by slave children.
-In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and harvest tomatoes.
-And that's what we are actually eating, in eating pizzas, ketchup, etc…
-Not fair…
+| Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
+| Most of processed tomatoes we eat are cultivated in China and harvested by slave children.
+| In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and harvest tomatoes.
+| And that's what we are actually eating, in eating pizzas, ketchup, etc…
+| Not fair…
 
 .. figure:: ../_static/tomatoes.jpg
    :align: center
    
    source : `francetvinfo <http://www.francetvinfo.fr/monde/italie/comment-la-mafia-italienne-pourrit-vos-tomates_2195005.html>`_
 
+----------------------------------
+
 Health
 ------
 
-Actually, more than 200,000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
+| Actually, more than 200,000 people are dying every year in France because of poor eating habits, and most of the time, it's about eating meat.
 
 .. figure:: ../_static/burger.jpg
    :align: center
 
    Triple bypass burger ! (source : `fitneass.com  <https://www.fitneass.com/eating-habit/>`_) 
 
-To not eating (or eat less) meat could contribute to a healthier life for everybody, including animals.
+| To not eating (or eat less) meat could contribute to a healthier life for everybody, including animals.
+
+----------------------------------
 
 What should we do to make things better ?
 +++++++++++++++++++++++++++++++++++++++++
 
-First, we could all eat less meat.
-Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
-They also recommend to restrict the consumtion of dairy products. Most of us are eating an average of 2.5 servings per day in Western countries.
+| First, we could all eat less meat.
+  Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
+| They also recommend to restrict the consumtion of dairy products.
+  Most of us are eating an average of 2.5 servings per day in Western countries.
 
-We could also favor local products.
-Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
-Everybody should be able to say where their food come from.
-Well, it's also good from an economic point of view.
 
-Also, In france, a child can't work before 16 years old.
-In boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
+| We could also favor local products.
+  Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
+| Everybody should be able to say where their food come from.
+| Well, it's also good from an economic point of view.
 
-By the way, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
-So we can chose to not eat these products, or to reduce our consumption.
+
+| Also, In france, a child can't work before 16 years old.
+| In boycotting several industry-made food, we will protect children of other countries that do not have laws to protect them.
+
+
+| By the way, it's important to understand that meat, fish, eggs or even milk is not needed for our health.
+  So we can chose to not eat these products, or to reduce our consumption.     
+
+----------------------------------
 
 References
 ++++++++++
