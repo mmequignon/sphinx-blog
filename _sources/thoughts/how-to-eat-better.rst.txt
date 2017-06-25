@@ -12,7 +12,7 @@ Animal welfare
 
    - 83% of broilers are raised indoor;
    - 68% of chikens and 99% of rabbits are caged;
-   - 20% of raised pigs dies before they are killed.
+   - 20% of raised pigs die before they are killed.
 
 | (source : `viande.info <https://www.viande.info/elevage-viande-animaux>`_)
 |
@@ -24,11 +24,11 @@ Animal welfare
 
 | In the dairy industry, males are useless.
 | However, females must have calves to give milk.
-| Only three months after she gives birth she will be fertilized by force.
-| Males are then killed from birth, in order to not feed them.
-| Cows in dairy industry are commonly dying at 5 or 6 years old.
+| Only three months after they gives birth she will be fertilized by force.
+| Males are then killed at birth, in order to not feed them.
+| Cows in dairy industry are commonly too tired at 5 or 6 so they can't produce milk anymore.
 | They will be killed (pregnent, most of the time) and made into chopped steaks.
-| Did you know that 70% of beef comes from dairy cows ?
+| Did you know that 70% of beef came from dairy cows ?
 | In the wild, they can live easily 20 years.
 |
 
