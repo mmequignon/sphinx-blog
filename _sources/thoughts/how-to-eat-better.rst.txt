@@ -37,11 +37,11 @@ Animal welfare
 
    (source : `ouestfrance <http://www.ouest-france.fr/economie/agroalimentaire/space-2014-aux-etats-unis-visitez-la-ferme-aux-40-000-vaches-4475233>`_)
 
-| In the foie gras industry, ducks are force-fed all their lives.
+| In the duck foie gras industry, ducks are force-fed all their lives.
 | The beak of the males are cut, in order to prevent attacks while females are crushed because their liver is too small.
 | In some farms, they are attached, with the abdomen wide opened in order to check the size of their liver.
 | Once it's big enough, ducks are then killed.
-| Foie gras do not kill only force-fed ducks.
+| Duck foie gras do not kills only force-fed ducks.
 |
 
 .. figure:: ../_static/duck.jpg
@@ -60,7 +60,7 @@ Ecology
 
    - global warming;
    - land degradation;
-   - pollution of air and water;
+   - air and water pollution;
    - loss of biodiversity.
 
 .. _ipcc_back:
@@ -70,9 +70,9 @@ Ecology
 
    Breeding is the cause of more than 16% greenhouse gas emission according to the :ref:`IPCC Fifth Assessment Report <ipcc>`.
 
-| Agriculture needs more or less water depending on its type of production. This depends on the physiological needs of the plants, animals and food of these animals.
+| Agriculture needs more or less water depending on its type of production. This depends on the physiological needs of plants, animals and food of these animals.
 | To these water needs of organisms are added those of food processing processes, such as water used to clean slaughterhouses, for example.
-| All this water is called «virtual water», which means the total amount of water to produce something.
+| All those water needs are called «virtual water», which means the total amount of water to produce something.
 | That being said, animals raised for their meat consumes far more water than any vegetable for the same quantity of produced food.
 |
 
@@ -91,7 +91,7 @@ Ethical eating
 | Actually, there are so many alternatives like chickpea, seitan, tempeh, tofu, amarante, split peas, coral lentils, soya, quinoa, and more…
 | But the point is not about meat. It's about fair food.
 |
-| For example, you can replace meat by tofu, that is actually made of soya and is a good source of protein.
+| For example, you can replace meat by tofu, that is actually made of soya and is a good protein source.
 | But the fact is that Amazonia is deforested in order to grow gigantic amounts of soya.
 | Not fair…
 |
@@ -101,8 +101,8 @@ Ethical eating
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-| Some brands of chocolate-based produits like Mars or Nestlé use slave-children in West-Africa to harvest cocoa.
-| Do you really believe that a chocolate bar only costs 1€ ?
+| Some brands of chocolate-based produits like Mars or Nestlé uses slave children in West-Africa to collect cocoa.
+| Do you really believe that chocolate bars only costs 1¤ ?
 | Not fair…
 |
 
@@ -112,9 +112,9 @@ Ethical eating
    Just a child, making our chocolate bar (source: `TheSpiritScience.net <http://thespiritscience.net/2015/10/18/hershey-nestle-and-mars-use-child-slaves-to-make-your-chocolate/>`_)
 
 | Jean-Baptiste Malet wrote a book named «`L'empire de l'or rouge <http://www.liberation.fr/debats/2017/06/12/la-tomate-fruit-pourri-de-l-agro-mafia_1576305>`_» which talks about tomatoes.
-| Most of processed tomatoes we eat are cultivated in China and harvested by slave children.
-| In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and harvest tomatoes.
-| And that's what we are actually eating, in eating pizzas, ketchup, etc…
+| Most of processed tomatoes we eat are cultivated in China and are collected by slave children.
+| In the south of Italy, a slave association named «caporalato» hire illegal immigrants to cultivate and collect tomatoes.
+| And that's what we are actually eating, by eating pizzas, ketchup, etc…
 | Not fair…
 |
 
@@ -130,7 +130,7 @@ Health
 
 | More and more specialists are accusing industrial food to contain too much fat, sugar, salt and to be too poor in vegetables.
 
-| Poor eating habits could be, for some of these specialists, responsible of these numbers :
+| Junk food could be, for some of these specialists, responsible of these numbers :
  
    - 8 million obese people
    - 500,000 people suffering of cardiac insufficiency
@@ -139,7 +139,7 @@ Health
 
 | For example :
 
-   - consuming top much fat directly increase risks of heart disease;
+   - consuming too much fat directly increase risks of heart disease;
    - cholesterol blocks the arteries and can cause infarction;
    - consuming too much salt increases risk of high blood pressure;
    - consuming too much sugar increase the risk of diabetes.
@@ -159,20 +159,20 @@ Health
 What should we do to make things better ?
 +++++++++++++++++++++++++++++++++++++++++
 
-| First, we could all eat less meat.
+| First, we could eat less meat.
   Harvard school of public health recommends to eat around 90g of meat per day, instead of the average 180g consumed today.
 | They also recommend to restrict the consumtion of dairy products.
   Most of us are eating an average of 2.5 servings per day in Western countries.
 |
-| One other point meet related.
-| Few years ago, when a butcher had receive a cow, he didn't order another one until it was entierely sold.
-| Today, we can buy only chicken legs, despite the fact that chikens only have two of them.
+| One other point meat related.
+| Few years ago, when a butcher received a cow, he didn't order another one until the first it was entierely sold-out.
+| Today, we can buy only chicken legs, despite the fact that chikens only have two.
 | We can also buy only ribs of beef, etc…
 | And it is not normal.
 |
 | We could also favor local products.
   Actually, the goal is not to make actual farmers produce more, but to have more farmers, so we could eat better products.
-| Everybody should be able to say where their food come from.
+| Everybody should be able to say where their food comes from.
 | Well, it's also good from an economic point of view.
 |
 | Also, In france, a child can't work before 16 years old.
