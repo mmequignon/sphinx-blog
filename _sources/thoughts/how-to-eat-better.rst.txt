@@ -199,7 +199,8 @@ References
 
 ----------------------------------
 
-Meanwhile, hunting makes more and more victims.
+| Meanwhile, hunting makes more and more victims.
+| 
 
 .. figure:: ../_static/doreen.png
    :align: center
