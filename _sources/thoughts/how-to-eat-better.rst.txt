@@ -7,7 +7,7 @@ Some facts
 Animal welfare
 --------------
 
-| Raised animales are living in unacceptable conditions.
+| Raised animals are living in unacceptable conditions.
 | For example :
 
    - 83% of broilers are raised indoor;
@@ -101,7 +101,7 @@ Ethical eating
    
    Amazonia is actually deforested in order to grow gigantic amounts of soya (source: `greenpeace.fr <https://www.greenpeace.fr/amazonie-arret-de-la-deforestation-liee-aux-plantations-de-soja/>`_)
 
-| Some brands of chocolate-based produits like Mars or Nestlé use slave children in West-Africa to collect cocoa.
+| Some brands of chocolate-based products like Mars or Nestlé use slave children in West-Africa to collect cocoa.
 | Do you really believe that chocolate bars only cost 1¤ ?
 | Not fair…
 |
