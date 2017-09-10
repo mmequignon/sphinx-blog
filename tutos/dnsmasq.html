@@ -123,6 +123,13 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">LXC and Dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="migration-mails.html">Mails migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Reverse proxy with Apache (and HTTPS !)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualenvs.html">Proper way to deal with python packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#what-we-want">What we want</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#what-we-need">What we need</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#time-to-work">Time to work</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
@@ -160,9 +167,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../thoughts/index.html">Personal Thoughts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../thoughts/how-to-eat-better.html">How to eat better ?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-about-massive-meat-production-factories">What about massive meat production factories ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#so-do-we-have-alternatives">So, do we have alternatives ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-could-i-do-to-make-things-better">What could I do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#some-facts">Some facts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#animal-welfare">Animal welfare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ecology">Ecology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ethical-eating">Ethical eating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#health">Health</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-should-we-do-to-make-things-better">What should we do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -284,7 +297,7 @@ So, you will have to execute this command at every host startup:</p>
 </div>
 <p>As you can see, when you request for a network configuration to your dhcp, the dhcp client will prepend the returned dns by the dnsmasq address.</p>
 <p>You can now make things like:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">create</span> <span class="n">test</span><span class="p">;</span> <span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="n">test</span><span class="p">;</span> <span class="n">ping</span> <span class="n">test</span><span class="o">.</span><span class="n">lxc</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">lxc</span><span class="o">-</span><span class="n">create</span> <span class="o">-</span><span class="n">t</span> <span class="n">debian</span> <span class="o">-</span><span class="n">n</span> <span class="n">test</span><span class="p">;</span> <span class="n">lxc</span><span class="o">-</span><span class="n">start</span> <span class="o">-</span><span class="n">n</span> <span class="n">test</span><span class="p">;</span> <span class="n">ping</span> <span class="n">test</span><span class="o">.</span><span class="n">lxc</span>
 </pre></div>
 </div>
 <p>Enjoy !</p>
