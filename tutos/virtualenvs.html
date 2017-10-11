@@ -167,12 +167,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../thoughts/index.html">Personal Thoughts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../thoughts/how-to-eat-better.html">How to eat better ?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-about-massive-meat-production-factories">What about massive meat production factories ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#so-do-we-have-alternatives">So, do we have alternatives ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-could-i-do-to-make-things-better">What could I do to make things better ?</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#some-facts">Some facts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#animal-welfare">Animal welfare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ecology">Ecology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ethical-eating">Ethical eating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#health">Health</a></li>
 </ul>
 </li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-should-we-do-to-make-things-better">What should we do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -297,12 +300,12 @@ xmltodict (0.10.2)
 zim (0.65)
 </pre></div>
 </div>
-<p>I must admin that I am just unable to say why I have all of these packages installed, nor to say what programs depends on them.
+<p>I must admit that I am just unable to say why I have all of these packages installed, nor to say what programs depends on them.
 So I&#8217;ve decided to manage them in an other way.</p>
 <div class="section" id="what-we-want">
 <h2>What we want<a class="headerlink" href="#what-we-want" title="Permalink to this headline">¶</a></h2>
 <p>We want to deal our packages in a simple way.
-An ideal way would be that when we do not need a programm anymore, I remove it, and it&#8217;s depends too.
+An ideal way would be that when we do not need a programm anymore, I remove it, and its dependancies too.
 It&#8217;s actually possible.</p>
 </div>
 <div class="section" id="what-we-need">
@@ -328,7 +331,7 @@ Well, that&#8217;s true, we will install it each time a program will depend on i
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip3</span> <span class="n">install</span> <span class="n">virtualenv</span>
 </pre></div>
 </div>
-<p>we will virtualenv always use python3, so we will need to know it&#8217;s absolute path :</p>
+<p>we will always use python3, so we will need to know it&#8217;s absolute path :</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ which python3
 /usr/bin/python3
 </pre></div>
@@ -353,10 +356,11 @@ We can create a folder where we will create our virtualenvs :</p>
 </pre></div>
 </div>
 <p>You can now use those commands to manage your virtualenvs :</p>
-<blockquote>
-<div>mkvirtualenv &lt;venv_name&gt; # to create &lt;venv_name&gt;
-workon nom_env # to activate &lt;venv_name&gt;
-rmvirtualenv &lt;venv_name&gt; # to delete &lt;venv_name&gt;</div></blockquote>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkvirtualenv</span> <span class="o">&lt;</span><span class="n">venv_name</span><span class="o">&gt;</span> <span class="c1"># to create &lt;venv_name&gt;</span>
+<span class="n">workon</span> <span class="n">nom_env</span> <span class="c1"># to activate &lt;venv_name&gt;</span>
+<span class="n">rmvirtualenv</span> <span class="o">&lt;</span><span class="n">venv_name</span><span class="o">&gt;</span> <span class="c1"># to delete &lt;venv_name&gt;</span>
+</pre></div>
+</div>
 <p>be aware that <code class="docutils literal"><span class="pre">mkvirtualenv</span></code> options are the same than <code class="docutils literal"><span class="pre">virtualenv</span></code>.</p>
 <p>For the example, we will create a virtual env for <code class="docutils literal"><span class="pre">glances</span></code> :</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span>$ mkvirtualenv glances

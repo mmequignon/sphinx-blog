@@ -56,14 +56,14 @@ Today, in order to see what python packages I've installed with pip, I tried thi
     xmltodict (0.10.2)
     zim (0.65)
 
-I must admin that I am just unable to say why I have all of these packages installed, nor to say what programs depends on them.
+I must admit that I am just unable to say why I have all of these packages installed, nor to say what programs depends on them.
 So I've decided to manage them in an other way.
 
 What we want
 ------------
 
 We want to deal our packages in a simple way.
-An ideal way would be that when we do not need a programm anymore, I remove it, and it's depends too.
+An ideal way would be that when we do not need a programm anymore, I remove it, and its dependancies too.
 It's actually possible.
 
 
@@ -91,7 +91,7 @@ virtualenv installation ::
 
     pip3 install virtualenv
 
-we will virtualenv always use python3, so we will need to know it's absolute path : ::
+we will always use python3, so we will need to know it's absolute path : ::
     
     $ which python3
     /usr/bin/python3
@@ -116,7 +116,7 @@ Now, we have to specify where virtualenvs will be created, so, add those lines i
     export WORKON_HOME=/opt/venv
     source /usr/local/bin/virtualenvwrapper.sh
 
-You can now use those commands to manage your virtualenvs :
+You can now use those commands to manage your virtualenvs : ::
     
     mkvirtualenv <venv_name> # to create <venv_name>
     workon nom_env # to activate <venv_name>
