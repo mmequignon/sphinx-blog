@@ -1,0 +1,139 @@
+How to deploy Pytorch
+=====================
+
+I have a projet to make for the univesity where I'm studying.  
+This projet will be based on Pytorch.  
+
+So, as a first task, I decided to build a deployment tool in order to simplify development.  
+
+So I've built two ansible roles to make this boring and repetitive stuff for me :
+
+ * `ansible-base <https://github.com/mmequignon/ansible-base>`_.
+ * `ansible-pytorch <https://github.com/mmequignon/ansible-pytorch>`_.
+
+The ansible-base role goal is to prepare the environment.
+It will create a sudoer user and install some tools.
+Nothing special here.
+
+.. note::
+   ansible-base is not required to run ansible-pytorch, but it satisfies all its requirements.
+
+The ansible-pytorch role goal is to install Pytorch.
+It will create a dedicated user and a virtualenv with all required packages to work with.
+You can specify some defaults like installation type (cuda or standard) for example.
+
+Ansible is based on ssh and python.
+That means that, on the target host, there is no need to install a client.
+The only requirements are python and ssh (it's easier if you have a ssh key acces on the remote host).
+In both role, the remote user will need to be sudoer (or root).
+
+For this example, I will introduce both roles, so I will consider that on the target host, python is installed, and that you have an access to the root account (via ssh).
+
+Let's say that remote hostname is <foo_bar.tld>.
+
+First, let's add those lines to our .ssh/config file::
+
+    Host foo_bar
+        Hostname foo_bar.tld
+        Port 22
+        User root
+
+Now, we can push ssh keys::
+    
+    ssh-copy-id foo_bar
+
+A password will be asked, and then, we will be able to login without password.
+
+Now, we can create our ansible-playbook.
+In this playbook, we will specify target hosts and roles that will be run.
+I've made a playbook template that we will use here.
+Let's clone the project::
+
+    git clone https://github.com/mmequignon/ansible_playbook_template
+
+Lets analyze this template.
+
+ * ``group_vars`` : In this folder, we can create yaml files in which we will declare some variables that will be used by groups.
+ * ``inventory`` : In this file, we can declare remote hosts in groups that can implements group_vars.
+ * ``playbooks/sample_playbook.yml`` : As a said earlier, the goal of a playbook is to run roles on hosts.
+   
+There is what your ``group_vars`` should look::
+
+    ansible_ssh_user: root
+
+Here, we say that for each group that implements the group_var ``all``, root will be the remote user that will be used.
+
+Now, lets look at ``inventory``::
+
+    [all:children]
+    sample_group
+
+    [sample_group]
+    foo_bar
+
+On the first two lines, we say that the group ``sample_group`` will implement the group_var ``all``.
+Then, we create the ``sample_group`` group with the host ``foo_bar`` in it.
+So, sample_group will implicitly implements the ``all`` group_var.
+
+Finally, the playbook::
+
+    ---
+
+    - hosts: sample_group
+      roles:
+          - role: ansible-base
+          - role: ansible-pytorch
+
+Here, we specify a host. Actually, we can specify a group. That's what we do here, with the ``sample_group`` group.
+We added only one host in the group, but we could add more in it. Many more.
+Then, we specify which roles will be run on the hosts. Here, ``ansible-base`` and ``ansible-pytorch``.
+
+The work is almost done.
+The only thing we need nowi, is to get some roles.
+So let's create a ``roles`` folder and clone them::
+    
+    mkdir roles && cd roles
+    git clone https://github.com/mmequignon/ansible-base
+    git clone https://github.com/mmequignon/ansible-pytorch
+
+
+Some variables are empty in the ansible-pytorch role.
+Actually, it (for the moment) needs a ssh key in a ``file``::
+
+    mkdir files
+    cp ~/.ssh/<YOUR PUBLIC KEY> files/pub_key
+
+Pytorch have a particullarity. It can use CUDA in order to ameliorate performances.
+You can then change the ``pytorch_install_type`` value from ``standard`` to ``cuda`` in order to enable its support in your project.
+
+We can now run the following command (from the upper folder)::
+
+    ./deploy_host sample_playbook.yml sample_group
+
+You now just have to prepare a coffee and wait.
+After it finishes, you can log into the remote host::
+
+    ssh foo_bar -l pytorch
+
+You will see a ``pytorch`` project folder in which there will be a ``sandbox`` folder.
+It's a virualenv. All necessary packages are in it ::
+
+    ./sandbox/bin/python
+    >>> import torch
+    >>>
+
+In order to use pytorch, the Python interpreter will be the sandbox one.
+So, if you want to specify it in the shebang, you could write something like this::
+
+    #!/home/pytorch/pytorch/sandbox/bin/python
+
+.. Note::
+   At the moment, the ``ansible-pytorch`` role is still in construction but already works for the standard install.
+
+As a little conclusion, we can say that ansible do not needs that much tools to be run.
+On the remote host, we only need ``python`` and ``ssh``.
+On the host that will run ansible, you will need to install ``ansible``::
+    
+    pip install ansible
+
+And that's it.

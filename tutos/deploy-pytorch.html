@@ -1,0 +1,451 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>How to deploy Pytorch &mdash; Fwzte Personnal notes and thoughts about computer science. documentation</title>
+  
+
+  
+  
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  
+
+  
+    <link rel="stylesheet" href="../_static/theme_overrides.css" type="text/css" />
+  
+
+  
+        <link rel="index" title="Index"
+              href="../genindex.html"/>
+        <link rel="search" title="Search" href="../search.html"/>
+    <link rel="top" title="Fwzte Personnal notes and thoughts about computer science. documentation" href="../index.html"/>
+        <link rel="up" title="Tutos" href="index.html"/>
+        <link rel="next" title="Tips ‘n Tricks" href="../tipsntricks/index.html"/>
+        <link rel="prev" title="Proper way to deal with python packages" href="virtualenvs.html"/> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Fwzte
+          
+
+          
+            
+            <img src="../_static/logo.png" class="logo" />
+          
+          </a>
+
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">Tutos</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="prepadedie.html">My dedicated server installation</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#host-configuration">Host configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lvm">LVM</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#lxc">LXC</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#lxc-create">lxc-create</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#containers-configuration">Containers configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#managing-container-resources">Managing container resources</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#rudiments">Rudiments</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#iptables">Iptables</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ssmtp">Ssmtp</a></li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#smartmontools">Smartmontools</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#daemon-configuration">Daemon configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#rsyslog">Rsyslog</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#server-configuration">Server configuration</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#client-configuration">Client configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#ansible">Ansible</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#initial-configuration">Initial configuration</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="prepadedie.html#notes">Notes</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#mount-inside-a-container">Mount inside a container</a></li>
+<li class="toctree-l4"><a class="reference internal" href="prepadedie.html#ip-failover">IP failover</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="dnsmasq.html">LXC and Dnsmasq</a></li>
+<li class="toctree-l2"><a class="reference internal" href="acpi-systemd.html">ACPI events management with systemd</a></li>
+<li class="toctree-l2"><a class="reference internal" href="migration-mails.html">Mails migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="apache.html">Reverse proxy with Apache (and HTTPS !)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="virtualenvs.html">Proper way to deal with python packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#what-we-want">What we want</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#what-we-need">What we need</a></li>
+<li class="toctree-l3"><a class="reference internal" href="virtualenvs.html#time-to-work">Time to work</a></li>
+</ul>
+</li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">How to deploy Pytorch</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../tipsntricks/index.html">Tips &#8216;n Tricks</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/x2x.html">How to drive a remote computer with X2GO</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/vim.html">Just a vim reminder</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#basics">Basics</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#use-the-force-use-hjkl">Use the force, use hjkl !</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#modes">Modes</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#commands">Commands</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-paste">Cut / Copy / Paste</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#advanced">Advanced</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cut-copy-again">Cut / Copy (again)</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#cursor-manipulation">Cursor manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#manipulation">Manipulation</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../tipsntricks/vim.html#windows">Windows</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../tipsntricks/vim.html#conclusion">Conclusion</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tipsntricks/deb_packages.html">.deb packages modification</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts/index.html">Scripts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/ccppp.html">CCPPP</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/lxc-up_down.html">lxc-up / down</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-up">lxc up</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../scripts/lxc-up_down.html#lxc-down">lxc-down</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../scripts/pg-cli.html">pg-cli</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../thoughts/index.html">Personal Thoughts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../thoughts/how-to-eat-better.html">How to eat better ?</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#some-facts">Some facts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#animal-welfare">Animal welfare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ecology">Ecology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ethical-eating">Ethical eating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#health">Health</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-should-we-do-to-make-things-better">What should we do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Fwzte</a>
+        
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Tutos</a> &raquo;</li>
+        
+      <li>How to deploy Pytorch</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="how-to-deploy-pytorch">
+<h1>How to deploy Pytorch<a class="headerlink" href="#how-to-deploy-pytorch" title="Permalink to this headline">¶</a></h1>
+<p>I have a projet to make for the univesity where I&#8217;m studying.
+This projet will be based on Pytorch.</p>
+<p>So, as a first task, I decided to build a deployment tool in order to simplify development.</p>
+<p>So I&#8217;ve built two ansible roles to make this boring and repetitive stuff for me :</p>
+<blockquote>
+<div><ul class="simple">
+<li><a class="reference external" href="https://github.com/mmequignon/ansible-base">ansible-base</a>.</li>
+<li><a class="reference external" href="https://github.com/mmequignon/ansible-pytorch">ansible-pytorch</a>.</li>
+</ul>
+</div></blockquote>
+<p>The ansible-base role goal is to prepare the environment.
+It will create a sudoer user and install some tools.
+Nothing special here.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">ansible-base is not required to run ansible-pytorch, but it satisfies all its requirements.</p>
+</div>
+<p>The ansible-pytorch role goal is to install Pytorch.
+It will create a dedicated user and a virtualenv with all required packages to work with.
+You can specify some defaults like installation type (cuda or standard) for example.</p>
+<p>Ansible is based on ssh and python.
+That means that, on the target host, there is no need to install a client.
+The only requirements are python and ssh (it&#8217;s easier if you have a ssh key acces on the remote host).
+In both role, the remote user will need to be sudoer (or root).</p>
+<p>For this example, I will introduce both roles, so I will consider that on the target host, python is installed, and that you have an access to the root account (via ssh).</p>
+<p>Let&#8217;s say that remote hostname is &lt;foo_bar.tld&gt;.</p>
+<p>First, let&#8217;s add those lines to our .ssh/config file:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">Host</span> <span class="n">foo_bar</span>
+    <span class="n">Hostname</span> <span class="n">foo_bar</span><span class="o">.</span><span class="n">tld</span>
+    <span class="n">Port</span> <span class="mi">22</span>
+    <span class="n">User</span> <span class="n">root</span>
+</pre></div>
+</div>
+<p>Now, we can push ssh keys:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span><span class="o">-</span><span class="n">copy</span><span class="o">-</span><span class="nb">id</span> <span class="n">foo_bar</span>
+</pre></div>
+</div>
+<p>A password will be asked, and then, we will be able to login without password.</p>
+<p>Now, we can create our ansible-playbook.
+In this playbook, we will specify target hosts and roles that will be run.
+I&#8217;ve made a playbook template that we will use here.
+Let&#8217;s clone the project:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mmequignon</span><span class="o">/</span><span class="n">ansible_playbook_template</span>
+</pre></div>
+</div>
+<p>Lets analyze this template.</p>
+<blockquote>
+<div><ul class="simple">
+<li><code class="docutils literal"><span class="pre">group_vars</span></code> : In this folder, we can create yaml files in which we will declare some variables that will be used by groups.</li>
+<li><code class="docutils literal"><span class="pre">inventory</span></code> : In this file, we can declare remote hosts in groups that can implements group_vars.</li>
+<li><code class="docutils literal"><span class="pre">playbooks/sample_playbook.yml</span></code> : As a said earlier, the goal of a playbook is to run roles on hosts.</li>
+</ul>
+</div></blockquote>
+<p>There is what your <code class="docutils literal"><span class="pre">group_vars</span></code> should look:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ansible_ssh_user</span><span class="p">:</span> <span class="n">root</span>
+</pre></div>
+</div>
+<p>Here, we say that for each group that implements the group_var <code class="docutils literal"><span class="pre">all</span></code>, root will be the remote user that will be used.</p>
+<p>Now, lets look at <code class="docutils literal"><span class="pre">inventory</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="p">[</span><span class="nb">all</span><span class="p">:</span><span class="n">children</span><span class="p">]</span>
+<span class="n">sample_group</span>
+
+<span class="p">[</span><span class="n">sample_group</span><span class="p">]</span>
+<span class="n">foo_bar</span>
+</pre></div>
+</div>
+<p>On the first two lines, we say that the group <code class="docutils literal"><span class="pre">sample_group</span></code> will implement the group_var <code class="docutils literal"><span class="pre">all</span></code>.
+Then, we create the <code class="docutils literal"><span class="pre">sample_group</span></code> group with the host <code class="docutils literal"><span class="pre">foo_bar</span></code> in it.
+So, sample_group will implicitly implements the <code class="docutils literal"><span class="pre">all</span></code> group_var.</p>
+<p>Finally, the playbook:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---</span>
+
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">sample_group</span>
+  <span class="n">roles</span><span class="p">:</span>
+      <span class="o">-</span> <span class="n">role</span><span class="p">:</span> <span class="n">ansible</span><span class="o">-</span><span class="n">base</span>
+      <span class="o">-</span> <span class="n">role</span><span class="p">:</span> <span class="n">ansible</span><span class="o">-</span><span class="n">pytorch</span>
+</pre></div>
+</div>
+<p>Here, we specify a host. Actually, we can specify a group. That&#8217;s what we do here, with the <code class="docutils literal"><span class="pre">sample_group</span></code> group.
+We added only one host in the group, but we could add more in it. Many more.
+Then, we specify which roles will be run on the hosts. Here, <code class="docutils literal"><span class="pre">ansible-base</span></code> and <code class="docutils literal"><span class="pre">ansible-pytorch</span></code>.</p>
+<p>The work is almost done.
+The only thing we need nowi, is to get some roles.
+So let&#8217;s create a <code class="docutils literal"><span class="pre">roles</span></code> folder and clone them:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">roles</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">roles</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mmequignon</span><span class="o">/</span><span class="n">ansible</span><span class="o">-</span><span class="n">base</span>
+<span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mmequignon</span><span class="o">/</span><span class="n">ansible</span><span class="o">-</span><span class="n">pytorch</span>
+</pre></div>
+</div>
+<p>Some variables are empty in the ansible-pytorch role.
+Actually, it (for the moment) needs a ssh key in a <code class="docutils literal"><span class="pre">file</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">files</span>
+<span class="n">cp</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/&lt;</span><span class="n">YOUR</span> <span class="n">PUBLIC</span> <span class="n">KEY</span><span class="o">&gt;</span> <span class="n">files</span><span class="o">/</span><span class="n">pub_key</span>
+</pre></div>
+</div>
+<p>Pytorch have a particullarity. It can use CUDA in order to ameliorate performances.
+You can then change the <code class="docutils literal"><span class="pre">pytorch_install_type</span></code> value from <code class="docutils literal"><span class="pre">standard</span></code> to <code class="docutils literal"><span class="pre">cuda</span></code> in order to enable its support in your project.</p>
+<p>We can now run the following command (from the upper folder):</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">deploy_host</span> <span class="n">sample_playbook</span><span class="o">.</span><span class="n">yml</span> <span class="n">sample_group</span>
+</pre></div>
+</div>
+<p>You now just have to prepare a coffee and wait.
+After it finishes, you can log into the remote host:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">ssh</span> <span class="n">foo_bar</span> <span class="o">-</span><span class="n">l</span> <span class="n">pytorch</span>
+</pre></div>
+</div>
+<p>You will see a <code class="docutils literal"><span class="pre">pytorch</span></code> project folder in which there will be a <code class="docutils literal"><span class="pre">sandbox</span></code> folder.
+It&#8217;s a virualenv. All necessary packages are in it</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">sandbox</span><span class="o">/</span><span class="nb">bin</span><span class="o">/</span><span class="n">python</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">torch</span>
+<span class="o">&gt;&gt;&gt;</span>
+</pre></div>
+</div>
+<p>In order to use pytorch, the Python interpreter will be the sandbox one.
+So, if you want to specify it in the shebang, you could write something like this:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="ch">#!/home/pytorch/pytorch/sandbox/bin/python</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">At the moment, the <code class="docutils literal"><span class="pre">ansible-pytorch</span></code> role is still in construction but already works for the standard install.</p>
+</div>
+<p>As a little conclusion, we can say that ansible do not needs that much tools to be run.
+On the remote host, we only need <code class="docutils literal"><span class="pre">python</span></code> and <code class="docutils literal"><span class="pre">ssh</span></code>.
+On the host that will run ansible, you will need to install <code class="docutils literal"><span class="pre">ansible</span></code>:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">ansible</span>
+</pre></div>
+</div>
+<p>And that&#8217;s it.</p>
+</div>
+
+
+           </div>
+           <div class="articleComments">
+            
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../tipsntricks/index.html" class="btn btn-neutral float-right" title="Tips ‘n Tricks" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="virtualenvs.html" class="btn btn-neutral" title="Proper way to deal with python packages" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+
+    </p>
+  </div> 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'Personnal notes and thoughts about computer science.',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+      <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

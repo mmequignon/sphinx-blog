@@ -9,3 +9,4 @@ Tutos
    migration-mails
    apache
    virtualenvs
+   deploy-pytorch
