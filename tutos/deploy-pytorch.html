@@ -330,14 +330,14 @@ Then, we specify which roles will be run on the hosts. Here, <code class="docuti
 <p>The work is almost done.
 The only thing we need nowi, is to get some roles.
 So let&#8217;s create a <code class="docutils literal"><span class="pre">roles</span></code> folder and clone them:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">roles</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">roles</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">playbooks</span><span class="o">/</span><span class="n">roles</span> <span class="o">&amp;&amp;</span> <span class="n">cd</span> <span class="n">playbooks</span><span class="o">/</span><span class="n">roles</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mmequignon</span><span class="o">/</span><span class="n">ansible</span><span class="o">-</span><span class="n">base</span>
 <span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">mmequignon</span><span class="o">/</span><span class="n">ansible</span><span class="o">-</span><span class="n">pytorch</span>
 </pre></div>
 </div>
 <p>Some variables are empty in the ansible-pytorch role.
 Actually, it (for the moment) needs a ssh key in a <code class="docutils literal"><span class="pre">file</span></code>:</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">mkdir</span> <span class="n">files</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="n">cd</span> <span class="o">../..</span> <span class="o">&amp;&amp;</span> <span class="n">mkdir</span> <span class="n">files</span>
 <span class="n">cp</span> <span class="o">~/.</span><span class="n">ssh</span><span class="o">/&lt;</span><span class="n">YOUR</span> <span class="n">PUBLIC</span> <span class="n">KEY</span><span class="o">&gt;</span> <span class="n">files</span><span class="o">/</span><span class="n">pub_key</span>
 </pre></div>
 </div>
