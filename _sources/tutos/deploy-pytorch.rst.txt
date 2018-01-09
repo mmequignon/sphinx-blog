@@ -92,7 +92,7 @@ The work is almost done.
 The only thing we need nowi, is to get some roles.
 So let's create a ``roles`` folder and clone them::
     
-    mkdir roles && cd roles
+    mkdir playbooks/roles && cd playbooks/roles
     git clone https://github.com/mmequignon/ansible-base
     git clone https://github.com/mmequignon/ansible-pytorch
 
@@ -100,7 +100,7 @@ So let's create a ``roles`` folder and clone them::
 Some variables are empty in the ansible-pytorch role.
 Actually, it (for the moment) needs a ssh key in a ``file``::
 
-    mkdir files
+    cd ../.. && mkdir files
     cp ~/.ssh/<YOUR PUBLIC KEY> files/pub_key
 
 Pytorch have a particullarity. It can use CUDA in order to ameliorate performances.
