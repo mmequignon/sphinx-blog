@@ -69,7 +69,7 @@ Now, lets look at ``inventory``::
     sample_group
 
     [sample_group]
-    foo_bar
+    sample_host ansible_ssh_host=foo_bar.tld
 
 On the first two lines, we say that the group ``sample_group`` will implement the group_var ``all``.
 Then, we create the ``sample_group`` group with the host ``foo_bar`` in it.
@@ -79,7 +79,7 @@ Finally, the playbook::
 
     ---
 
-    - hosts: sample_group
+    - hosts: sample_host
       roles:
           - role: ansible-base
           - role: ansible-pytorch
@@ -108,7 +108,7 @@ You can then change the ``pytorch_install_type`` value from ``standard`` to ``cu
 
 We can now run the following command (from the upper folder)::
 
-    ./deploy_host sample_playbook.yml sample_group
+    ./deploy_host sample_playbook.yml
 
 You now just have to prepare a coffee and wait.
 After it finishes, you can log into the remote host::

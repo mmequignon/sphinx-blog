@@ -309,7 +309,7 @@ Let&#8217;s clone the project:</p>
 <span class="n">sample_group</span>
 
 <span class="p">[</span><span class="n">sample_group</span><span class="p">]</span>
-<span class="n">foo_bar</span>
+<span class="n">sample_host</span> <span class="n">ansible_ssh_host</span><span class="o">=</span><span class="n">foo_bar</span><span class="o">.</span><span class="n">tld</span>
 </pre></div>
 </div>
 <p>On the first two lines, we say that the group <code class="docutils literal"><span class="pre">sample_group</span></code> will implement the group_var <code class="docutils literal"><span class="pre">all</span></code>.
@@ -318,7 +318,7 @@ So, sample_group will implicitly implements the <code class="docutils literal"><
 <p>Finally, the playbook:</p>
 <div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">---</span>
 
-<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">sample_group</span>
+<span class="o">-</span> <span class="n">hosts</span><span class="p">:</span> <span class="n">sample_host</span>
   <span class="n">roles</span><span class="p">:</span>
       <span class="o">-</span> <span class="n">role</span><span class="p">:</span> <span class="n">ansible</span><span class="o">-</span><span class="n">base</span>
       <span class="o">-</span> <span class="n">role</span><span class="p">:</span> <span class="n">ansible</span><span class="o">-</span><span class="n">pytorch</span>
@@ -344,7 +344,7 @@ Actually, it (for the moment) needs a ssh key in a <code class="docutils literal
 <p>Pytorch have a particullarity. It can use CUDA in order to ameliorate performances.
 You can then change the <code class="docutils literal"><span class="pre">pytorch_install_type</span></code> value from <code class="docutils literal"><span class="pre">standard</span></code> to <code class="docutils literal"><span class="pre">cuda</span></code> in order to enable its support in your project.</p>
 <p>We can now run the following command (from the upper folder):</p>
-<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">deploy_host</span> <span class="n">sample_playbook</span><span class="o">.</span><span class="n">yml</span> <span class="n">sample_group</span>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">deploy_host</span> <span class="n">sample_playbook</span><span class="o">.</span><span class="n">yml</span>
 </pre></div>
 </div>
 <p>You now just have to prepare a coffee and wait.
