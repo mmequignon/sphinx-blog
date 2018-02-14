@@ -17,6 +17,26 @@ I also like to play guitar.
 
 I've heard, once "The linux way of solving problems" that's exactly what I like.
 
+^C^C^C
+
+^C  ^]]H^]]H
+
+^C
+
+:w :q :wq :wq! ^d X exit X Q :quitbye
+
+CtrlAltDel ~~q :~q
+
+logoutsave/quit :!QUIT ^[zz ^[ZZ ZZZZ ^H ^@ ^L
+
+^[c ^# ^E ^X ^I ^T ? help help h HELPhelphelp
+
+quit ^D ^d
+
+^C
+
+^Q^U^I^T ^]^]^]
+
 Contact
 +++++++
 

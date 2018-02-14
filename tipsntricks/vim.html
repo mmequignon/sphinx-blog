@@ -123,6 +123,14 @@
 <li class="toctree-l2"><a class="reference internal" href="../tutos/dnsmasq.html">LXC and Dnsmasq</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutos/acpi-systemd.html">ACPI events management with systemd</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../tutos/migration-mails.html">Mails migration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/apache.html">Reverse proxy with Apache (and HTTPS !)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/virtualenvs.html">Proper way to deal with python packages</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/virtualenvs.html#what-we-want">What we want</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/virtualenvs.html#what-we-need">What we need</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../tutos/virtualenvs.html#time-to-work">Time to work</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../tutos/deploy-pytorch.html">How to deploy Pytorch</a></li>
 </ul>
 </li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">Tips &#8216;n Tricks</a><ul class="current">
@@ -160,9 +168,15 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../thoughts/index.html">Personal Thoughts</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="../thoughts/how-to-eat-better.html">How to eat better ?</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-about-massive-meat-production-factories">What about massive meat production factories ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#so-do-we-have-alternatives">So, do we have alternatives ?</a></li>
-<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-could-i-do-to-make-things-better">What could I do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#some-facts">Some facts</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#animal-welfare">Animal welfare</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ecology">Ecology</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#ethical-eating">Ethical eating</a></li>
+<li class="toctree-l4"><a class="reference internal" href="../thoughts/how-to-eat-better.html#health">Health</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#what-should-we-do-to-make-things-better">What should we do to make things better ?</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../thoughts/how-to-eat-better.html#references">References</a></li>
 </ul>
 </li>
 </ul>
@@ -334,7 +348,7 @@ That&#8217;s actually why most users can&#8217;t figure out how to edit text, or
 <tr class="row-even"><td><code class="docutils literal"><span class="pre">:q!</span></code></td>
 <td>Quits current buffer and discards changes</td>
 </tr>
-<tr class="row-odd"><td><code class="docutils literal"><span class="pre">:w</span></code></td>
+<tr class="row-odd"><td><code class="docutils literal"><span class="pre">:x</span></code></td>
 <td>Writes and quits current buffer</td>
 </tr>
 </tbody>
@@ -585,7 +599,7 @@ For the examples, I will use <code class="docutils literal"><span class="pre">&q
 </tr>
 </tbody>
 </table>
-<p>Similirly, you can apply this to the current word</p>
+<p>Similarly, you can apply this to the current word</p>
 <table border="1" class="docutils">
 <colgroup>
 <col width="25%" />

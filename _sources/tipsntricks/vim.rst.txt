@@ -76,7 +76,7 @@ In order to enter a command, you must prefix it with ``:``.
 +---------+-------------------------------------------+
 | ``:q!`` | Quits current buffer and discards changes |
 +---------+-------------------------------------------+
-| ``:w``  | Writes and quits current buffer           |
+| ``:x``  | Writes and quits current buffer           |
 +---------+-------------------------------------------+
 
 
@@ -258,7 +258,7 @@ For the examples, I will use ``"``.
 | <g><~><i><w> | Toggle case of the text placed between the ``"``. |
 +--------------+---------------------------------------------------+
 
-Similirly, you can apply this to the current word
+Similarly, you can apply this to the current word
 
 +--------------+-----------------------------------------+
 | Key          | Action                                  |
